@@ -148,6 +148,18 @@ function drawCharacterPreview(character) {
   context.font =
     `400 ${fontSize}px ${fontFamily}`;
 
+  const xMeasurement = context.measureText("x");
+  const xLine = document.querySelector(".metric-x");
+  const xLineRule = xLine.querySelector("i").getBoundingClientRect();
+  const xLineBox = xLine.getBoundingClientRect();
+  const ruleOffset = xLineRule.top - xLineBox.top;
+  const xTop =
+    baseline.top - previewBox.top -
+    xMeasurement.actualBoundingBoxAscent;
+
+  xLine.style.top =
+    (xTop - ruleOffset) + "px";
+
   context.fillStyle =
     getComputedStyle(document.body).color;
 
