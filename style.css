@@ -263,7 +263,10 @@ body {
   display: grid;
 
   grid-template-columns:
-    auto 1fr 55px;
+    auto
+    minmax(0, 0.65fr)
+    55px
+    minmax(0, 0.35fr);
 
   align-items: center;
 
@@ -286,7 +289,7 @@ body {
 /* slider */
 
 .control input[type="range"] {
-  width: 65%;
+  width: 100%;
 
   justify-self: start;
 
@@ -1014,7 +1017,10 @@ footer {
 
   .control {
     grid-template-columns:
-      65px 1fr 50px;
+      65px
+      minmax(0, 0.65fr)
+      50px
+      minmax(0, 0.35fr);
   }
 
 
