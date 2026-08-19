@@ -7,7 +7,7 @@
 
   <title>MorphyFoundry</title>
 
-  <link rel="stylesheet" href="style.css?v=kerning-lab2">
+  <link rel="stylesheet" href="style.css?v=glyph-points1">
 </head>
 
 
@@ -41,9 +41,8 @@
 
     <section class="hero">
 
-      <h1 class="hero-typewriter typewriter-text" data-typewriter-text="Morphy&#10;Foundry" aria-label="Morphy Foundry">
-        Morphy<br>
-        Foundry
+      <h1 class="hero-typewriter typewriter-text" data-typewriter-text="MorphyFoundry © 2026" aria-label="MorphyFoundry © 2026">
+        MorphyFoundry © 2026
       </h1>
 
     </section>
@@ -418,6 +417,67 @@
 
 
     <!-- =========================
+         GLYPH CONSTRUCTION
+    ========================== -->
+
+    <section class="glyph-construction" id="construction" aria-labelledby="glyph-construction-title">
+
+      <div class="glyph-construction-copy">
+        <span>Outline / Control points</span>
+        <h2 id="glyph-construction-title">Form</h2>
+        <p>
+          Every curve is built from measured points, handles and relationships.
+          The outline reveals how structure becomes rhythm.
+        </p>
+      </div>
+
+      <div class="glyph-construction-stage" aria-label="Letter outlines with highlighted control points">
+        <svg class="glyph-construction-svg" viewBox="0 0 1200 760" role="img" aria-labelledby="glyph-diagram-title glyph-diagram-description">
+          <title id="glyph-diagram-title">Formae letter construction</title>
+          <desc id="glyph-diagram-description">Outlined M and m letterforms with guide lines, handles and highlighted control points.</desc>
+
+          <defs>
+            <pattern id="construction-ruler" width="14" height="24" patternUnits="userSpaceOnUse">
+              <path d="M 0 0 V 15" class="construction-ruler-mark" />
+            </pattern>
+          </defs>
+
+          <rect class="construction-ruler" x="34" y="20" width="1132" height="24" />
+          <rect class="construction-ruler" x="34" y="716" width="1132" height="24" />
+
+          <line class="construction-guide" x1="34" y1="90" x2="1166" y2="90" />
+          <line class="construction-guide" x1="34" y1="650" x2="1166" y2="650" />
+
+          <text class="construction-outline" x="42" y="650">Mm</text>
+
+          <g class="construction-handles" aria-hidden="true">
+            <path d="M78 650 V105 H224 L342 444 L465 105 H598 V650" />
+            <path d="M224 105 L342 444 L465 105" />
+            <path d="M676 650 V286 H806 V650" />
+            <path d="M806 344 C850 242 986 242 1025 344" />
+            <path d="M1025 650 V286 H1150 V650" />
+          </g>
+
+          <g class="construction-points" aria-hidden="true">
+            <circle cx="78" cy="105" r="10" /><circle cx="78" cy="650" r="10" />
+            <circle cx="224" cy="105" r="10" /><circle cx="342" cy="444" r="10" />
+            <circle cx="465" cy="105" r="10" /><circle cx="598" cy="105" r="10" />
+            <circle cx="598" cy="650" r="10" />
+            <circle cx="676" cy="286" r="10" /><circle cx="676" cy="650" r="10" />
+            <circle cx="806" cy="286" r="10" /><circle cx="806" cy="650" r="10" />
+            <circle cx="850" cy="282" r="10" /><circle cx="930" cy="246" r="10" />
+            <circle cx="1025" cy="344" r="10" /><circle cx="1025" cy="650" r="10" />
+            <circle cx="1084" cy="246" r="10" /><circle cx="1150" cy="286" r="10" />
+            <circle cx="1150" cy="650" r="10" />
+          </g>
+        </svg>
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
          TEXT SAMPLES
     ========================== -->
 
@@ -644,7 +704,7 @@
 
 
 
-  <script src="script.js?v=kerning-lab2"></script>
+  <script src="script.js?v=glyph-points1"></script>
 
 </body>
 
