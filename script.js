@@ -108,6 +108,59 @@ const characterPreview =
 const characterCells =
   document.querySelectorAll(".character-grid span");
 
+const characterCanvas =
+  document.getElementById("character-preview-canvas");
+
+
+function drawCharacterPreview(character) {
+  const previewBox =
+    characterCanvas.getBoundingClientRect();
+
+  const capLine =
+    document.querySelector(".metric-cap i").getBoundingClientRect();
+
+  const baseline =
+    document.querySelector(".metric-baseline i").getBoundingClientRect();
+
+  const pixelRatio = window.devicePixelRatio || 1;
+  const context = characterCanvas.getContext("2d");
+
+  characterCanvas.width =
+    Math.round(previewBox.width * pixelRatio);
+
+  characterCanvas.height =
+    Math.round(previewBox.height * pixelRatio);
+
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  context.clearRect(0, 0, previewBox.width, previewBox.height);
+
+  const fontFamily =
+    getComputedStyle(document.body).fontFamily;
+
+  context.font =
+    `400 1000px ${fontFamily}`;
+
+  const referenceA = context.measureText("A");
+  const capToBaseline = baseline.top - capLine.top;
+  const fontSize =
+    1000 * capToBaseline / referenceA.actualBoundingBoxAscent;
+
+  context.font =
+    `400 ${fontSize}px ${fontFamily}`;
+
+  context.fillStyle =
+    getComputedStyle(document.body).color;
+
+  context.textAlign = "center";
+  context.textBaseline = "alphabetic";
+
+  context.fillText(
+    character,
+    previewBox.width / 2,
+    baseline.top - previewBox.top
+  );
+}
+
 
 function selectCharacter(cell) {
   characterCells.forEach(function (item) {
@@ -116,6 +169,7 @@ function selectCharacter(cell) {
 
   cell.classList.add("is-selected");
   characterPreview.textContent = cell.textContent;
+  drawCharacterPreview(cell.textContent);
 
   const codePoint = cell.textContent.codePointAt(0);
   const unicodeValue =
@@ -149,3 +203,8 @@ characterCells.forEach(function (cell) {
 if (characterCells.length) {
   selectCharacter(characterCells[0]);
 }
+
+
+window.addEventListener("resize", function () {
+  drawCharacterPreview(characterPreview.textContent);
+});
