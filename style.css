@@ -1365,7 +1365,8 @@ body {
 
 
   .hero {
-    min-height: 64svh;
+    min-height:
+      clamp(260px, 34svh, 360px);
   }
 
 
