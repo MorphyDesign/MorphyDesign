@@ -280,3 +280,81 @@ if (variableFooter && footerVariableWord) {
     });
   });
 }
+
+
+/* ========================================
+   DISPLAY TYPEWRITER
+======================================== */
+
+document.querySelectorAll("[data-typewriter-text]").forEach(
+  function (typewriterText) {
+  const fullTypewriterText =
+    typewriterText.dataset.typewriterText;
+
+  const reducedMotion =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reducedMotion) {
+    let typewriterPosition = 0;
+    let correctionIndex = 0;
+    const correctionPoints = [
+      Math.max(4, Math.round(fullTypewriterText.length * 0.38)),
+      Math.max(8, Math.round(fullTypewriterText.length * 0.76))
+    ];
+
+    typewriterText.textContent = "";
+
+    function typeForward() {
+      typewriterPosition += 1;
+      typewriterText.textContent =
+        fullTypewriterText.slice(0, typewriterPosition);
+
+      if (
+        correctionIndex < correctionPoints.length &&
+        typewriterPosition === correctionPoints[correctionIndex]
+      ) {
+        correctionIndex += 1;
+        window.setTimeout(function () {
+          eraseCorrection(3);
+        }, 280);
+        return;
+      }
+
+      if (typewriterPosition < fullTypewriterText.length) {
+        window.setTimeout(typeForward, 75 + Math.random() * 90);
+      } else {
+        window.setTimeout(eraseAll, 1600);
+      }
+    }
+
+    function eraseCorrection(remaining) {
+      typewriterPosition -= 1;
+      typewriterText.textContent =
+        fullTypewriterText.slice(0, typewriterPosition);
+
+      if (remaining > 1) {
+        window.setTimeout(function () {
+          eraseCorrection(remaining - 1);
+        }, 75);
+      } else {
+        window.setTimeout(typeForward, 350);
+      }
+    }
+
+    function eraseAll() {
+      typewriterPosition -= 1;
+      typewriterText.textContent =
+        fullTypewriterText.slice(0, typewriterPosition);
+
+      if (typewriterPosition > 0) {
+        window.setTimeout(eraseAll, 38);
+      } else {
+        correctionIndex = 0;
+        window.setTimeout(typeForward, 650);
+      }
+    }
+
+    window.setTimeout(typeForward, 500);
+  }
+  }
+);
