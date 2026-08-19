@@ -62,21 +62,23 @@ testerUnits.forEach(
     );
 
 
-    weightSlider.addEventListener(
-      "input",
-      function () {
+    if (weightSlider) {
+      weightSlider.addEventListener(
+        "input",
+        function () {
 
-        tester.style.fontWeight =
-          this.value;
+          tester.style.fontWeight =
+            this.value;
 
-        tester.style.fontVariationSettings =
-          `"wght" ${this.value}`;
+          tester.style.fontVariationSettings =
+            `"wght" ${this.value}`;
 
-        weightValue.textContent =
-          this.value;
+          weightValue.textContent =
+            this.value;
 
-      }
-    );
+        }
+      );
+    }
 
 
     trackingSlider.addEventListener(
