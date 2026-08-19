@@ -1,18 +1,220 @@
-body {
-  margin: 0;
-  padding: 40px;
-  font-family: Arial, Helvetica, sans-serif;
-  background: white;
-  color: black;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-h1 {
-  font-size: 272px;
-  font-weight: 400;
-  margin: 0 0 20px 0;
-}
+<head>
+  <meta charset="UTF-8">
 
-p {
-  font-size: 24px;
-  margin: 0;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Morphy Design</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header class="site-header">
+
+    <a href="/" class="logo">
+      Morphy Design
+    </a>
+
+    <nav class="navigation">
+
+      <a href="#typefaces">
+        Typefaces
+      </a>
+
+      <a href="#projects">
+        Projects
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- MAIN CONTENT -->
+
+  <main class="site-content">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <h1>
+        Morphy Design
+      </h1>
+
+      <p>
+        Typeface Design, Typography and Wayfinding
+      </p>
+
+    </section>
+
+
+
+    <!-- TYPEFACES -->
+
+    <section
+      class="section"
+      id="typefaces"
+    >
+
+      <div class="section-header">
+
+        <h2>
+          Typefaces
+        </h2>
+
+      </div>
+
+
+      <div class="project-grid">
+
+        <article class="project">
+
+          <div class="project-image">
+          </div>
+
+          <h3>
+            MS Relay Sans
+          </h3>
+
+        </article>
+
+
+        <article class="project">
+
+          <div class="project-image">
+          </div>
+
+          <h3>
+            Typeface 02
+          </h3>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- TYPE TESTER -->
+
+    <section class="type-tester-section">
+
+      <div class="section-header">
+
+        <h2>
+          Type Tester
+        </h2>
+
+      </div>
+
+
+      <div
+        class="type-tester"
+        contenteditable="true"
+        spellcheck="false"
+      >
+        MS Relay Sans
+      </div>
+
+    </section>
+
+
+
+    <!-- PROJECTS -->
+
+    <section
+      class="section"
+      id="projects"
+    >
+
+      <div class="section-header">
+
+        <h2>
+          Projects
+        </h2>
+
+      </div>
+
+
+      <div class="project-grid">
+
+        <article class="project">
+          <div class="project-image"></div>
+
+          <h3>
+            Project 01
+          </h3>
+        </article>
+
+
+        <article class="project">
+          <div class="project-image"></div>
+
+          <h3>
+            Project 02
+          </h3>
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ABOUT -->
+
+    <section
+      class="about"
+      id="about"
+    >
+
+      <h2>
+        About
+      </h2>
+
+      <p>
+        Independent design practice focused on typeface design,
+        typography and wayfinding systems.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
+    <span>
+      © 2026 Morphy Design
+    </span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
