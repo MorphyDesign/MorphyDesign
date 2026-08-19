@@ -1,6 +1,6 @@
-/* ========================================
-   GLOBAL
-======================================== */
+/* ================================
+   RESET
+================================ */
 
 * {
   box-sizing: border-box;
@@ -12,92 +12,746 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
 
-  padding:
-    clamp(20px, 3vw, 48px);
+  background: #f4f4f0;
+  color: #111;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
-
-  background: #ffffff;
-  color: #000000;
 }
 
 
-/* ========================================
-   TITLE
-======================================== */
+/* ================================
+   VARIABLES
+================================ */
 
-h1 {
+:root {
+
+  --margin:
+    clamp(16px, 2.2vw, 36px);
+
+  --border:
+    1px solid rgba(0, 0, 0, 0.25);
+
+  --section-space:
+    clamp(80px, 10vw, 180px);
+
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding:
+    18px
+    var(--margin);
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.brand {
+
+  color: inherit;
+  text-decoration: none;
+
+  font-size: 17px;
+}
+
+
+.nav {
+
+  display: flex;
+
+  gap:
+    clamp(15px, 2vw, 35px);
+
+}
+
+
+.nav a {
+
+  color: inherit;
+  text-decoration: none;
+
+  font-size: 15px;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+
+  min-height:
+    calc(100svh - 58px);
+
+  padding:
+    var(--margin);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
+.hero-meta {
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 14px;
+}
+
+
+.hero h1 {
+
   margin: 0;
 
   font-size:
-    clamp(64px, 12vw, 220px);
+    clamp(85px, 17vw, 320px);
 
   font-weight: 400;
 
-  line-height: 0.85;
+  line-height: 0.73;
 
-  letter-spacing: -0.04em;
-
-  overflow-wrap: anywhere;
+  letter-spacing: -0.065em;
 }
 
 
-/* ========================================
-   SUBTITLE
-======================================== */
+/* ================================
+   TYPEFACE INTRO
+================================ */
 
-p {
-  margin:
-    clamp(18px, 2.5vw, 36px)
-    0
-    0;
+.typeface-intro {
+
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  padding:
+    var(--section-space)
+    var(--margin)
+    var(--margin);
+
+  border-top:
+    var(--border);
+
+}
+
+
+.label {
+
+  margin: 0 0 15px;
+
+  font-size: 13px;
+}
+
+
+.typeface-intro h2 {
+
+  margin: 0;
 
   font-size:
-    clamp(18px, 2vw, 32px);
+    clamp(50px, 8vw, 150px);
 
-  line-height: 1.1;
+  font-weight: 400;
+
+  line-height: 0.9;
+
 }
 
 
-/* ========================================
+.typeface-data {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  align-content: end;
+
+  gap: 8px;
+
+  font-size: 14px;
+
+}
+
+
+/* ================================
+   TYPE TESTER
+================================ */
+
+.tester-section {
+
+  margin-top:
+    var(--section-space);
+
+  border-top:
+    var(--border);
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.tester-header {
+
+  display: flex;
+  justify-content: space-between;
+
+  padding:
+    12px
+    var(--margin);
+
+  border-bottom:
+    var(--border);
+
+  font-size: 13px;
+
+}
+
+
+.tester-info {
+
+  display: flex;
+
+  gap: 35px;
+
+}
+
+
+.tester {
+
+  padding:
+    clamp(30px, 5vw, 80px)
+    var(--margin);
+
+  min-height:
+    clamp(300px, 45vw, 700px);
+
+  font-size:
+    clamp(60px, 11vw, 210px);
+
+  line-height: 0.85;
+
+  letter-spacing: -0.045em;
+
+  outline: none;
+
+  overflow-wrap: anywhere;
+
+  cursor: text;
+
+}
+
+
+/* ================================
+   SPECIMENS
+================================ */
+
+.specimen {
+
+  border-bottom:
+    var(--border);
+
+  padding:
+    12px
+    var(--margin)
+    35px;
+
+}
+
+
+.specimen-label {
+
+  font-size: 12px;
+
+  margin-bottom:
+    clamp(25px, 4vw, 70px);
+
+}
+
+
+.specimen-text {
+
+  font-size:
+    clamp(80px, 15vw, 280px);
+
+  line-height: 0.8;
+
+  letter-spacing: -0.055em;
+
+  overflow: hidden;
+
+}
+
+
+.thin {
+  font-weight: 100;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.black {
+  font-weight: 900;
+}
+
+
+/* ================================
+   DISPLAY BLOCK
+================================ */
+
+.display-block {
+
+  min-height: 85svh;
+
+  padding:
+    var(--margin);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.display-small {
+
+  font-size: 13px;
+
+}
+
+
+.display-large {
+
+  font-size:
+    clamp(180px, 40vw, 700px);
+
+  line-height: 0.65;
+
+  letter-spacing: -0.08em;
+
+}
+
+
+/* ================================
+   SECTION TITLE
+================================ */
+
+.section-title {
+
+  font-size: 13px;
+
+  margin-bottom:
+    clamp(50px, 8vw, 120px);
+
+}
+
+
+/* ================================
+   CHARACTERS
+================================ */
+
+.characters {
+
+  padding:
+    var(--section-space)
+    var(--margin);
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.character-text {
+
+  font-size:
+    clamp(32px, 5.5vw, 100px);
+
+  line-height: 1;
+
+  letter-spacing: -0.025em;
+
+  overflow-wrap: anywhere;
+
+}
+
+
+/* ================================
+   FEATURES
+================================ */
+
+.features {
+
+  padding:
+    var(--section-space)
+    var(--margin);
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.feature-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+}
+
+
+.feature {
+
+  min-height:
+    clamp(220px, 30vw, 450px);
+
+  padding:
+    15px;
+
+  border-top:
+    var(--border);
+
+}
+
+
+.feature:nth-child(odd) {
+
+  border-right:
+    var(--border);
+
+}
+
+
+.feature {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
+.feature span {
+
+  font-size: 13px;
+
+}
+
+
+.feature strong {
+
+  font-size:
+    clamp(55px, 10vw, 170px);
+
+  font-weight: 400;
+
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.about-typeface {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 2fr;
+
+  gap:
+    clamp(40px, 7vw, 120px);
+
+  padding:
+    var(--section-space)
+    var(--margin);
+
+  border-bottom:
+    var(--border);
+
+}
+
+
+.about-title {
+
+  font-size:
+    clamp(120px, 20vw, 350px);
+
+  line-height: 0.7;
+
+}
+
+
+.about-copy p {
+
+  margin: 0;
+
+  max-width: 1200px;
+
+  font-size:
+    clamp(30px, 4vw, 75px);
+
+  line-height: 1.03;
+
+  letter-spacing: -0.035em;
+
+}
+
+
+.metadata {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  margin-top:
+    clamp(80px, 10vw, 160px);
+
+  gap:
+    30px;
+
+}
+
+
+.metadata div {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+
+.metadata span {
+
+  font-size: 12px;
+
+}
+
+
+.metadata strong {
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.cta {
+
+  min-height: 65svh;
+
+  padding:
+    var(--margin);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
+.cta span {
+
+  font-size: 13px;
+
+}
+
+
+.cta a {
+
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size:
+    clamp(70px, 12vw, 230px);
+
+  line-height: 0.85;
+
+  letter-spacing: -0.055em;
+
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+
+  display: flex;
+  justify-content: space-between;
+
+  padding:
+    20px
+    var(--margin);
+
+  border-top:
+    var(--border);
+
+  font-size: 12px;
+
+}
+
+
+/* ================================
    TABLET
-======================================== */
+================================ */
 
 @media (max-width: 900px) {
 
-  body {
-    padding:
-      clamp(18px, 3vw, 32px);
+  .typeface-intro {
+
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+
+  }
+
+
+  .about-typeface {
+
+    grid-template-columns: 1fr;
+
   }
 
 }
 
 
-/* ========================================
+/* ================================
    MOBILE
-======================================== */
+================================ */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
-  body {
-    padding: 16px;
+  .header {
+
+    align-items: flex-start;
+
   }
 
-  h1 {
-    font-size:
-      clamp(48px, 15vw, 96px);
 
-    line-height: 0.9;
+  .nav {
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    text-align: right;
+
   }
 
-  p {
-    font-size:
-      clamp(16px, 5vw, 24px);
+
+  .hero {
+
+    min-height: 80svh;
+
+  }
+
+
+  .hero-meta {
+
+    flex-direction: column;
+
+    gap: 3px;
+
+  }
+
+
+  .typeface-data {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .tester-info {
+
+    gap: 15px;
+
+  }
+
+
+  .feature-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .feature:nth-child(odd) {
+
+    border-right: 0;
+
+  }
+
+
+  .feature {
+
+    border-bottom:
+      var(--border);
+
+  }
+
+
+  .metadata {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  footer {
+
+    flex-direction: column;
+
+    gap: 6px;
+
   }
 
 }
