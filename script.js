@@ -48,6 +48,21 @@ testerUnits.forEach(
       unit.querySelector('[data-value="tracking"]');
 
 
+    tester.style.fontSize =
+      sizeSlider.value + "px";
+
+    if (weightSlider) {
+      tester.style.fontWeight =
+        weightSlider.value;
+
+      tester.style.fontVariationSettings =
+        `"wght" ${weightSlider.value}`;
+    }
+
+    tester.style.letterSpacing =
+      trackingSlider.value + "px";
+
+
     sizeSlider.addEventListener(
       "input",
       function () {
@@ -220,3 +235,48 @@ if (characterCells.length) {
 window.addEventListener("resize", function () {
   drawCharacterPreview(characterPreview.textContent);
 });
+
+
+/* ========================================
+   INTERACTIVE VARIABLE FOOTER
+======================================== */
+
+const variableFooter =
+  document.querySelector(".variable-footer");
+
+const footerVariableWord =
+  document.querySelector(".footer-variable-word");
+
+const footerAxisValue =
+  document.querySelector(".footer-axis-value");
+
+
+if (variableFooter && footerVariableWord) {
+  let footerFrame;
+
+  variableFooter.addEventListener("pointermove", function (event) {
+    const bounds = variableFooter.getBoundingClientRect();
+    const horizontal = Math.max(
+      0,
+      Math.min(1, (event.clientX - bounds.left) / bounds.width)
+    );
+    const vertical = Math.max(
+      0,
+      Math.min(1, (event.clientY - bounds.top) / bounds.height)
+    );
+    const weight = Math.round(100 + horizontal * 800);
+    const slant = Math.round(-10 + vertical * 10);
+
+    cancelAnimationFrame(footerFrame);
+    footerFrame = requestAnimationFrame(function () {
+      footerVariableWord.style.fontWeight = weight;
+      footerVariableWord.style.fontVariationSettings =
+        `"wght" ${weight}, "slnt" ${slant}`;
+
+      if (footerAxisValue) {
+        footerAxisValue.textContent =
+          `Weight ${weight} / Slant ${slant}`;
+      }
+    });
+  });
+}
