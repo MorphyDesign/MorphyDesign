@@ -7,6 +7,22 @@ const testerUnits =
   document.querySelectorAll(".tester-unit");
 
 
+document.querySelectorAll("[data-fill-repeats]").forEach(
+  function (tester) {
+    const originalText = tester.textContent.trim();
+    const repeatCount = Number(tester.dataset.fillRepeats);
+    const targetLength = Math.round(
+      originalText.length * repeatCount
+    );
+
+    tester.textContent =
+      (originalText + " ")
+        .repeat(Math.ceil(repeatCount))
+        .slice(0, targetLength);
+  }
+);
+
+
 testerUnits.forEach(
   function (unit) {
 
@@ -78,3 +94,46 @@ testerUnits.forEach(
 
   }
 );
+
+
+/* ========================================
+   CHARACTER SET PREVIEW
+======================================== */
+
+const characterPreview =
+  document.getElementById("character-preview-value");
+
+const characterCells =
+  document.querySelectorAll(".character-grid span");
+
+
+function selectCharacter(cell) {
+  characterCells.forEach(function (item) {
+    item.classList.remove("is-selected");
+  });
+
+  cell.classList.add("is-selected");
+  characterPreview.textContent = cell.textContent;
+}
+
+
+characterCells.forEach(function (cell) {
+  cell.tabIndex = 0;
+
+  cell.addEventListener("mouseenter", function () {
+    selectCharacter(cell);
+  });
+
+  cell.addEventListener("focus", function () {
+    selectCharacter(cell);
+  });
+
+  cell.addEventListener("click", function () {
+    selectCharacter(cell);
+  });
+});
+
+
+if (characterCells.length) {
+  selectCharacter(characterCells[0]);
+}
