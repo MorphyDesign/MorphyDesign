@@ -1,72 +1,474 @@
-<!-- =========================
-     TYPE TESTER
-========================== -->
+<!DOCTYPE html>
+<html lang="en">
 
-<section class="tester-section" id="tester">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="tester-controls">
+  <title>MorphyFoundry</title>
 
-    <div class="tester-title">
-      Type Tester
-    </div>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <div class="control">
-      <label for="tester-size">Size</label>
 
-      <input
-        type="range"
-        id="tester-size"
-        min="24"
-        max="240"
-        value="96"
-        step="1"
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header class="header">
+
+    <a class="brand" href="/">
+      MorphyFoundry
+    </a>
+
+    <nav class="nav">
+      <a href="#typefaces">Typefaces</a>
+      <a href="#tester">Type Tester</a>
+      <a href="#about">About</a>
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-meta">
+        <span>Typeface Design</span>
+        <span>Independent Foundry</span>
+      </div>
+
+      <h1>
+        Morphy<br>
+        Foundry
+      </h1>
+
+    </section>
+
+
+
+    <!-- =========================
+         TYPEFACE INTRO
+    ========================== -->
+
+    <section class="typeface-intro" id="typefaces">
+
+      <div>
+
+        <p class="label">
+          Typeface
+        </p>
+
+        <h2>
+          Formae
+        </h2>
+
+      </div>
+
+
+      <div class="typeface-data">
+
+        <span>10 weights</span>
+        <span>Variable</span>
+        <span>Latin</span>
+        <span>2026</span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         TYPE TESTER
+    ========================== -->
+
+    <section class="tester-section" id="tester">
+
+
+      <div class="tester-controls">
+
+        <span class="tester-title">
+          Type Tester
+        </span>
+
+
+        <!-- SIZE -->
+
+        <div class="control">
+
+          <label for="font-size">
+            Size
+          </label>
+
+          <input
+            id="font-size"
+            type="range"
+            min="24"
+            max="240"
+            value="96"
+          >
+
+          <span id="font-size-value">
+            96 px
+          </span>
+
+        </div>
+
+
+        <!-- WEIGHT -->
+
+        <div class="control">
+
+          <label for="font-weight">
+            Weight
+          </label>
+
+          <input
+            id="font-weight"
+            type="range"
+            min="100"
+            max="900"
+            value="400"
+            step="1"
+          >
+
+          <span id="font-weight-value">
+            400
+          </span>
+
+        </div>
+
+
+        <!-- TRACKING -->
+
+        <div class="control">
+
+          <label for="tracking">
+            Tracking
+          </label>
+
+          <input
+            id="tracking"
+            type="range"
+            min="-5"
+            max="20"
+            value="0"
+            step="0.1"
+          >
+
+          <span id="tracking-value">
+            0
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="tester"
+        id="tester-text"
+        contenteditable="true"
+        spellcheck="false"
       >
+        The quick brown fox jumps over the lazy dog
+      </div>
 
-      <span id="tester-size-value">96 px</span>
-    </div>
-
-
-    <div class="control">
-      <label for="tester-weight">Weight</label>
-
-      <input
-        type="range"
-        id="tester-weight"
-        min="100"
-        max="900"
-        value="400"
-        step="1"
-      >
-
-      <span id="tester-weight-value">400</span>
-    </div>
+    </section>
 
 
-    <div class="control">
-      <label for="tester-tracking">Tracking</label>
 
-      <input
-        type="range"
-        id="tester-tracking"
-        min="-5"
-        max="20"
-        value="0"
-        step="0.1"
-      >
+    <!-- =========================
+         WEIGHT SPECIMENS
+    ========================== -->
 
-      <span id="tester-tracking-value">0</span>
-    </div>
+    <section class="specimen">
 
-  </div>
+      <div class="specimen-label">
+        Thin
+      </div>
+
+      <div class="specimen-text thin">
+        SIGNAL
+      </div>
+
+    </section>
 
 
-  <div
-    class="tester"
-    id="type-tester"
-    contenteditable="true"
-    spellcheck="false"
-  >
-    The quick brown fox jumps over the lazy dog
-  </div>
+    <section class="specimen">
 
-</section>
+      <div class="specimen-label">
+        Light
+      </div>
+
+      <div class="specimen-text light">
+        Platform
+      </div>
+
+    </section>
+
+
+    <section class="specimen">
+
+      <div class="specimen-label">
+        Regular
+      </div>
+
+      <div class="specimen-text regular">
+        Central line
+      </div>
+
+    </section>
+
+
+    <section class="specimen">
+
+      <div class="specimen-label">
+        Medium
+      </div>
+
+      <div class="specimen-text medium">
+        Wayfinding
+      </div>
+
+    </section>
+
+
+    <section class="specimen">
+
+      <div class="specimen-label">
+        Bold
+      </div>
+
+      <div class="specimen-text bold">
+        EXIT
+      </div>
+
+    </section>
+
+
+    <section class="specimen">
+
+      <div class="specimen-label">
+        Black
+      </div>
+
+      <div class="specimen-text black">
+        0123456789
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DISPLAY
+    ========================== -->
+
+    <section class="display-block">
+
+      <div class="display-small">
+        Transport / Information / Navigation
+      </div>
+
+      <div class="display-large">
+        A→B
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CHARACTER SET
+    ========================== -->
+
+    <section class="characters">
+
+      <div class="section-title">
+        Character Set
+      </div>
+
+      <div class="character-text">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789<br>
+        ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØŒÙÚÛÜÝ
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="features">
+
+      <div class="section-title">
+        Features
+      </div>
+
+
+      <div class="feature-grid">
+
+        <div class="feature">
+
+          <span>
+            Stylistic Set 01
+          </span>
+
+          <strong>
+            Ra → Ra
+          </strong>
+
+        </div>
+
+
+        <div class="feature">
+
+          <span>
+            Tabular Figures
+          </span>
+
+          <strong>
+            0123456789
+          </strong>
+
+        </div>
+
+
+        <div class="feature">
+
+          <span>
+            Arrows
+          </span>
+
+          <strong>
+            ← ↑ → ↓
+          </strong>
+
+        </div>
+
+
+        <div class="feature">
+
+          <span>
+            Symbols
+          </span>
+
+          <strong>
+            ● ■ ▲ ◆
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="about-typeface" id="about">
+
+
+      <div class="about-title">
+        Aa
+      </div>
+
+
+      <div class="about-copy">
+
+        <p>
+          Formae is a typeface developed for typographic,
+          spatial and information-based applications.
+        </p>
+
+
+        <div class="metadata">
+
+          <div>
+            <span>Design</span>
+            <strong>MorphyFoundry</strong>
+          </div>
+
+          <div>
+            <span>Release</span>
+            <strong>2026</strong>
+          </div>
+
+          <div>
+            <span>Weights</span>
+            <strong>10</strong>
+          </div>
+
+          <div>
+            <span>Format</span>
+            <strong>Variable</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta">
+
+      <span>
+        Interested?
+      </span>
+
+      <a href="mailto:hello@example.com">
+        Get in touch ↗
+      </a>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <span>
+      MorphyFoundry © 2026
+    </span>
+
+    <span>
+      Typeface Design
+    </span>
+
+  </footer>
+
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
