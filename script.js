@@ -6,6 +6,9 @@
 const testerUnits =
   document.querySelectorAll(".tester-unit");
 
+const mobileTesterQuery =
+  window.matchMedia("(max-width: 650px)");
+
 
 document.querySelectorAll("[data-fill-repeats]").forEach(
   function (tester) {
@@ -19,6 +22,35 @@ document.querySelectorAll("[data-fill-repeats]").forEach(
       (originalText + " ")
         .repeat(Math.ceil(repeatCount))
         .slice(0, targetLength);
+  }
+);
+
+
+document.querySelectorAll(".tester").forEach(
+  function (tester) {
+    const desktopText = tester.textContent;
+
+    function applyResponsiveTesterContent() {
+      if (mobileTesterQuery.matches) {
+        const mobileContentRatio =
+          tester.closest(".tester-unit").matches(":nth-child(7)")
+            ? 0.2
+            : 0.5;
+
+        tester.textContent = desktopText.slice(
+          0,
+          Math.ceil(desktopText.length * mobileContentRatio)
+        );
+      } else {
+        tester.textContent = desktopText;
+      }
+    }
+
+    applyResponsiveTesterContent();
+    mobileTesterQuery.addEventListener(
+      "change",
+      applyResponsiveTesterContent
+    );
   }
 );
 
@@ -48,8 +80,34 @@ testerUnits.forEach(
       unit.querySelector('[data-value="tracking"]');
 
 
-    tester.style.fontSize =
-      sizeSlider.value + "px";
+    function applyTesterSize(requestedSize) {
+      let renderedSize = Number(requestedSize);
+
+      if (mobileTesterQuery.matches) {
+        const scale = Math.min(1, window.innerWidth / 1500);
+        let minimumSize = 24;
+
+        if (tester.classList.contains("tester-small")) {
+          minimumSize = 28;
+        }
+
+        if (tester.classList.contains("tester-micro")) {
+          minimumSize = 14;
+        }
+
+        renderedSize = Math.max(
+          minimumSize,
+          renderedSize * scale
+        );
+      }
+
+      renderedSize = Math.round(renderedSize * 10) / 10;
+      tester.style.fontSize = renderedSize + "px";
+      sizeValue.textContent = renderedSize + " px";
+    }
+
+
+    applyTesterSize(sizeSlider.value);
 
     if (weightSlider) {
       tester.style.fontWeight =
@@ -66,13 +124,26 @@ testerUnits.forEach(
     sizeSlider.addEventListener(
       "input",
       function () {
+        applyTesterSize(this.value);
 
-        tester.style.fontSize =
-          this.value + "px";
+      }
+    );
 
-        sizeValue.textContent =
-          this.value + " px";
 
+    mobileTesterQuery.addEventListener(
+      "change",
+      function () {
+        applyTesterSize(sizeSlider.value);
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      function () {
+        if (mobileTesterQuery.matches) {
+          applyTesterSize(sizeSlider.value);
+        }
       }
     );
 
