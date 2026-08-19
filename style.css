@@ -685,7 +685,7 @@ body {
 
   place-items: center;
 
-  padding: 12px;
+  padding: 10px;
 
   border-right:
     var(--border);
@@ -1104,7 +1104,7 @@ footer {
 
 
   .character-grid span {
-    padding: 8px;
+    padding: 10px;
   }
 
 
