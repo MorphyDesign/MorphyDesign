@@ -655,7 +655,7 @@ body {
 .character-list {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(72px, 1fr));
+    repeat(auto-fit, minmax(86px, 1fr));
   align-content: start;
   min-width: 0;
   border-left: var(--border);
@@ -679,9 +679,13 @@ body {
 .character-grid span {
   aspect-ratio: 1;
 
+  box-sizing: border-box;
+
   display: grid;
 
   place-items: center;
+
+  padding: 12px;
 
   border-right:
     var(--border);
@@ -690,7 +694,7 @@ body {
     var(--border);
 
   font-size:
-    clamp(34px, 4vw, 68px);
+    clamp(26px, 3vw, 50px);
 
   line-height: 1;
 
@@ -1095,7 +1099,12 @@ footer {
 
   .character-list {
     grid-template-columns:
-      repeat(auto-fit, minmax(52px, 1fr));
+      repeat(auto-fit, minmax(60px, 1fr));
+  }
+
+
+  .character-grid span {
+    padding: 8px;
   }
 
 
