@@ -228,7 +228,7 @@ body {
 .tester-unit:nth-child(n + 3) .tester-controls {
   grid-template-columns: 1fr;
 
-  gap: 14px;
+  gap: 22px;
 }
 
 
@@ -267,7 +267,7 @@ body {
 
   align-items: center;
 
-  gap: 12px;
+  gap: 16px;
 }
 
 
@@ -286,7 +286,9 @@ body {
 /* slider */
 
 .control input[type="range"] {
-  width: 100%;
+  width: 65%;
+
+  justify-self: start;
 
   appearance: none;
   -webkit-appearance: none;
