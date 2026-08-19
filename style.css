@@ -749,7 +749,7 @@ body {
 
 
 .tester-large {
-  font-size: 280px;
+  font-size: 350px;
   font-weight: 900;
   font-variation-settings: "wght" 900;
   line-height: 1.05;
@@ -758,7 +758,7 @@ body {
 
 
 .tester-medium {
-  font-size: 220px;
+  font-size: 282px;
   font-weight: 600;
   font-variation-settings: "wght" 600;
 }
