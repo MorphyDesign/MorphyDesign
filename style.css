@@ -265,6 +265,202 @@ body {
 
 
 /* ========================================
+   KERNING LAB
+======================================== */
+
+.kerning-lab {
+  color: var(--background);
+
+  background: var(--foreground);
+
+  border-bottom: var(--border);
+}
+
+
+.kerning-toolbar {
+  padding:
+    24px
+    var(--page-margin)
+    40px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 1fr)
+    repeat(3, minmax(180px, 1fr));
+
+  gap:
+    clamp(24px, 4vw, 70px);
+
+  align-items: end;
+}
+
+
+.kerning-kicker,
+.kerning-input-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 11px;
+}
+
+
+.kerning-toolbar h2 {
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 400;
+}
+
+
+.kerning-control {
+  display: grid;
+
+  gap: 10px;
+
+  font-size: 12px;
+}
+
+
+.kerning-control span {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+
+.kerning-control output {
+  font: inherit;
+}
+
+
+.kerning-control input[type="range"] {
+  width: 100%;
+
+  margin: 0;
+
+  accent-color: var(--background);
+}
+
+
+.kerning-input-label {
+  margin:
+    0
+    var(--page-margin)
+    8px;
+}
+
+
+.kerning-source {
+  width:
+    calc(100% - 2 * var(--page-margin));
+
+  margin:
+    0
+    var(--page-margin)
+    24px;
+
+  padding: 10px 0;
+
+  color: inherit;
+
+  background: transparent;
+
+  border: 0;
+
+  border-bottom:
+    1px solid rgba(245, 245, 240, 0.45);
+
+  border-radius: 0;
+
+  font: inherit;
+
+  font-size:
+    clamp(18px, 2vw, 30px);
+
+  outline: 0;
+}
+
+
+.kerning-source:focus {
+  border-bottom-color: currentColor;
+}
+
+
+.kerning-glyphs {
+  padding:
+    0
+    var(--page-margin)
+    var(--section-space);
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: stretch;
+}
+
+
+.kerning-glyph {
+  position: relative;
+
+  width:
+    calc(var(--kerning-cell-width, 100) * 1px);
+
+  height:
+    calc(var(--kerning-font-size, 180) * 1px + 42px);
+
+  padding:
+    24px
+    0
+    8px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  border-left:
+    1px solid rgba(245, 245, 240, 0.5);
+
+  overflow: hidden;
+}
+
+
+.kerning-glyph-value {
+  position: absolute;
+
+  top: 0;
+
+  left: 4px;
+
+  font-size: 9px;
+
+  font-weight: 400;
+}
+
+
+.kerning-glyph-character {
+  font-size:
+    calc(var(--kerning-font-size, 180) * 1px);
+
+  font-weight: var(--kerning-weight, 700);
+
+  font-variation-settings:
+    "wght" var(--kerning-weight, 700),
+    "opsz" var(--kerning-optical, 32);
+
+  line-height: 1;
+
+  letter-spacing:
+    calc(var(--kerning-tracking, 0) * 1px);
+}
+
+
+/* ========================================
    TYPEFACE INTRO
 ======================================== */
 
@@ -1285,6 +1481,11 @@ body {
 
 @media (max-width: 900px) {
 
+  .kerning-toolbar {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
   .font-catalogue-list {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -1310,6 +1511,45 @@ body {
 
   :root {
     --section-space: 56px;
+  }
+
+
+  .kerning-toolbar {
+    padding:
+      16px
+      var(--page-margin)
+      28px;
+
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+
+  .kerning-source {
+    margin-bottom: 18px;
+
+    font-size: 16px;
+  }
+
+
+  .kerning-glyphs {
+    padding-bottom: 56px;
+  }
+
+
+  .kerning-glyph {
+    width:
+      calc(var(--kerning-cell-width, 64) * 1px);
+
+    height:
+      calc(var(--kerning-font-size, 84) * 1px + 34px);
+  }
+
+
+  .kerning-glyph-character {
+    font-size:
+      calc(var(--kerning-font-size, 84) * 1px);
   }
 
   .font-catalogue-header {

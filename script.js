@@ -309,6 +309,109 @@ window.addEventListener("resize", function () {
 
 
 /* ========================================
+   KERNING LAB
+======================================== */
+
+const kerningLab =
+  document.querySelector(".kerning-lab");
+
+
+if (kerningLab) {
+  const kerningSource =
+    document.getElementById("kerning-source");
+
+  const kerningGlyphs =
+    document.getElementById("kerning-glyphs");
+
+  const kerningWeight =
+    document.getElementById("kerning-weight");
+
+  const kerningOptical =
+    document.getElementById("kerning-optical");
+
+  const kerningTracking =
+    document.getElementById("kerning-tracking");
+
+  const kerningCanvas =
+    document.createElement("canvas");
+
+  const kerningContext =
+    kerningCanvas.getContext("2d");
+
+
+  function renderKerningLab() {
+    const weight = Number(kerningWeight.value);
+    const optical = Number(kerningOptical.value);
+    const tracking = Number(kerningTracking.value);
+    const fontFamily = getComputedStyle(document.body).fontFamily;
+    const mobileKerning = window.innerWidth <= 650;
+    const kerningFontSize = mobileKerning
+      ? Math.max(64, Math.min(96, window.innerWidth * 0.22))
+      : Math.max(110, Math.min(270, window.innerWidth * 0.15));
+
+    kerningLab.style.setProperty("--kerning-weight", weight);
+    kerningLab.style.setProperty("--kerning-optical", optical);
+    kerningLab.style.setProperty("--kerning-tracking", tracking);
+    kerningLab.style.setProperty(
+      "--kerning-font-size",
+      Math.round(kerningFontSize * 10) / 10
+    );
+
+    document.getElementById("kerning-weight-value").textContent =
+      weight;
+    document.getElementById("kerning-optical-value").textContent =
+      optical;
+    document.getElementById("kerning-tracking-value").textContent =
+      tracking;
+
+    kerningContext.font =
+      `${weight} 1000px ${fontFamily}`;
+    kerningContext.fontKerning = "normal";
+
+    kerningGlyphs.replaceChildren();
+
+    Array.from(kerningSource.value).forEach(function (character) {
+      const measuredWidth = Math.max(
+        120,
+        Math.round(kerningContext.measureText(character).width + tracking)
+      );
+      const cellWidth = Math.max(
+        mobileKerning ? 42 : 64,
+        measuredWidth / 1000 * kerningFontSize
+      );
+
+      const cell = document.createElement("div");
+      const value = document.createElement("span");
+      const glyph = document.createElement("strong");
+
+      cell.className = "kerning-glyph";
+      value.className = "kerning-glyph-value";
+      glyph.className = "kerning-glyph-character";
+
+      cell.style.setProperty(
+        "--kerning-cell-width",
+        Math.round(cellWidth * 10) / 10
+      );
+      value.textContent = measuredWidth;
+      glyph.textContent = character === " " ? "·" : character;
+
+      cell.append(value, glyph);
+      kerningGlyphs.append(cell);
+    });
+  }
+
+
+  kerningSource.addEventListener("input", renderKerningLab);
+  kerningWeight.addEventListener("input", renderKerningLab);
+  kerningOptical.addEventListener("input", renderKerningLab);
+  kerningTracking.addEventListener("input", renderKerningLab);
+  window.addEventListener("resize", renderKerningLab);
+
+  document.fonts.ready.then(renderKerningLab);
+}
+
+
+/* ========================================
    INTERACTIVE VARIABLE FOOTER
 ======================================== */
 

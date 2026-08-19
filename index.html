@@ -7,7 +7,7 @@
 
   <title>MorphyFoundry</title>
 
-  <link rel="stylesheet" href="style.css?v=mobile-ux2">
+  <link rel="stylesheet" href="style.css?v=kerning-lab2">
 </head>
 
 
@@ -87,6 +87,43 @@
           <span class="font-name">Typeface 08</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">New characters are taking shape.</span><span class="font-status">Soon</span>
         </a>
       </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         KERNING LAB
+    ========================== -->
+
+    <section class="kerning-lab" aria-labelledby="kerning-lab-title">
+
+      <div class="kerning-toolbar">
+        <div>
+          <span class="kerning-kicker">Interactive spacing</span>
+          <h2 id="kerning-lab-title">Kerning Lab</h2>
+        </div>
+
+        <label class="kerning-control">
+          <span>Weight <output id="kerning-weight-value">700</output></span>
+          <input id="kerning-weight" type="range" min="100" max="900" value="700" step="1">
+        </label>
+
+        <label class="kerning-control">
+          <span>Optical <output id="kerning-optical-value">32</output></span>
+          <input id="kerning-optical" type="range" min="14" max="32" value="32" step="0.1">
+        </label>
+
+        <label class="kerning-control">
+          <span>Tracking <output id="kerning-tracking-value">0</output></span>
+          <input id="kerning-tracking" type="range" min="-40" max="80" value="0" step="1">
+        </label>
+      </div>
+
+      <label class="kerning-input-label" for="kerning-source">Type your characters</label>
+      <input class="kerning-source" id="kerning-source" type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" maxlength="96" autocomplete="off" spellcheck="false">
+
+      <div class="kerning-glyphs" id="kerning-glyphs" aria-live="polite"></div>
 
     </section>
 
@@ -607,7 +644,7 @@
 
 
 
-  <script src="script.js?v=mobile-ux3"></script>
+  <script src="script.js?v=kerning-lab2"></script>
 
 </body>
 
