@@ -652,6 +652,7 @@ body {
   font-size: clamp(260px, 38vw, 720px);
   line-height: 0.75;
   text-align: center;
+  transform: translateY(9px) scaleY(1.02);
 }
 
 .character-metrics {
@@ -681,9 +682,9 @@ body {
 }
 
 .metric-ascender { top: 7%; }
-.metric-cap { top: 27%; }
-.metric-x { top: 40%; }
-.metric-baseline { top: 75%; }
+.metric-cap { top: 25.2%; }
+.metric-x { top: 36.4%; }
+.metric-baseline { top: 74.1%; }
 .metric-descender { top: 93%; }
 
 .character-code {
