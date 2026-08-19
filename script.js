@@ -1,100 +1,80 @@
 /* ========================================
-   MORPHYFOUNDRY TYPE TESTER
+   MORPHYFOUNDRY TYPE TESTERS
 ======================================== */
 
 
-const tester =
-  document.getElementById("tester-text");
+const testerUnits =
+  document.querySelectorAll(".tester-unit");
 
 
-const sizeSlider =
-  document.getElementById("font-size");
+testerUnits.forEach(
+  function (unit) {
+
+    const tester =
+      unit.querySelector(".tester");
+
+    const sizeSlider =
+      unit.querySelector('[data-control="size"]');
+
+    const weightSlider =
+      unit.querySelector('[data-control="weight"]');
+
+    const trackingSlider =
+      unit.querySelector('[data-control="tracking"]');
+
+    const sizeValue =
+      unit.querySelector('[data-value="size"]');
+
+    const weightValue =
+      unit.querySelector('[data-value="weight"]');
+
+    const trackingValue =
+      unit.querySelector('[data-value="tracking"]');
 
 
-const weightSlider =
-  document.getElementById("font-weight");
+    sizeSlider.addEventListener(
+      "input",
+      function () {
+
+        tester.style.fontSize =
+          this.value + "px";
+
+        sizeValue.textContent =
+          this.value + " px";
+
+      }
+    );
 
 
-const trackingSlider =
-  document.getElementById("tracking");
+    weightSlider.addEventListener(
+      "input",
+      function () {
+
+        tester.style.fontWeight =
+          this.value;
+
+        tester.style.fontVariationSettings =
+          `"wght" ${this.value}`;
+
+        weightValue.textContent =
+          this.value;
+
+      }
+    );
 
 
-const sizeValue =
-  document.getElementById("font-size-value");
+    trackingSlider.addEventListener(
+      "input",
+      function () {
 
+        tester.style.letterSpacing =
+          this.value + "px";
 
-const weightValue =
-  document.getElementById("font-weight-value");
+        trackingValue.textContent =
+          this.value;
 
-
-const trackingValue =
-  document.getElementById("tracking-value");
-
-
-
-/* ========================================
-   FONT SIZE
-======================================== */
-
-sizeSlider.addEventListener(
-  "input",
-  function () {
-
-    const value =
-      this.value;
-
-    tester.style.fontSize =
-      value + "px";
-
-    sizeValue.textContent =
-      value + " px";
-
-  }
-);
-
-
-
-/* ========================================
-   FONT WEIGHT
-======================================== */
-
-weightSlider.addEventListener(
-  "input",
-  function () {
-
-    const value =
-      this.value;
-
-    tester.style.fontWeight =
-      value;
-
-    tester.style.fontVariationSettings =
-      `"wght" ${value}`;
-
-    weightValue.textContent =
-      value;
-
-  }
-);
-
-
-
-/* ========================================
-   TRACKING
-======================================== */
-
-trackingSlider.addEventListener(
-  "input",
-  function () {
-
-    const value =
-      this.value;
-
-    tester.style.letterSpacing =
-      value + "px";
-
-    trackingValue.textContent =
-      value;
+      }
+    );
 
   }
 );
