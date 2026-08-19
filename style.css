@@ -1,220 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+/* ========================================
+   GLOBAL
+======================================== */
 
-<head>
-  <meta charset="UTF-8">
+* {
+  box-sizing: border-box;
+}
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+html {
+  scroll-behavior: smooth;
+}
 
-  <title>Morphy Design</title>
+body {
+  margin: 0;
+  min-height: 100vh;
 
-  <link rel="stylesheet" href="style.css">
-</head>
+  padding:
+    clamp(20px, 3vw, 48px);
 
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-<body>
+  background: #ffffff;
+  color: #000000;
+}
 
-  <!-- NAVIGATION -->
 
-  <header class="site-header">
+/* ========================================
+   TITLE
+======================================== */
 
-    <a href="/" class="logo">
-      Morphy Design
-    </a>
+h1 {
+  margin: 0;
 
-    <nav class="navigation">
+  font-size:
+    clamp(64px, 12vw, 220px);
 
-      <a href="#typefaces">
-        Typefaces
-      </a>
+  font-weight: 400;
 
-      <a href="#projects">
-        Projects
-      </a>
+  line-height: 0.85;
 
-      <a href="#about">
-        About
-      </a>
+  letter-spacing: -0.04em;
 
-    </nav>
+  overflow-wrap: anywhere;
+}
 
-  </header>
 
+/* ========================================
+   SUBTITLE
+======================================== */
 
+p {
+  margin:
+    clamp(18px, 2.5vw, 36px)
+    0
+    0;
 
-  <!-- MAIN CONTENT -->
+  font-size:
+    clamp(18px, 2vw, 32px);
 
-  <main class="site-content">
+  line-height: 1.1;
+}
 
 
-    <!-- HERO -->
+/* ========================================
+   TABLET
+======================================== */
 
-    <section class="hero">
+@media (max-width: 900px) {
 
-      <h1>
-        Morphy Design
-      </h1>
+  body {
+    padding:
+      clamp(18px, 3vw, 32px);
+  }
 
-      <p>
-        Typeface Design, Typography and Wayfinding
-      </p>
+}
 
-    </section>
 
+/* ========================================
+   MOBILE
+======================================== */
 
+@media (max-width: 600px) {
 
-    <!-- TYPEFACES -->
+  body {
+    padding: 16px;
+  }
 
-    <section
-      class="section"
-      id="typefaces"
-    >
+  h1 {
+    font-size:
+      clamp(48px, 15vw, 96px);
 
-      <div class="section-header">
+    line-height: 0.9;
+  }
 
-        <h2>
-          Typefaces
-        </h2>
+  p {
+    font-size:
+      clamp(16px, 5vw, 24px);
+  }
 
-      </div>
-
-
-      <div class="project-grid">
-
-        <article class="project">
-
-          <div class="project-image">
-          </div>
-
-          <h3>
-            MS Relay Sans
-          </h3>
-
-        </article>
-
-
-        <article class="project">
-
-          <div class="project-image">
-          </div>
-
-          <h3>
-            Typeface 02
-          </h3>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- TYPE TESTER -->
-
-    <section class="type-tester-section">
-
-      <div class="section-header">
-
-        <h2>
-          Type Tester
-        </h2>
-
-      </div>
-
-
-      <div
-        class="type-tester"
-        contenteditable="true"
-        spellcheck="false"
-      >
-        MS Relay Sans
-      </div>
-
-    </section>
-
-
-
-    <!-- PROJECTS -->
-
-    <section
-      class="section"
-      id="projects"
-    >
-
-      <div class="section-header">
-
-        <h2>
-          Projects
-        </h2>
-
-      </div>
-
-
-      <div class="project-grid">
-
-        <article class="project">
-          <div class="project-image"></div>
-
-          <h3>
-            Project 01
-          </h3>
-        </article>
-
-
-        <article class="project">
-          <div class="project-image"></div>
-
-          <h3>
-            Project 02
-          </h3>
-        </article>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ABOUT -->
-
-    <section
-      class="about"
-      id="about"
-    >
-
-      <h2>
-        About
-      </h2>
-
-      <p>
-        Independent design practice focused on typeface design,
-        typography and wayfinding systems.
-      </p>
-
-    </section>
-
-
-  </main>
-
-
-
-  <!-- FOOTER -->
-
-  <footer class="site-footer">
-
-    <span>
-      © 2026 Morphy Design
-    </span>
-
-  </footer>
-
-
-  <script src="script.js"></script>
-
-</body>
-
-</html>
+}
