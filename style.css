@@ -942,6 +942,156 @@ body {
 
 
 /* ========================================
+   GLYPH CONSTRUCTION
+======================================== */
+
+.glyph-construction {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 0.72fr)
+    minmax(0, 2.28fr);
+
+  min-height:
+    clamp(620px, 70vw, 980px);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.glyph-construction-copy {
+  padding:
+    20px
+    var(--page-margin);
+
+  border-right:
+    var(--border);
+}
+
+
+.glyph-construction-copy span {
+  font-size: 12px;
+}
+
+
+.glyph-construction-copy h2 {
+  margin:
+    18px
+    0
+    22px;
+
+  font-size:
+    clamp(64px, 8vw, 150px);
+
+  font-weight: 500;
+
+  line-height: 0.86;
+
+  letter-spacing: -0.055em;
+}
+
+
+.glyph-construction-copy p {
+  max-width: 340px;
+
+  margin: 0;
+
+  font-size:
+    clamp(16px, 1.25vw, 22px);
+
+  line-height: 1.16;
+}
+
+
+.glyph-construction-stage {
+  min-width: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  padding:
+    clamp(18px, 2.5vw, 42px);
+
+  overflow: hidden;
+}
+
+
+.glyph-construction-svg {
+  width: 100%;
+
+  height: auto;
+
+  overflow: visible;
+
+  color: var(--foreground);
+}
+
+
+.construction-outline {
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.25;
+
+  font-family:
+    "Inter Variable",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 700px;
+
+  font-weight: 500;
+
+  letter-spacing: -0.09em;
+}
+
+
+.construction-guide,
+.construction-handles path,
+.construction-ruler-mark {
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+.construction-guide {
+  opacity: 0.28;
+}
+
+
+.construction-handles path {
+  opacity: 0.7;
+}
+
+
+.construction-ruler {
+  fill: url(#construction-ruler);
+
+  opacity: 0.5;
+}
+
+
+.construction-points circle {
+  fill: var(--foreground);
+
+  stroke: var(--background);
+
+  stroke-width: 2;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+/* ========================================
    TEXT SAMPLES
 ======================================== */
 
@@ -1511,6 +1661,46 @@ body {
 
   :root {
     --section-space: 56px;
+  }
+
+
+  .glyph-construction {
+    grid-template-columns: 1fr;
+
+    min-height: 0;
+  }
+
+
+  .glyph-construction-copy {
+    padding:
+      16px
+      var(--page-margin)
+      34px;
+
+    border-right: 0;
+
+    border-bottom:
+      var(--border);
+  }
+
+
+  .glyph-construction-copy h2 {
+    font-size:
+      clamp(58px, 20vw, 92px);
+  }
+
+
+  .glyph-construction-stage {
+    min-height: 390px;
+
+    padding:
+      24px
+      10px;
+  }
+
+
+  .glyph-construction-svg {
+    width: 145%;
   }
 
 
