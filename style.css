@@ -134,6 +134,128 @@ body {
 
 
 /* ========================================
+   FONT CATALOGUE
+======================================== */
+
+.font-catalogue {
+  border-bottom: var(--border);
+}
+
+.font-catalogue-header {
+  padding: 16px var(--page-margin) 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 12px;
+}
+
+.font-catalogue-header h2 {
+  margin: 0;
+  font: inherit;
+}
+
+.font-catalogue-list {
+  padding:
+    0
+    var(--page-margin)
+    var(--section-space);
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:
+    clamp(14px, 1.8vw, 30px);
+}
+
+.font-catalogue-row {
+  position: relative;
+
+  min-width: 0;
+
+  min-height:
+    clamp(430px, 42vw, 700px);
+
+  padding:
+    clamp(18px, 2vw, 32px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  color: inherit;
+
+  background: #e9e9e4;
+
+  text-decoration: none;
+
+  border-radius:
+    clamp(16px, 1.6vw, 28px);
+
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.font-catalogue-row:hover,
+.font-catalogue-row:focus-visible {
+  color: var(--background);
+  background: var(--foreground);
+  outline: 0;
+}
+
+.font-name,
+.font-details,
+.font-status {
+  font-size: 12px;
+}
+
+.font-name {
+  margin-bottom: 4px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.font-details {
+  max-width: 22ch;
+}
+
+.font-status {
+  position: absolute;
+
+  top: 14px;
+
+  right: 14px;
+
+  padding: 5px 10px;
+
+  border: var(--border);
+
+  border-radius: 999px;
+}
+
+.font-aa {
+  margin-top: auto;
+
+  font-size:
+    clamp(110px, 14vw, 250px);
+
+  font-weight: 600;
+
+  line-height: 0.7;
+
+  letter-spacing: -0.055em;
+}
+
+.font-sample {
+  display: none;
+}
+
+
+/* ========================================
    TYPEFACE INTRO
 ======================================== */
 
@@ -1102,6 +1224,11 @@ body {
 
 @media (max-width: 900px) {
 
+  .font-catalogue-list {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
   .typeface-intro {
     grid-template-columns: 1fr;
   }
@@ -1119,6 +1246,20 @@ body {
 ======================================== */
 
 @media (max-width: 650px) {
+
+  .font-catalogue-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .font-catalogue-list {
+    grid-template-columns: 1fr;
+  }
+
+  .font-catalogue-row {
+    min-height: 440px;
+  }
 
   .header {
     align-items: flex-start;
