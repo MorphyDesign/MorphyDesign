@@ -94,93 +94,70 @@
     <section class="tester-section" id="tester">
 
 
-      <div class="tester-controls">
-
-        <span class="tester-title">
-          Type Tester
-        </span>
-
-
-        <!-- SIZE -->
-
-        <div class="control">
-
-          <label for="font-size">
-            Size
-          </label>
-
-          <input
-            id="font-size"
-            type="range"
-            min="24"
-            max="240"
-            value="96"
-          >
-
-          <span id="font-size-value">
-            96 px
-          </span>
-
+      <div class="tester-unit">
+        <div class="tester-controls">
+          <span class="tester-title">Type Tester 01</span>
+          <div class="control">
+            <label for="font-size-1">Size</label>
+            <input id="font-size-1" data-control="size" type="range" min="24" max="350" value="160">
+            <span data-value="size">160 px</span>
+          </div>
+          <div class="control">
+            <label for="font-weight-1">Weight</label>
+            <input id="font-weight-1" data-control="weight" type="range" min="100" max="900" value="400" step="1">
+            <span data-value="weight">400</span>
+          </div>
+          <div class="control">
+            <label for="tracking-1">Tracking</label>
+            <input id="tracking-1" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
+            <span data-value="tracking">0</span>
+          </div>
         </div>
-
-
-        <!-- WEIGHT -->
-
-        <div class="control">
-
-          <label for="font-weight">
-            Weight
-          </label>
-
-          <input
-            id="font-weight"
-            type="range"
-            min="100"
-            max="900"
-            value="400"
-            step="1"
-          >
-
-          <span id="font-weight-value">
-            400
-          </span>
-
-        </div>
-
-
-        <!-- TRACKING -->
-
-        <div class="control">
-
-          <label for="tracking">
-            Tracking
-          </label>
-
-          <input
-            id="tracking"
-            type="range"
-            min="-5"
-            max="20"
-            value="0"
-            step="0.1"
-          >
-
-          <span id="tracking-value">
-            0
-          </span>
-
-        </div>
-
+        <div class="tester tester-large" contenteditable="true" spellcheck="false">Formae</div>
       </div>
 
+      <div class="tester-unit">
+        <div class="tester-controls">
+          <span class="tester-title">Type Tester 02</span>
+          <div class="control">
+            <label for="font-size-2">Size</label>
+            <input id="font-size-2" data-control="size" type="range" min="24" max="350" value="96">
+            <span data-value="size">96 px</span>
+          </div>
+          <div class="control">
+            <label for="font-weight-2">Weight</label>
+            <input id="font-weight-2" data-control="weight" type="range" min="100" max="900" value="400" step="1">
+            <span data-value="weight">400</span>
+          </div>
+          <div class="control">
+            <label for="tracking-2">Tracking</label>
+            <input id="tracking-2" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
+            <span data-value="tracking">0</span>
+          </div>
+        </div>
+        <div class="tester tester-medium" contenteditable="true" spellcheck="false">The quick brown fox jumps over the lazy dog</div>
+      </div>
 
-      <div
-        class="tester"
-        id="tester-text"
-        contenteditable="true"
-        spellcheck="false"
-      >
-        The quick brown fox jumps over the lazy dog
+      <div class="tester-unit">
+        <div class="tester-controls">
+          <span class="tester-title">Type Tester 03</span>
+          <div class="control">
+            <label for="font-size-3">Size</label>
+            <input id="font-size-3" data-control="size" type="range" min="24" max="350" value="56">
+            <span data-value="size">56 px</span>
+          </div>
+          <div class="control">
+            <label for="font-weight-3">Weight</label>
+            <input id="font-weight-3" data-control="weight" type="range" min="100" max="900" value="400" step="1">
+            <span data-value="weight">400</span>
+          </div>
+          <div class="control">
+            <label for="tracking-3">Tracking</label>
+            <input id="tracking-3" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
+            <span data-value="tracking">0</span>
+          </div>
+        </div>
+        <div class="tester tester-small" contenteditable="true" spellcheck="false">Typography gives language a visual voice across every surface.</div>
       </div>
 
     </section>
@@ -289,21 +266,101 @@
 
 
     <!-- =========================
+         TEXT SAMPLES
+    ========================== -->
+
+    <section class="text-samples">
+
+      <article class="text-sample text-sample-hero">
+        <span>Display / 900</span>
+        <p>Everyone has the right to life</p>
+      </article>
+
+      <article class="text-sample text-sample-large">
+        <span>Headline / 500</span>
+        <p>All human beings are born free and equal in dignity and rights.</p>
+      </article>
+
+      <article class="text-sample text-sample-medium">
+        <span>Text / 300</span>
+        <p>They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.</p>
+      </article>
+
+      <article class="text-sample text-sample-small">
+        <span>Caption / 400</span>
+        <p>Everyone has the right to recognition everywhere as a person before the law. All are equal before the law and are entitled without discrimination to equal protection.</p>
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================
          CHARACTER SET
     ========================== -->
 
-    <section class="characters">
+    <section class="characters" id="characters">
 
       <div class="section-title">
         Character Set
       </div>
 
-      <div class="character-text">
-        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-        abcdefghijklmnopqrstuvwxyz<br>
-        0123456789<br>
-        ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØŒÙÚÛÜÝ
+      <div class="character-group">
+        <h3>Uppercase Latin</h3>
+        <div class="character-grid" aria-label="Uppercase Latin characters">
+          <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+        </div>
       </div>
+
+      <div class="character-group">
+        <h3>Lowercase Latin</h3>
+        <div class="character-grid" aria-label="Lowercase Latin characters">
+          <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span>
+        </div>
+      </div>
+
+      <div class="character-group">
+        <h3>Extended Latin</h3>
+        <div class="character-grid" aria-label="Extended Latin characters">
+          <span>À</span><span>Á</span><span>Â</span><span>Ã</span><span>Ä</span><span>Å</span><span>Æ</span><span>Ç</span><span>È</span><span>É</span><span>Ê</span><span>Ë</span><span>Ì</span><span>Í</span><span>Î</span><span>Ï</span><span>Ñ</span><span>Ò</span><span>Ó</span><span>Ô</span><span>Õ</span><span>Ö</span><span>Ø</span><span>Œ</span><span>Ù</span><span>Ú</span><span>Û</span><span>Ü</span><span>Ý</span><span>Ÿ</span><span>Š</span><span>Ž</span><span>Ő</span><span>Ű</span><span>Ł</span><span>ß</span>
+        </div>
+      </div>
+
+      <div class="character-group">
+        <h3>Numerals &amp; Punctuation</h3>
+        <div class="character-grid" aria-label="Numerals and punctuation">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>.</span><span>,</span><span>:</span><span>;</span><span>!</span><span>?</span><span>“</span><span>”</span><span>‘</span><span>’</span><span>(</span><span>)</span><span>[</span><span>]</span><span>{</span><span>}</span><span>–</span><span>—</span><span>/</span><span>\</span>
+        </div>
+      </div>
+
+      <div class="character-group">
+        <h3>Symbols &amp; Arrows</h3>
+        <div class="character-grid" aria-label="Symbols and arrows">
+          <span>@</span><span>#</span><span>&amp;</span><span>%</span><span>+</span><span>−</span><span>×</span><span>÷</span><span>=</span><span>€</span><span>£</span><span>$</span><span>¥</span><span>©</span><span>®</span><span>™</span><span>←</span><span>↑</span><span>→</span><span>↓</span><span>↗</span><span>↘</span><span>●</span><span>■</span><span>▲</span><span>◆</span>
+        </div>
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SUPPORTED LANGUAGES
+    ========================== -->
+
+    <section class="supported-languages">
+
+      <div class="section-title">
+        Supported Languages
+      </div>
+
+      <p>
+        Afrikaans, Albanian, Basque, Bosnian, Catalan, Croatian, Czech,
+        Danish, Dutch, English, Estonian, Finnish, French, German,
+        Hungarian, Icelandic, Indonesian, Irish, Italian, Latvian,
+        Lithuanian, Luxembourgish, Maltese, Norwegian, Polish, Portuguese,
+        Romanian, Slovak, Slovenian, Spanish, Swedish, Turkish and Welsh.
+      </p>
 
     </section>
 
