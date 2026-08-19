@@ -653,28 +653,26 @@ body {
 }
 
 .character-list {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(72px, 1fr));
+  align-content: start;
   min-width: 0;
   border-left: var(--border);
 }
 
 .character-group {
-  display: block;
+  display: contents;
 }
 
 
 .character-group h3 {
-  margin: 0;
-  padding: 12px 14px;
-  border-bottom: var(--border);
-  font-size: 12px;
-  font-weight: 400;
+  display: none;
 }
 
 
 .character-grid {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(72px, 1fr));
+  display: contents;
 }
 
 
@@ -1095,7 +1093,7 @@ footer {
   }
 
 
-  .character-grid {
+  .character-list {
     grid-template-columns:
       repeat(auto-fit, minmax(52px, 1fr));
   }
