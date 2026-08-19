@@ -32,6 +32,11 @@ document.querySelectorAll(".tester").forEach(
 
     function applyResponsiveTesterContent() {
       if (mobileTesterQuery.matches) {
+        if (tester.dataset.mobileText) {
+          tester.textContent = tester.dataset.mobileText;
+          return;
+        }
+
         const mobileContentRatio =
           tester.closest(".tester-unit").matches(":nth-child(7)")
             ? 0.2
