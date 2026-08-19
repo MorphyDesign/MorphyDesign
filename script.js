@@ -116,6 +116,16 @@ function selectCharacter(cell) {
 
   cell.classList.add("is-selected");
   characterPreview.textContent = cell.textContent;
+
+  const codePoint = cell.textContent.codePointAt(0);
+  const unicodeValue =
+    "U+" + codePoint.toString(16).toUpperCase().padStart(4, "0");
+
+  document.getElementById("character-unicode").textContent =
+    unicodeValue;
+
+  document.getElementById("character-code-value").textContent =
+    cell.textContent;
 }
 
 
