@@ -1,25 +1,212 @@
 /* ========================================
+   RESET
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  background: #f5f5f0;
+  color: #111111;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* ========================================
+   VARIABLES
+======================================== */
+
+:root {
+
+  --page-margin:
+    clamp(16px, 2.2vw, 36px);
+
+  --section-space:
+    clamp(80px, 10vw, 180px);
+
+  --border:
+    1px solid rgba(0, 0, 0, 0.22);
+
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding:
+    18px
+    var(--page-margin);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.brand {
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 17px;
+}
+
+
+.nav {
+  display: flex;
+
+  gap:
+    clamp(16px, 2vw, 34px);
+}
+
+
+.nav a {
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  min-height:
+    calc(100svh - 55px);
+
+  padding:
+    var(--page-margin);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-bottom:
+    var(--border);
+}
+
+
+.hero-meta {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 13px;
+}
+
+
+.hero h1 {
+  margin: 0;
+
+  font-size:
+    clamp(90px, 17vw, 320px);
+
+  font-weight: 400;
+
+  line-height: 0.72;
+
+  letter-spacing: -0.065em;
+}
+
+
+/* ========================================
+   TYPEFACE INTRO
+======================================== */
+
+.typeface-intro {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  gap:
+    clamp(40px, 6vw, 100px);
+
+  padding:
+    var(--section-space)
+    var(--page-margin)
+    var(--page-margin);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.label {
+  margin:
+    0 0 18px 0;
+
+  font-size: 12px;
+}
+
+
+.typeface-intro h2 {
+  margin: 0;
+
+  font-size:
+    clamp(64px, 10vw, 180px);
+
+  font-weight: 400;
+
+  line-height: 0.82;
+
+  letter-spacing: -0.055em;
+}
+
+
+.typeface-data {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap:
+    10px 30px;
+
+  align-content: end;
+
+  font-size: 13px;
+}
+
+
+/* ========================================
    TYPE TESTER
 ======================================== */
 
 .tester-section {
-  width: 100%;
-
-  border-top: var(--border);
-  border-bottom: var(--border);
+  border-bottom:
+    var(--border);
 }
 
 
-/* CONTROLS */
-
 .tester-controls {
-  width: 100%;
-
   display: grid;
 
   grid-template-columns:
-    minmax(140px, 1fr)
-    repeat(3, minmax(220px, 1fr));
+    1fr
+    repeat(3, minmax(200px, 1fr));
 
   align-items: center;
 
@@ -45,9 +232,7 @@
   display: grid;
 
   grid-template-columns:
-    auto
-    minmax(80px, 1fr)
-    50px;
+    auto 1fr 55px;
 
   align-items: center;
 
@@ -61,12 +246,13 @@
 
 
 .control span {
-  text-align: right;
   white-space: nowrap;
+
+  text-align: right;
 }
 
 
-/* RANGE */
+/* slider */
 
 .control input[type="range"] {
   width: 100%;
@@ -81,8 +267,6 @@
   outline: none;
 }
 
-
-/* CHROME / SAFARI */
 
 .control input[type="range"]::-webkit-slider-thumb {
   appearance: none;
@@ -99,13 +283,12 @@
 }
 
 
-/* FIREFOX */
-
 .control input[type="range"]::-moz-range-thumb {
   width: 12px;
   height: 12px;
 
   border: 0;
+
   border-radius: 50%;
 
   background: #111;
@@ -114,7 +297,7 @@
 }
 
 
-/* TEST AREA */
+/* editable tester */
 
 .tester {
   width: 100%;
@@ -127,6 +310,7 @@
     var(--page-margin);
 
   font-size: 96px;
+
   font-weight: 400;
 
   line-height: 0.9;
@@ -135,10 +319,9 @@
 
   outline: none;
 
-  overflow-wrap: anywhere;
-  word-break: normal;
-
   cursor: text;
+
+  overflow-wrap: anywhere;
 }
 
 
@@ -148,27 +331,408 @@
 
 
 /* ========================================
-   TYPE TESTER — TABLET
+   SPECIMENS
+======================================== */
+
+.specimen {
+  padding:
+    12px
+    var(--page-margin)
+    clamp(30px, 4vw, 65px);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.specimen-label {
+  margin-bottom:
+    clamp(30px, 4vw, 70px);
+
+  font-size: 12px;
+}
+
+
+.specimen-text {
+  font-size:
+    clamp(82px, 15vw, 280px);
+
+  line-height: 0.78;
+
+  letter-spacing: -0.055em;
+
+  overflow: hidden;
+}
+
+
+.thin {
+  font-weight: 100;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.black {
+  font-weight: 900;
+}
+
+
+/* ========================================
+   DISPLAY
+======================================== */
+
+.display-block {
+  min-height: 85svh;
+
+  padding:
+    var(--page-margin);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-bottom:
+    var(--border);
+}
+
+
+.display-small {
+  font-size: 12px;
+}
+
+
+.display-large {
+  font-size:
+    clamp(180px, 38vw, 700px);
+
+  line-height: 0.64;
+
+  letter-spacing: -0.08em;
+}
+
+
+/* ========================================
+   SECTION TITLE
+======================================== */
+
+.section-title {
+  margin-bottom:
+    clamp(50px, 8vw, 120px);
+
+  font-size: 12px;
+}
+
+
+/* ========================================
+   CHARACTERS
+======================================== */
+
+.characters {
+  padding:
+    var(--section-space)
+    var(--page-margin);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.character-text {
+  font-size:
+    clamp(32px, 5.5vw, 100px);
+
+  line-height: 1;
+
+  letter-spacing: -0.025em;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.features {
+  padding:
+    var(--section-space)
+    var(--page-margin);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.feature-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+}
+
+
+.feature {
+  min-height:
+    clamp(220px, 28vw, 440px);
+
+  padding: 16px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-top:
+    var(--border);
+}
+
+
+.feature:nth-child(odd) {
+  border-right:
+    var(--border);
+}
+
+
+.feature span {
+  font-size: 12px;
+}
+
+
+.feature strong {
+  font-size:
+    clamp(56px, 9vw, 160px);
+
+  font-weight: 400;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.04em;
+}
+
+
+/* ========================================
+   ABOUT
+======================================== */
+
+.about-typeface {
+  display: grid;
+
+  grid-template-columns:
+    1fr 2fr;
+
+  gap:
+    clamp(40px, 7vw, 120px);
+
+  padding:
+    var(--section-space)
+    var(--page-margin);
+
+  border-bottom:
+    var(--border);
+}
+
+
+.about-title {
+  font-size:
+    clamp(120px, 20vw, 350px);
+
+  line-height: 0.7;
+
+  letter-spacing: -0.06em;
+}
+
+
+.about-copy p {
+  margin: 0;
+
+  max-width: 1200px;
+
+  font-size:
+    clamp(30px, 4vw, 74px);
+
+  line-height: 1.03;
+
+  letter-spacing: -0.035em;
+}
+
+
+.metadata {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 30px;
+
+  margin-top:
+    clamp(80px, 10vw, 160px);
+}
+
+
+.metadata div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.metadata span {
+  font-size: 12px;
+}
+
+
+.metadata strong {
+  font-size: 17px;
+
+  font-weight: 400;
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  min-height: 65svh;
+
+  padding:
+    var(--page-margin);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-bottom:
+    var(--border);
+}
+
+
+.cta span {
+  font-size: 12px;
+}
+
+
+.cta a {
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size:
+    clamp(72px, 12vw, 220px);
+
+  line-height: 0.84;
+
+  letter-spacing: -0.055em;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding:
+    20px
+    var(--page-margin);
+
+  font-size: 12px;
+}
+
+
+/* ========================================
+   TABLET
 ======================================== */
 
 @media (max-width: 1000px) {
 
   .tester-controls {
     grid-template-columns:
-      1fr
-      1fr;
+      1fr 1fr;
+  }
 
-    gap: 18px 30px;
+}
+
+
+@media (max-width: 900px) {
+
+  .typeface-intro {
+    grid-template-columns: 1fr;
+  }
+
+
+  .about-typeface {
+    grid-template-columns: 1fr;
   }
 
 }
 
 
 /* ========================================
-   TYPE TESTER — MOBILE
+   MOBILE
 ======================================== */
 
 @media (max-width: 650px) {
+
+  .header {
+    align-items: flex-start;
+  }
+
+
+  .nav {
+    flex-direction: column;
+
+    gap: 4px;
+
+    text-align: right;
+  }
+
+
+  .hero {
+    min-height: 80svh;
+  }
+
+
+  .hero-meta {
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+
+  .hero h1 {
+    font-size:
+      clamp(72px, 22vw, 130px);
+  }
+
+
+  .typeface-data {
+    grid-template-columns: 1fr;
+  }
+
 
   .tester-controls {
     grid-template-columns: 1fr;
@@ -179,20 +743,36 @@
 
   .control {
     grid-template-columns:
-      65px
-      1fr
-      45px;
+      65px 1fr 50px;
   }
 
 
   .tester {
     min-height: 280px;
 
-    padding:
-      30px
-      var(--page-margin);
-
     font-size: 64px;
+  }
+
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .feature:nth-child(odd) {
+    border-right: 0;
+  }
+
+
+  .metadata {
+    grid-template-columns: 1fr;
+  }
+
+
+  footer {
+    flex-direction: column;
+
+    gap: 6px;
   }
 
 }
