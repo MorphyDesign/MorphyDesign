@@ -537,3 +537,10 @@ document.querySelectorAll("[data-typewriter-text]").forEach(
   }
   }
 );
+
+const typefaceIntroSection = document.querySelector(".typeface-intro");
+const glyphConstructionSection = document.querySelector("#construction");
+
+if (typefaceIntroSection && glyphConstructionSection) {
+  typefaceIntroSection.insertAdjacentElement("afterend", glyphConstructionSection);
+}
