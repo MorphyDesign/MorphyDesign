@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MS Relay Sans — MorphyFoundry</title>
-  <link rel="stylesheet" href="relay.css">
+  <link rel="stylesheet" href="relay.css?v=relay-mechanik-7">
 </head>
 <body>
   <header class="site-header">
@@ -17,6 +17,29 @@
       <span>Typeface / 2026</span>
       <h1>MS Relay<br>Sans <span class="relay-star" aria-hidden="true">✹</span></h1>
       <p>MS Relay Sans is a sans serif typeface and information system for wayfinding, transport and public environments. Ten weights, directional forms and pictograms work together as one clear visual language across signage, maps, print and digital interfaces.</p>
+    </section>
+
+    <section class="relay-mechanik" id="relay-construction" aria-label="MS Relay Sans construction display">
+      <div class="relay-mechanik-panels">
+        <article class="relay-mechanik-card relay-mechanik-system">
+          <header><span>MS Relay Sans</span><span>01</span></header>
+          <div class="relay-rotating-arrow" aria-hidden="true"><canvas id="relay-rotating-arrow-canvas"></canvas><small>U+2B89</small></div>
+          <footer><span>Information</span><span>Transport</span><span>Wayfinding</span></footer>
+        </article>
+        <article class="relay-mechanik-card relay-mechanik-letter">
+          <header><span>Weight study</span><span>BLACK</span></header>
+          <div class="relay-layered-r" aria-hidden="true">R</div>
+          <footer class="relay-weight-controls" aria-label="R weight controls"><button type="button" data-r-weight="100">100</button><button type="button" data-r-weight="500">500</button><button type="button" data-r-weight="900" class="is-active">900</button></footer>
+        </article>
+        <article class="relay-mechanik-card relay-mechanik-status">
+          <header><span>Signal status</span><span>LIVE</span></header>
+          <div class="relay-status-field relay-pictogram-cycle" aria-live="polite">
+            <strong id="relay-cycle-symbol">&#xE02E;</strong>
+            <span id="relay-cycle-code">U+E02E</span>
+          </div>
+          <footer><span>MSR–26</span><span>Connected</span></footer>
+        </article>
+      </div>
     </section>
 
     <section class="wayfinding-intro" id="wayfinding-intro" aria-labelledby="wayfinding-title">
@@ -32,13 +55,20 @@
         </dl>
       </aside>
       <div class="wayfinding-demo" aria-label="Wayfinding sign examples">
-        <div class="wayfinding-display"><span class="direction-arrow">⮉</span><strong>3Aa</strong></div>
+        <div class="wayfinding-display"><span class="direction-arrow">⮉</span><strong><span class="wayfinding-three">3</span><span class="wayfinding-cap-a">A</span><span class="wayfinding-lower-a">a</span></strong></div>
         <div class="wayfinding-signs">
-          <div class="direction-sign sign-exit">Exit 3</div>
-          <div class="direction-sign sign-museum">British Museum <span class="direction-arrow direction-arrow-small">⮊</span></div>
-          <div class="direction-sign sign-way-out"><span class="direction-arrow direction-arrow-tiny">⮉</span> Way Out</div>
-          <div class="direction-sign sign-shard"><span class="direction-arrow direction-arrow-tiny">⮉</span> The Shard<br>Guy’s Hospital</div>
-          <div class="direction-sign sign-jubilee">Jubilee line <span class="direction-arrow direction-arrow-tiny">⮉</span></div>
+          <div class="wayfinding-sign-row">
+            <div class="direction-sign sign-exit">Exit 3</div>
+            <div class="direction-sign sign-museum">British Museum <span class="direction-arrow direction-arrow-small">⮊</span></div>
+          </div>
+          <div class="wayfinding-sign-row">
+            <div class="direction-sign sign-way-out"><span class="direction-arrow direction-arrow-tiny">⮉</span> Way Out</div>
+            <div class="direction-sign sign-shard"><span class="direction-arrow direction-arrow-tiny">⮉</span> The Shard<br>Guy’s Hospital</div>
+          </div>
+          <div class="wayfinding-sign-row wayfinding-sign-row-last">
+            <div class="wayfinding-sign-spacer" aria-hidden="true"></div>
+            <div class="direction-sign sign-jubilee">Jubilee line <span class="direction-arrow direction-arrow-tiny">⮉</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -140,6 +170,6 @@
   </main>
 
   <footer><a href="../">← Back to MorphyFoundry</a><span>MS Relay Sans © 2026</span></footer>
-  <script src="relay.js"></script>
+  <script src="relay.js?v=pictogram-cycle-4"></script>
 </body>
 </html>
