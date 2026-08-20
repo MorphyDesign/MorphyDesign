@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MS Relay Sans — MorphyFoundry</title>
+  <link rel="stylesheet" href="relay.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="../">MorphyFoundry</a>
+    <nav><a href="#tester">Type Tester</a><a href="#weights">Weights</a><a href="#glyphs">Glyphs</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span>Typeface / 2026</span>
+      <h1>MS Relay<br>Sans</h1>
+      <p>Ten precisely drawn weights for information, identity and display.</p>
+    </section>
+
+    <section class="tester" id="tester">
+      <div class="controls">
+        <label>Weight
+          <select id="weight-select">
+            <option value="100">Thin</option><option value="200">Extralight</option>
+            <option value="300">Light</option><option value="400" selected>Regular</option>
+            <option value="500">Medium</option><option value="600">Semibold</option>
+            <option value="700">Bold</option><option value="800">Extrabold</option>
+            <option value="850">Heavy</option><option value="900">Black</option>
+          </select>
+        </label>
+        <label>Size <output id="size-output">120 px</output>
+          <input id="size-range" type="range" min="28" max="240" value="120">
+        </label>
+        <label>Tracking <output id="tracking-output">0</output>
+          <input id="tracking-range" type="range" min="-5" max="20" value="0" step="0.1">
+        </label>
+      </div>
+      <div id="tester-text" class="tester-text" contenteditable="true" spellcheck="false">Relay carries every message forward.</div>
+    </section>
+
+    <section class="weights" id="weights" aria-labelledby="weights-title">
+      <div class="section-heading"><span>Family</span><h2 id="weights-title">Ten weights</h2></div>
+      <div class="weight-list">
+        <article style="--weight:100"><span>Thin / 100</span><p>Signals move across the city.</p></article>
+        <article style="--weight:200"><span>Extralight / 200</span><p>Signals move across the city.</p></article>
+        <article style="--weight:300"><span>Light / 300</span><p>Signals move across the city.</p></article>
+        <article style="--weight:400"><span>Regular / 400</span><p>Signals move across the city.</p></article>
+        <article style="--weight:500"><span>Medium / 500</span><p>Signals move across the city.</p></article>
+        <article style="--weight:600"><span>Semibold / 600</span><p>Signals move across the city.</p></article>
+        <article style="--weight:700"><span>Bold / 700</span><p>Signals move across the city.</p></article>
+        <article style="--weight:800"><span>Extrabold / 800</span><p>Signals move across the city.</p></article>
+        <article style="--weight:850"><span>Heavy / 850</span><p>Signals move across the city.</p></article>
+        <article style="--weight:900"><span>Black / 900</span><p>Signals move across the city.</p></article>
+      </div>
+    </section>
+
+    <section class="glyphs" id="glyphs">
+      <div class="section-heading"><span>Character set</span><h2>Glyphs</h2></div>
+      <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789<br>ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØŒÙÚÛÜÝŸ<br>.,:;!?“”‘’()[]{}–—/@#&amp;%+−×÷=€£$¥</p>
+    </section>
+  </main>
+
+  <footer><a href="../">← Back to MorphyFoundry</a><span>MS Relay Sans © 2026</span></footer>
+  <script src="relay.js"></script>
+</body>
+</html>
