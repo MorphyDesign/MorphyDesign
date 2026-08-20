@@ -38,7 +38,8 @@ function renderKerning(){
   kerningContext.font=weight+" 1000px Relay";
   kerningContext.fontKerning="normal";
   kerningGlyphs.replaceChildren();
-  Array.from(kerningSource.value).forEach(character=>{
+  const characters=Array.from(kerningSource.value);
+  characters.forEach((character,index)=>{
     const cell=document.createElement("div");
     const value=document.createElement("span");
     const glyph=document.createElement("strong");
@@ -49,6 +50,13 @@ function renderKerning(){
     const measuredWidth=Math.round(kerningContext.measureText(character).width);
     const width=Math.max(22,measuredWidth/1000*size+tracking);
     cell.style.width=width+"px";
+    if(index>0){
+      const previous=characters[index-1];
+      const pairWidth=kerningContext.measureText(previous+character).width;
+      const previousWidth=kerningContext.measureText(previous).width;
+      const pairAdjustment=(pairWidth-previousWidth-measuredWidth)/1000*size;
+      cell.style.marginLeft=pairAdjustment+"px";
+    }
     value.textContent=measuredWidth;
     cell.append(value,glyph);
     kerningGlyphs.append(cell);
@@ -125,3 +133,75 @@ if(characterCells.length){
   });
 }
 window.addEventListener("resize",()=>drawCharacter(characterPreview.textContent));
+
+const relayCycle=document.querySelector(".relay-pictogram-cycle");
+const relayCycleSymbol=document.querySelector("#relay-cycle-symbol");
+const relayCycleCode=document.querySelector("#relay-cycle-code");
+const relayCycleGlyphs=[
+  ["\uE02E","U+E02E"],["\uE008","U+E008"],["\uE02C","U+E02C"],["↑","U+2191"],
+  ["❷","U+2777"],["\uE02D","U+E02D"],["④","U+2463"],["\uE014","U+E014"],
+  ["🅖","U+1F156"],["\uE02F","U+E02F"],["↗","U+2197"],["⮊","U+2B8A"]
+];
+let relayCycleIndex=0;
+
+function advanceRelayPictogram(){
+  if(!relayCycle)return;
+  relayCycle.classList.add("is-changing");
+  window.setTimeout(()=>{
+    relayCycleIndex=(relayCycleIndex+1)%relayCycleGlyphs.length;
+    const [symbol,code]=relayCycleGlyphs[relayCycleIndex];
+    relayCycleSymbol.textContent=symbol;
+    relayCycleCode.textContent=code;
+    relayCycle.classList.remove("is-changing");
+  },200);
+}
+
+window.setInterval(advanceRelayPictogram,1800);
+
+const relayWeightStudy=document.querySelector(".relay-layered-r");
+const relayWeightButtons=document.querySelectorAll("[data-r-weight]");
+
+function setRelayStudyWeight(button){
+  relayWeightStudy.style.fontWeight=button.dataset.rWeight;
+  relayWeightButtons.forEach(item=>item.classList.toggle("is-active",item===button));
+}
+
+relayWeightButtons.forEach(button=>{
+  button.addEventListener("mouseenter",()=>setRelayStudyWeight(button));
+  button.addEventListener("focus",()=>setRelayStudyWeight(button));
+  button.addEventListener("click",()=>setRelayStudyWeight(button));
+});
+
+const relayArrowCanvas=document.querySelector("#relay-rotating-arrow-canvas");
+
+function drawCenteredRelayArrow(){
+  if(!relayArrowCanvas)return;
+  const cssSize=parseFloat(getComputedStyle(relayArrowCanvas).width);
+  const pixelRatio=window.devicePixelRatio||1;
+  relayArrowCanvas.width=Math.round(cssSize*pixelRatio);
+  relayArrowCanvas.height=Math.round(cssSize*pixelRatio);
+  const context=relayArrowCanvas.getContext("2d");
+  context.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+  context.clearRect(0,0,cssSize,cssSize);
+  const fontSize=cssSize*.88;
+  context.font="900 "+fontSize+'px "Relay"';
+  const metrics=context.measureText("⮉");
+  const inkWidth=metrics.actualBoundingBoxLeft+metrics.actualBoundingBoxRight;
+  const inkHeight=metrics.actualBoundingBoxAscent+metrics.actualBoundingBoxDescent;
+  const x=(cssSize-inkWidth)/2+metrics.actualBoundingBoxLeft;
+  const y=(cssSize-inkHeight)/2+metrics.actualBoundingBoxAscent;
+  context.fillStyle=getComputedStyle(document.body).color;
+  context.fillText("⮉",x,y);
+}
+
+document.fonts.load('900 100px "Relay"').then(drawCenteredRelayArrow);
+window.addEventListener("resize",drawCenteredRelayArrow);
+
+document.querySelectorAll(".wayfinding-copy").forEach(section=>{
+  const walker=document.createTreeWalker(section,NodeFilter.SHOW_TEXT);
+  const textNodes=[];
+  while(walker.nextNode())textNodes.push(walker.currentNode);
+  textNodes.forEach(node=>{
+    node.nodeValue=node.nodeValue.replace(/fi/gi,match=>match[0]+"\u200C"+match.slice(1));
+  });
+});
