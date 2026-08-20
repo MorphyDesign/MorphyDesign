@@ -9,14 +9,56 @@
 <body>
   <header class="site-header">
     <a href="../">MorphyFoundry</a>
-    <nav><a href="#tester">Type Tester</a><a href="#weights">Weights</a><a href="#glyphs">Glyphs</a></nav>
+    <nav><a href="#kerning">Kerning</a><a href="#tester">Type Tester</a><a href="#pictograms">Pictograms</a><a href="#glyphs">Glyphs</a></nav>
   </header>
 
   <main>
     <section class="hero">
       <span>Typeface / 2026</span>
-      <h1>MS Relay<br>Sans</h1>
-      <p>Ten precisely drawn weights for information, identity and display.</p>
+      <h1>MS Relay<br>Sans <span class="relay-star" aria-hidden="true">✹</span></h1>
+      <p>MS Relay Sans is a sans serif typeface and information system for wayfinding, transport and public environments. Ten weights, directional forms and pictograms work together as one clear visual language across signage, maps, print and digital interfaces.</p>
+    </section>
+
+    <section class="wayfinding-intro" id="wayfinding-intro" aria-labelledby="wayfinding-title">
+      <aside class="wayfinding-copy">
+        <h2 id="wayfinding-title">MS RelaySans Vol 0.1</h2>
+        <p>MS Relay Sans is a typeface and information system developed for wayfinding, transport and public environments. Typography, pictograms and directional information work as connected parts of a single visual language.</p>
+        <p>The family supports clear information hierarchy across signage, maps, printed guidelines and digital interfaces. Letterforms, spacing, symbols and pictograms share consistent proportions, visual weight and recognition.</p>
+        <dl>
+          <div><dt>Application</dt><dd>Wayfinding / Signage / Transport / Public Information / Pictograms / Maps / Digital Interfaces</dd></div>
+          <div><dt>Project Specifications</dt><dd>10 weights / 657 glyphs<br>Latin support for 197 languages<br>Integrated pictogram family</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Status</dt><dd>Independent typeface and information-system development</dd></div>
+        </dl>
+      </aside>
+      <div class="wayfinding-demo" aria-label="Wayfinding sign examples">
+        <div class="wayfinding-display"><span class="direction-arrow">⮉</span><strong>3Aa</strong></div>
+        <div class="wayfinding-signs">
+          <div class="direction-sign sign-exit">Exit 3</div>
+          <div class="direction-sign sign-museum">British Museum <span class="direction-arrow direction-arrow-small">⮊</span></div>
+          <div class="direction-sign sign-way-out"><span class="direction-arrow direction-arrow-tiny">⮉</span> Way Out</div>
+          <div class="direction-sign sign-shard"><span class="direction-arrow direction-arrow-tiny">⮉</span> The Shard<br>Guy’s Hospital</div>
+          <div class="direction-sign sign-jubilee">Jubilee line <span class="direction-arrow direction-arrow-tiny">⮉</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kerning-lab" id="kerning" aria-labelledby="kerning-title">
+      <div class="kerning-toolbar">
+        <div><span>Interactive spacing</span><h2 id="kerning-title">Kerning Lab</h2></div>
+        <label>Weight <output id="kerning-weight-output">700</output>
+          <input id="kerning-weight" type="range" min="100" max="900" value="700" step="100">
+        </label>
+        <label>Size <output id="kerning-size-output">160</output>
+          <input id="kerning-size" type="range" min="70" max="240" value="160">
+        </label>
+        <label>Tracking <output id="kerning-tracking-output">0</output>
+          <input id="kerning-tracking" type="range" min="-40" max="80" value="0">
+        </label>
+      </div>
+      <label class="kerning-input-label" for="kerning-source">Type your characters</label>
+      <input class="kerning-source" id="kerning-source" type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" maxlength="96" autocomplete="off" spellcheck="false">
+      <div class="kerning-glyphs" id="kerning-glyphs" aria-live="polite"></div>
     </section>
 
     <section class="tester" id="tester">
@@ -40,25 +82,60 @@
       <div id="tester-text" class="tester-text" contenteditable="true" spellcheck="false">Relay carries every message forward.</div>
     </section>
 
-    <section class="weights" id="weights" aria-labelledby="weights-title">
-      <div class="section-heading"><span>Family</span><h2 id="weights-title">Ten weights</h2></div>
-      <div class="weight-list">
-        <article style="--weight:100"><span>Thin / 100</span><p>Signals move across the city.</p></article>
-        <article style="--weight:200"><span>Extralight / 200</span><p>Signals move across the city.</p></article>
-        <article style="--weight:300"><span>Light / 300</span><p>Signals move across the city.</p></article>
-        <article style="--weight:400"><span>Regular / 400</span><p>Signals move across the city.</p></article>
-        <article style="--weight:500"><span>Medium / 500</span><p>Signals move across the city.</p></article>
-        <article style="--weight:600"><span>Semibold / 600</span><p>Signals move across the city.</p></article>
-        <article style="--weight:700"><span>Bold / 700</span><p>Signals move across the city.</p></article>
-        <article style="--weight:800"><span>Extrabold / 800</span><p>Signals move across the city.</p></article>
-        <article style="--weight:850"><span>Heavy / 850</span><p>Signals move across the city.</p></article>
-        <article style="--weight:900"><span>Black / 900</span><p>Signals move across the city.</p></article>
+    <section class="pictograms" id="pictograms" aria-label="Pictograms">
+      <div class="pictogram-poster-meta">
+        <span>MS Relay Sans 1.0</span><span>Designed by Mor Solymosi</span><span>Usage: Public Transportation</span><span>Year of design 2026</span>
+      </div>
+      <div class="pictogram-poster-copy">
+        <p>This grotesk typeface has been developed as a functional and adaptable visual system for wayfinding, transport and public-information environments. Its construction is based on clear proportions, open counters and carefully controlled stroke relationships, allowing the letterforms to remain legible across a wide range of scales, viewing distances and applications.</p>
+        <p>While the overall character is neutral and systematic, subtle details prevent the design from appearing mechanical or anonymous. The terminals, joins and curved forms have been optically adjusted to create a consistent rhythm, while the spacing supports both short directional messages and longer passages of information.</p>
+        <p>The accompanying pictogram family extends the same visual language through shared proportions, stroke weight, geometry and formal details. Across the following pages, the typeface and symbols are presented through selected characters, words, directional messages, pictograms, spacing studies and practical wayfinding applications.</p>
+        <p>This chapter of the study focuses on the coherence between the typography and the pictogram system, examining how both elements work together as a unified visual language.</p>
+      </div>
+      <div class="pictogram-grid" aria-label="MS Relay Sans pictogram collection">
+        <span data-symbol="&#xE02E;" data-code="U+E02E"><b>&#xE02E;</b></span>
+        <span data-symbol="&#xE008;" data-code="U+E008"><b>&#xE008;</b></span>
+        <span data-symbol="&#xE02C;" data-code="U+E02C"><b>&#xE02C;</b></span>
+        <span data-symbol="↑" data-code="U+2191"><b>↑</b></span>
+        <span data-symbol="❷" data-code="U+2777"><b>❷</b></span>
+        <span data-symbol="&#xE02D;" data-code="U+E02D"><b>&#xE02D;</b></span>
+        <span data-symbol="④" data-code="U+2463"><b>④</b></span>
+        <span data-symbol="&#xE014;" data-code="U+E014"><b>&#xE014;</b></span>
+        <span data-symbol="🅖" data-code="U+1F156"><b>🅖</b></span>
+        <span data-symbol="&#xE02F;" data-code="U+E02F"><b>&#xE02F;</b></span>
+        <span data-symbol="↗" data-code="U+2197"><b>↗</b></span>
+        <span data-symbol="⮊" data-code="U+2B8A"><b>⮊</b></span>
+      </div>
+      <div class="pictogram-poster-meta pictogram-poster-meta-bottom">
+        <span>MS Relay Sans 1.0</span><span>Designed by Mor Solymosi</span><span>Usage: Public Transportation</span><span>Year of design 2026</span>
       </div>
     </section>
 
-    <section class="glyphs" id="glyphs">
-      <div class="section-heading"><span>Character set</span><h2>Glyphs</h2></div>
-      <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789<br>ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØŒÙÚÛÜÝŸ<br>.,:;!?“”‘’()[]{}–—/@#&amp;%+−×÷=€£$¥</p>
+    <section class="characters" id="glyphs">
+      <div class="section-heading"><span>Character Set</span><h2>Glyphs</h2></div>
+      <div class="character-browser">
+        <div class="character-preview" aria-live="polite" aria-label="Selected character preview">
+          <div class="character-metrics" aria-hidden="true">
+            <div class="metric metric-ascender"><span>Ascender</span><i></i><span>960</span></div>
+            <div class="metric metric-cap"><span>Cap Height</span><i></i><span>700</span></div>
+            <div class="metric metric-x"><span>X-Height</span><i></i><span>540</span></div>
+            <div class="metric metric-baseline"><span>Baseline</span><i></i><span>0</span></div>
+            <div class="metric metric-descender"><span>Descender</span><i></i><span>−270</span></div>
+          </div>
+          <canvas id="character-preview-canvas" aria-hidden="true"></canvas>
+          <span id="character-preview-value">A</span>
+          <div class="character-code"><span id="character-unicode">U+0041</span><span id="character-code-value">A</span></div>
+        </div>
+        <div class="character-list" aria-label="MS Relay Sans characters">
+          <div class="character-grid">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+            <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span>
+            <span>À</span><span>Á</span><span>Â</span><span>Ã</span><span>Ä</span><span>Å</span><span>Æ</span><span>Ç</span><span>È</span><span>É</span><span>Ê</span><span>Ë</span><span>Ì</span><span>Í</span><span>Î</span><span>Ï</span><span>Ñ</span><span>Ò</span><span>Ó</span><span>Ô</span><span>Õ</span><span>Ö</span><span>Ø</span><span>Œ</span><span>Ù</span><span>Ú</span><span>Û</span><span>Ü</span><span>Ý</span><span>Ÿ</span><span>Š</span><span>Ž</span><span>Ő</span><span>Ű</span><span>Ł</span><span>ß</span>
+            <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>.</span><span>,</span><span>:</span><span>;</span><span>!</span><span>“</span><span>”</span><span>‘</span><span>’</span><span>(</span><span>)</span><span>[</span><span>]</span><span>{</span><span>}</span><span>–</span><span>—</span><span>/</span><span>\</span>
+            <span>@</span><span>#</span><span>&amp;</span><span>%</span><span>+</span><span>−</span><span>×</span><span>÷</span><span>=</span><span>€</span><span>$</span><span>¥</span><span>©</span><span>®</span><span>™</span><span>←</span><span>↑</span><span>→</span><span>↓</span><span>↗</span><span>↘</span><span>⮉</span><span>⮊</span><span>❷</span><span>④</span><span>🅖</span><span>●</span><span>■</span><span>▲</span><span>◆</span>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
