@@ -2563,3 +2563,15 @@ main > section {
   margin: 0;
   text-align: left;
 }
+
+
+/* Two-line responsive MorphyFoundry typewriter */
+.hero h1 {
+  font-size: clamp(44px, 12.5vw, 240px);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.hero .hero-typewriter {
+  white-space: pre-line;
+}
