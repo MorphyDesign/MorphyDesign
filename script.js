@@ -9,6 +9,9 @@ const testerUnits =
 const mobileTesterQuery =
   window.matchMedia("(max-width: 650px)");
 
+const compactTesterQuery =
+  window.matchMedia("(max-width: 1100px)");
+
 
 document.querySelectorAll("[data-fill-repeats]").forEach(
   function (tester) {
@@ -88,7 +91,7 @@ testerUnits.forEach(
     function applyTesterSize(requestedSize) {
       let renderedSize = Number(requestedSize);
 
-      if (mobileTesterQuery.matches) {
+      if (compactTesterQuery.matches) {
         const scale = Math.min(1, window.innerWidth / 1500);
         let minimumSize = 24;
 
@@ -135,7 +138,7 @@ testerUnits.forEach(
     );
 
 
-    mobileTesterQuery.addEventListener(
+    compactTesterQuery.addEventListener(
       "change",
       function () {
         applyTesterSize(sizeSlider.value);
@@ -146,7 +149,7 @@ testerUnits.forEach(
     window.addEventListener(
       "resize",
       function () {
-        if (mobileTesterQuery.matches) {
+        if (compactTesterQuery.matches) {
           applyTesterSize(sizeSlider.value);
         }
       }

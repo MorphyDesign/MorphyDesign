@@ -2104,3 +2104,372 @@ body {
   }
 
 }
+
+
+/* ========================================
+   THREE-VIEW RESPONSIVE SYSTEM — HERO
+======================================== */
+
+.hero {
+  min-height: calc(100svh - 58px);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero h1 {
+  width: 100%;
+  font-size: clamp(76px, 8.6vw, 180px);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+ (min-width: 651px) and (max-width: 1100px) {
+  .hero {
+    min-height: calc(100svh - 58px);
+    padding: clamp(20px, 3vw, 32px);
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 8.5vw, 92px);
+  }
+}
+
+ (max-width: 650px) {
+  .hero {
+    min-height: calc(100svh - 96px);
+    padding: 14px;
+  }
+
+  .hero h1 {
+    font-size: clamp(29px, 8.55vw, 56px);
+  }
+}
+
+
+/* ========================================
+   THREE-VIEW RESPONSIVE SYSTEM — SITE
+======================================== */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.header {
+  min-height: 58px;
+}
+
+.nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.control,
+.control input[type="range"] {
+  min-width: 0;
+}
+
+ (min-width: 1101px) {
+  .font-catalogue-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+ (min-width: 651px) and (max-width: 1100px) {
+  :root {
+    --page-margin: clamp(20px, 3vw, 32px);
+    --section-space: clamp(72px, 10vw, 112px);
+  }
+
+  .header {
+    padding: 12px var(--page-margin);
+  }
+
+  .nav {
+    gap: clamp(14px, 2.6vw, 28px);
+  }
+
+  .font-catalogue-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .font-catalogue-row {
+    min-height: clamp(300px, 46vw, 500px);
+  }
+
+  .font-aa {
+    font-size: clamp(100px, 20vw, 190px);
+  }
+
+  .kerning-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .typeface-intro {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .typeface-data {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .tester-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tester-unit,
+  .tester-unit:nth-child(-n + 2),
+  .tester-unit:nth-child(7) {
+    grid-column: auto;
+    grid-row: auto;
+    border-right: 0;
+  }
+
+  .tester-unit:nth-child(3),
+  .tester-unit:nth-child(5),
+  .tester-unit:nth-child(6) {
+    border-right: 0;
+  }
+
+  .tester-controls,
+  .tester-unit:nth-child(n + 3) .tester-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 28px;
+  }
+
+  .tester {
+    min-height: clamp(280px, 55vw, 540px);
+    padding: clamp(30px, 5vw, 56px) var(--page-margin);
+  }
+
+  .glyph-construction {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .glyph-construction-copy {
+    padding-bottom: 44px;
+    border-bottom: var(--border);
+  }
+
+  .glyph-construction-copy p {
+    max-width: 56ch;
+  }
+
+  .glyph-construction-stage {
+    min-height: 60svh;
+  }
+
+  .text-samples {
+    grid-template-columns: 1fr;
+  }
+
+  .text-sample,
+  .text-sample-hero,
+  .text-sample-large,
+  .text-sample-medium {
+    grid-column: auto;
+    width: 100%;
+    height: auto;
+    min-height: clamp(360px, 56vw, 580px);
+    border-right: 0;
+  }
+
+  .text-sample:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .character-browser {
+    grid-template-columns: 1fr;
+  }
+
+  .character-preview {
+    position: relative;
+    height: 56svh;
+    border-bottom: var(--border);
+  }
+
+  .character-list {
+    border-left: 0;
+  }
+
+  .about-typeface {
+    grid-template-columns: 1fr;
+  }
+
+  .about-title {
+    font-size: clamp(110px, 25vw, 230px);
+  }
+
+  .cta {
+    min-height: 50svh;
+  }
+
+  .variable-footer {
+    min-height: 58svh;
+  }
+}
+
+ (max-width: 650px) {
+  :root {
+    --page-margin: 14px;
+    --section-space: 56px;
+  }
+
+  .header {
+    min-height: 96px;
+    padding: 12px var(--page-margin);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .nav {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 12px;
+    text-align: left;
+  }
+
+  .nav a {
+    min-height: 32px;
+    font-size: 12px;
+  }
+
+  .font-catalogue-header {
+    padding: 14px var(--page-margin) 18px;
+  }
+
+  .font-catalogue-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .font-catalogue-row {
+    min-height: 220px;
+  }
+
+  .font-aa {
+    font-size: clamp(92px, 34vw, 140px);
+  }
+
+  .kerning-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .typeface-data {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tester-controls,
+  .tester-unit:nth-child(n + 3) .tester-controls {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .control {
+    grid-template-columns: 64px minmax(0, 1fr) 58px;
+    gap: 8px;
+  }
+
+  .control label,
+  .control span {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tester {
+    min-height: 220px;
+    padding: 26px var(--page-margin);
+    overflow: hidden;
+  }
+
+  .specimen {
+    overflow: hidden;
+  }
+
+  .glyph-construction-copy h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .glyph-construction-stage {
+    min-height: 52svh;
+  }
+
+  .glyph-construction-svg {
+    width: 128%;
+    max-width: none;
+  }
+
+  .text-sample,
+  .text-sample-hero,
+  .text-sample-large,
+  .text-sample-medium {
+    width: 100%;
+    min-height: 320px;
+    overflow: hidden;
+  }
+
+  .character-preview {
+    position: relative;
+    height: 42svh;
+  }
+
+  .character-list {
+    grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+  }
+
+  .supported-languages p,
+  .about-copy p {
+    overflow-wrap: anywhere;
+  }
+
+  .about-title {
+    font-size: clamp(72px, 24vw, 108px);
+  }
+
+  .metadata {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    min-height: 44svh;
+  }
+
+  .cta a {
+    overflow-wrap: anywhere;
+  }
+
+  .variable-footer {
+    min-height: 40svh;
+  }
+
+  .footer-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-word-crop {
+    overflow: hidden;
+  }
+}
