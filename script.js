@@ -115,6 +115,13 @@ testerUnits.forEach(
         Math.max(minimumSize, renderedSize * scale)
       );
 
+      if (tester.classList.contains("tester-large")) {
+        renderedSize = Math.min(
+          renderedSize,
+          availableWidth / 9
+        );
+      }
+
       renderedSize = Math.round(renderedSize * 10) / 10;
       tester.style.fontSize = renderedSize + "px";
       sizeValue.textContent = renderedSize + " px";
