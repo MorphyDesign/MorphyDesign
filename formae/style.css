@@ -7,16 +7,86 @@
   font-display: swap;
 }
 
-/* Drop the Formae Regular webfont file into formae/fonts/ as
-   Formae-Regular.woff2 (rename it to match, or update the url() below).
-   Once the file exists, also add "Formae" to the front of the three
-   font-family lists below (body, .construction-outline, .construction-metric
-   text) — leaving it there while the file is missing breaks the fallback
-   rendering for the large hero/diagram text. */
+/* Full Formae static-weight family. Each weight is its own file in
+   formae/fonts/ — the browser picks the closest face by font-weight. */
 @font-face {
   font-family: "Formae";
-  src:
-    url("fonts/Formae-Regular.woff2") format("woff2");
+  src: url("fonts/Formae-Hairline.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 1;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Thin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Semibold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Extrabold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("fonts/Formae-Black.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* Drop the Formae Old English webfont file into formae/fonts/ as
+   Formae-OldEnglish.woff2 once it's exported — this face is ready to
+   receive it and will fall back to regular Formae until then. */
+@font-face {
+  font-family: "Formae Old English";
+  src: url("fonts/Formae-OldEnglish.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -839,10 +909,16 @@ body {
 ======================================== */
 
 .specimen {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  min-height: clamp(240px, 30vw, 420px);
+
   padding:
-    16px
-    var(--page-margin)
-    clamp(30px, 4vw, 65px);
+    var(--page-margin);
 
   border-bottom:
     var(--border);
@@ -850,19 +926,33 @@ body {
 
 
 .specimen-label {
-  margin-bottom: 24px;
+  position: absolute;
+
+  top: calc(var(--page-margin) / 2);
+
+  left: var(--page-margin);
+
+  margin-bottom: 0;
 
   font-size: 12px;
+
+  text-align: left;
 }
 
 
 .specimen-text {
+  width: 100%;
+
+  transform: translateY(0.14em);
+
   font-size:
     clamp(82px, 15vw, 280px);
 
-  line-height: 0.78;
+  line-height: 1.2;
 
   letter-spacing: -0.055em;
+
+  text-align: left;
 
   overflow: hidden;
 }
@@ -909,18 +999,17 @@ body {
 }
 
 
-.specimen-text.medium {
-  line-height: 1;
-  padding-bottom: 0.12em;
-  overflow: visible;
-}
-
 .semibold {
   font-weight: 600;
 }
 
 .bold {
   font-weight: 700;
+}
+
+.old-english {
+  font-family: "Formae Old English", "Formae", "Inter Variable", Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .black {
@@ -2099,9 +2188,8 @@ body {
 
   .specimen {
     padding:
-      12px
       var(--page-margin)
-      28px;
+      var(--page-margin);
   }
 
 
@@ -2836,10 +2924,10 @@ main > section {
 
 /* ========================================
    FORMAE — REGULAR ONLY
-   Only the Regular (400) cut of Formae exists so far. Force every element
-   to that weight so nothing triggers synthetic/faux bold from the browser
-   (weight sliders in Kerning Lab / Type Tester, weight-swatch demo, etc.
-   all get overridden here too). Remove this block once more weights ship.
+   Only Regular is in active use — force every element to that weight so
+   nothing triggers synthetic/faux bold (weight sliders, weight-swatch
+   demo, etc. all get overridden here too). Remove this block if/when
+   other weights should actually be used on the page.
 ======================================== */
 
 * {
