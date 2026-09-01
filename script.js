@@ -10,7 +10,7 @@ const mobileTesterQuery =
   window.matchMedia("(max-width: 650px)");
 
 const compactTesterQuery =
-  window.matchMedia("(max-width: 1100px)");
+  window.matchMedia("(max-width: 900px)");
 
 
 document.querySelectorAll("[data-fill-repeats]").forEach(
