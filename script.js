@@ -115,7 +115,10 @@ testerUnits.forEach(
         Math.max(minimumSize, renderedSize * scale)
       );
 
-      if (tester.classList.contains("tester-large")) {
+      if (
+        tester.classList.contains("tester-large") ||
+        tester.classList.contains("tester-medium")
+      ) {
         renderedSize = Math.min(
           renderedSize,
           availableWidth / 9
