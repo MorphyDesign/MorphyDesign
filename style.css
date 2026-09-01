@@ -2577,7 +2577,7 @@ main > section {
 }
 
 
-/* Wayfinding opening-type rules, adapted only to MorphyFoundry content */
+/* Wayfinding opening layout with display-scale MorphyFoundry typography */
 .hero {
   min-height: max(560px, 100svh);
   padding: clamp(28px, 3vw, 58px) var(--page-margin);
@@ -2591,10 +2591,10 @@ main > section {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  font-size: clamp(48px, 4.5vw, 86px);
+  font-size: clamp(104px, 13.4vw, 260px);
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: normal;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
   font-kerning: auto;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "clig" 0;
@@ -2605,11 +2605,17 @@ main > section {
 
 .hero .hero-typewriter {
   display: block;
-  min-height: 2.3em;
+  min-height: 2.58em;
   max-width: 100%;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
+}
+
+@media (min-width: 651px) and (max-width: 900px) {
+  .hero h1 {
+    font-size: clamp(88px, 15vw, 136px);
+  }
 }
 
 @media (max-width: 650px) {
@@ -2618,13 +2624,14 @@ main > section {
   }
 
   .hero h1 {
-    width: 300px;
-    max-width: calc(100vw - 48px);
-    font-size: min(56px, 11vw);
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(62px, 19vw, 96px);
+    line-height: 0.86;
   }
 
   .hero .hero-typewriter {
     width: 100%;
-    min-height: 2.3em;
+    min-height: 2.58em;
   }
 }
