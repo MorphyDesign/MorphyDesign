@@ -2549,3 +2549,17 @@ main > section {
   max-width: 100%;
   overflow-wrap: anywhere;
 }
+
+
+/* Hero alignment: preserve the original bottom-left composition */
+.hero {
+  align-items: stretch;
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.hero h1 {
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+}
