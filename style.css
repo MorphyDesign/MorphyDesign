@@ -2126,7 +2126,7 @@ body {
   white-space: nowrap;
 }
 
- (min-width: 651px) and (max-width: 900px) {
+@media (min-width: 651px) and (max-width: 900px) {
   .hero {
     min-height: calc(100svh - 58px);
     padding: clamp(20px, 3vw, 32px);
@@ -2137,7 +2137,7 @@ body {
   }
 }
 
- (max-width: 650px) {
+@media (max-width: 650px) {
   .hero {
     min-height: calc(100svh - 96px);
     padding: 14px;
@@ -2181,13 +2181,13 @@ canvas {
   min-width: 0;
 }
 
- (min-width: 901px) {
+@media (min-width: 901px) {
   .font-catalogue-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
- (min-width: 651px) and (max-width: 900px) {
+@media (min-width: 651px) and (max-width: 900px) {
   :root {
     --page-margin: clamp(16px, 2.2vw, 36px);
     --section-space: clamp(72px, 10vw, 112px);
@@ -2324,7 +2324,7 @@ canvas {
   }
 }
 
- (max-width: 650px) {
+@media (max-width: 650px) {
   :root {
     --page-margin: clamp(16px, 2.2vw, 36px);
     --section-space: 56px;
@@ -2503,7 +2503,7 @@ main > section {
   scroll-margin-top: 54px;
 }
 
- (min-width: 901px) {
+@media (min-width: 901px) {
   html {
     scrollbar-gutter: stable;
     scroll-padding-top: 54px;
@@ -2519,14 +2519,14 @@ main > section {
   }
 }
 
- (min-width: 651px) and (max-width: 900px) {
+@media (min-width: 651px) and (max-width: 900px) {
   .hero {
     min-height: 88svh;
     padding: var(--page-margin);
   }
 }
 
- (max-width: 650px) {
+@media (max-width: 650px) {
   .header {
     min-height: auto;
     padding: 18px var(--page-margin);
@@ -2536,4 +2536,16 @@ main > section {
     min-height: 58svh;
     padding: var(--page-margin);
   }
+}
+
+
+/* Responsive content sizing safety */
+.tester-unit {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tester {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }

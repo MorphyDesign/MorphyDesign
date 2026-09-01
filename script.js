@@ -91,23 +91,29 @@ testerUnits.forEach(
     function applyTesterSize(requestedSize) {
       let renderedSize = Number(requestedSize);
 
-      if (compactTesterQuery.matches) {
-        const scale = Math.min(1, window.innerWidth / 1500);
-        let minimumSize = 24;
+      const testerStyle = window.getComputedStyle(tester);
+      const horizontalPadding =
+        parseFloat(testerStyle.paddingLeft) +
+        parseFloat(testerStyle.paddingRight);
+      const availableWidth = Math.max(
+        1,
+        unit.clientWidth - horizontalPadding
+      );
+      const scale = Math.min(1, availableWidth / 1500);
+      let minimumSize = 24;
 
-        if (tester.classList.contains("tester-small")) {
-          minimumSize = 28;
-        }
-
-        if (tester.classList.contains("tester-micro")) {
-          minimumSize = 14;
-        }
-
-        renderedSize = Math.max(
-          minimumSize,
-          renderedSize * scale
-        );
+      if (tester.classList.contains("tester-small")) {
+        minimumSize = 28;
       }
+
+      if (tester.classList.contains("tester-micro")) {
+        minimumSize = 14;
+      }
+
+      renderedSize = Math.min(
+        Number(requestedSize),
+        Math.max(minimumSize, renderedSize * scale)
+      );
 
       renderedSize = Math.round(renderedSize * 10) / 10;
       tester.style.fontSize = renderedSize + "px";
@@ -149,9 +155,7 @@ testerUnits.forEach(
     window.addEventListener(
       "resize",
       function () {
-        if (compactTesterQuery.matches) {
-          applyTesterSize(sizeSlider.value);
-        }
+        applyTesterSize(sizeSlider.value);
       }
     );
 
