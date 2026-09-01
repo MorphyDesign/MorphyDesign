@@ -2575,3 +2575,56 @@ main > section {
 .hero .hero-typewriter {
   white-space: pre-line;
 }
+
+
+/* Wayfinding opening-type rules, adapted only to MorphyFoundry content */
+.hero {
+  min-height: max(560px, 100svh);
+  padding: clamp(28px, 3vw, 58px) var(--page-margin);
+  align-items: stretch;
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.hero h1 {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  font-size: clamp(48px, 4.5vw, 86px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: normal;
+  font-kerning: auto;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0;
+  text-align: left;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.hero .hero-typewriter {
+  display: block;
+  min-height: 2.3em;
+  max-width: 100%;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 650px) {
+  .hero {
+    min-height: max(300px, calc(49svh - 100px));
+  }
+
+  .hero h1 {
+    width: 300px;
+    max-width: calc(100vw - 48px);
+    font-size: min(56px, 11vw);
+  }
+
+  .hero .hero-typewriter {
+    width: 100%;
+    min-height: 2.3em;
+  }
+}
