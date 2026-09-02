@@ -373,7 +373,7 @@ body {
 
   grid-template-columns:
     minmax(180px, 1fr)
-    repeat(2, minmax(180px, 1fr));
+    minmax(180px, 1fr);
 
   gap:
     clamp(24px, 4vw, 70px);
@@ -940,6 +940,11 @@ body {
 }
 
 
+.specimen-text.specimen-text-match-wine {
+  font-size:
+    clamp(141px, 35.3vw, 706px);
+}
+
 .specimen-text {
   width: 100%;
 
@@ -955,6 +960,11 @@ body {
   text-align: left;
 
   overflow: hidden;
+}
+
+.specimen-text-long {
+  font-size:
+    clamp(28px, 4.2vw, 110px);
 }
 
 
@@ -1253,7 +1263,9 @@ body {
 
 
 .text-sample {
-  min-height:
+  container-type: size;
+
+  height:
     clamp(300px, 42vw, 680px);
 
   padding:
@@ -1266,6 +1278,8 @@ body {
   flex-direction: column;
 
   justify-content: space-between;
+
+  overflow: hidden;
 
   border-top:
     var(--border);
@@ -1286,24 +1300,53 @@ body {
 .text-sample p {
   margin: 0;
 
+  /* Optical correction: the gap between the label and the ink-top is a
+     fixed px component (from the flex gap) plus a proportional em
+     component (from line-height leading), measured empirically across
+     all four boxes. A pure em value can't fix it alone since the fixed
+     part doesn't scale — mix px and em so the visible gap comes out the
+     same at every font-size. */
+  margin-top: calc(0.049em - 1.07px);
+
   letter-spacing: -0.04em;
 }
 
 
 .text-sample-hero {
   grid-column: auto;
+
+  justify-content: flex-start;
+
+  gap: 12px;
 }
 
+
+.text-sample-hero p.text-sample-hero-huge {
+  font-size:
+    clamp(100px, 50cqmin, 460px);
+}
+
+.text-sample-hero p.text-sample-hero-6x {
+  font-size:
+    clamp(82px, 15vw, 280px);
+
+  /* "W" is a flat-topped cap (glyph yMax 750/1000 em); "Sauvignon"'s "S" is
+     round and overshoots to 765/1000 em, so at these very different point
+     sizes the two line-box formulas alone don't put their actual ink at
+     the same height. Pull the flat-topped cap up by the measured
+     difference so the true ink-tops -- not just the line boxes -- align. */
+  margin-top: calc(0.049em - 1.07px - 22px);
+}
 
 .text-sample-hero p {
   max-width: 1200px;
 
   font-size:
-    clamp(72px, 12vw, 210px);
+    clamp(40px, 20cqmin, 200px);
 
   font-weight: 900;
 
-  line-height: 0.86;
+  line-height: 1.1;
 }
 
 
@@ -1317,9 +1360,23 @@ body {
 
 
 .text-sample-inverse {
+  align-items: center;
+
+  justify-content: center;
+
+  padding-top:
+    clamp(35px, 5vw, 80px);
+
   color: var(--background);
 
   background: var(--foreground);
+}
+
+.text-sample-inverse p {
+  text-align: center;
+
+  font-size:
+    clamp(80px, 55cqmin, 400px);
 }
 
 
@@ -1349,11 +1406,11 @@ body {
 
 .text-sample-large p {
   font-size:
-    clamp(48px, 7vw, 112px);
+    clamp(28px, 16cqmin, 100px);
 
   font-weight: 500;
 
-  line-height: 0.92;
+  line-height: 1.1;
 }
 
 
@@ -1366,17 +1423,17 @@ body {
 
   justify-content: flex-start;
 
-  gap: 24px;
+  gap: 12px;
 }
 
 
 .text-sample-medium p {
   font-size:
-    clamp(32px, 4vw, 64px);
+    clamp(18px, 10cqmin, 56px);
 
   font-weight: 300;
 
-  line-height: 1;
+  line-height: 1.1;
 }
 
 
@@ -1542,6 +1599,58 @@ body {
 
 
 /* ========================================
+   LIGATURE SHOWCASE
+======================================== */
+
+.ligature-showcase {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  padding:
+    clamp(60px, 10vw, 140px)
+    var(--page-margin);
+
+  text-align: center;
+
+  border-bottom:
+    var(--border);
+}
+
+.ligature-showcase-kicker {
+  font-size: 12px;
+}
+
+.ligature-showcase-word {
+  width: 100%;
+
+  margin: 0;
+
+  font-size:
+    clamp(90px, 16vw, 300px);
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  text-align: center;
+
+  letter-spacing: -0.02em;
+}
+
+.ligature-showcase-word-long {
+  font-size:
+    clamp(49px, 7.9vw, 156px);
+}
+
+
+/* ========================================
    OPENTYPE FEATURES
 ======================================== */
 
@@ -1627,7 +1736,9 @@ body {
 }
 
 .feature-arrow {
-  font-size: 0.4em;
+  align-self: center;
+
+  font-size: 0.6em;
 
   opacity: 0.35;
 }

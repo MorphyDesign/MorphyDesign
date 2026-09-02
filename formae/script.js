@@ -322,6 +322,10 @@ characterCells.forEach(function (cell) {
 
 if (characterCells.length) {
   selectCharacter(characterCells[0]);
+
+  document.fonts.ready.then(function () {
+    drawCharacterPreview(characterPreview.textContent);
+  });
 }
 
 
@@ -345,9 +349,6 @@ if (kerningLab) {
   const kerningGlyphs =
     document.getElementById("kerning-glyphs");
 
-  const kerningWeight =
-    document.getElementById("kerning-weight");
-
   const kerningTracking =
     document.getElementById("kerning-tracking");
 
@@ -359,7 +360,7 @@ if (kerningLab) {
 
 
   function renderKerningLab() {
-    const weight = Number(kerningWeight.value);
+    const weight = 400;
     const tracking = Number(kerningTracking.value);
     const fontFamily = getComputedStyle(document.body).fontFamily;
     const mobileKerning = window.innerWidth <= 650;
@@ -374,8 +375,6 @@ if (kerningLab) {
       Math.round(kerningFontSize * 10) / 10
     );
 
-    document.getElementById("kerning-weight-value").textContent =
-      weight;
     document.getElementById("kerning-tracking-value").textContent =
       tracking;
 
@@ -417,7 +416,6 @@ if (kerningLab) {
 
 
   kerningSource.addEventListener("input", renderKerningLab);
-  kerningWeight.addEventListener("input", renderKerningLab);
   kerningTracking.addEventListener("input", renderKerningLab);
   window.addEventListener("resize", renderKerningLab);
 
