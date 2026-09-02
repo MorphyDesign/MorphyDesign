@@ -1617,7 +1617,9 @@ body {
 
   line-height: 1;
 
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
+
+  font-kerning: normal;
 }
 
 .feature-demo > span:first-child {
@@ -1646,7 +1648,7 @@ body {
 
 .feature-ss01 {
   font-variant-alternates: styleset(1);
-  font-feature-settings: "ss01" 1;
+  font-feature-settings: "ss01" 1, "kern" 1;
 }
 
 .feature-badge {
