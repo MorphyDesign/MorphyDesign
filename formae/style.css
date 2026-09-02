@@ -1335,7 +1335,7 @@ body {
      sizes the two line-box formulas alone don't put their actual ink at
      the same height. Pull the flat-topped cap up by the measured
      difference so the true ink-tops -- not just the line boxes -- align. */
-  margin-top: calc(0.049em - 1.07px - 22px);
+  margin-top: calc(0.049em - 1.07px - 35px);
 }
 
 .text-sample-hero p {
