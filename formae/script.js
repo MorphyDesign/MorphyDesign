@@ -551,3 +551,11 @@ const glyphConstructionSection = document.querySelector("#construction");
 if (typefaceIntroSection && glyphConstructionSection) {
   typefaceIntroSection.insertAdjacentElement("afterend", glyphConstructionSection);
 }
+
+document.querySelectorAll(".type-scale-text").forEach(function (block) {
+  block.addEventListener("paste", function (event) {
+    event.preventDefault();
+    const text = (event.clipboardData || window.clipboardData).getData("text/plain");
+    document.execCommand("insertText", false, text);
+  });
+});
