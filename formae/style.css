@@ -269,7 +269,7 @@ body {
 
   overflow: hidden;
 
-  background: #727272;
+  background: var(--background);
   color: var(--foreground);
 }
 
@@ -1661,6 +1661,9 @@ body {
       4 * 1.1 * clamp(49px, 7.9vw, 156px) +
       3 * 20px
     );
+
+  background: #1e1e1e;
+  color: var(--background);
 
   overflow: hidden;
 }
