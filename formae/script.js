@@ -514,7 +514,16 @@ function positionCorkHand() {
   const range = document.createRange();
   range.selectNodeContents(corkWord);
   const textRect = range.getBoundingClientRect();
-  corkHand.style.left = (textRect.right - boxRect.left) + "px";
+
+  // The ☜ glyph itself has a small left side-bearing (empty space baked
+  // into the character before its ink starts), measured via canvas pixel
+  // scan at ~0.033em -- pull the box left by that amount so the visible
+  // ink (not just the character cell) sits flush against the text.
+  const handFontSize = parseFloat(getComputedStyle(corkHand).fontSize);
+  const inkSideBearing = handFontSize * 0.033;
+
+  corkHand.style.left =
+    (textRect.right - boxRect.left - inkSideBearing) + "px";
 }
 
 if (corkWord && corkHand) {
