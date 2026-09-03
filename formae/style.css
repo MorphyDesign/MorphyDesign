@@ -1667,7 +1667,7 @@ body {
 
 .ligature-showcase-zoomed .ligature-showcase-word-long {
   font-size:
-    clamp(80px, 13vw, 260px);
+    clamp(88px, 14.3vw, 286px);
 
   /* Keep each phrase on the single line it had at normal size -- the
      bigger font would otherwise wrap it onto a second line. Let it
