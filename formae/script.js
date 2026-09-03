@@ -612,17 +612,29 @@ if (typeSliderSection && typeSliderTrack) {
   function loadHiddenKeys() {
     try {
       const raw = window.localStorage.getItem(VISIBILITY_STORAGE_KEY);
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        return parsed.filter(function (key) {
-          return originalOrder.includes(key);
-        });
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(function (key) {
+            return originalOrder.includes(key);
+          });
+        }
       }
     } catch (error) {
       /* ignore malformed storage */
     }
-    return [];
+
+    // No saved preference yet (e.g. a fresh export/artifact with its own
+    // empty localStorage) -- seed from whatever sections already carry a
+    // `hidden` attribute in the markup itself, so a baked-in hidden state
+    // isn't silently reset to "all visible" on first load.
+    return sections
+      .filter(function (section) {
+        return section.hidden;
+      })
+      .map(function (section) {
+        return section.dataset.sectionKey;
+      });
   }
 
   const hiddenKeys = new Set(loadHiddenKeys());
