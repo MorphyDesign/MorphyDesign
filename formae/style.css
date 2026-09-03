@@ -316,8 +316,54 @@ body {
   border-bottom: var(--border);
 }
 
-.font-info-title {
+.font-info-header {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px 24px;
+
   margin: 0 var(--page-margin) 14px;
+}
+
+.font-info-header .font-info-title {
+  margin: 0;
+}
+
+.font-info-actions {
+  display: flex;
+
+  gap: 10px;
+}
+
+.font-info-action {
+  padding: 9px 20px;
+
+  font-family: var(--descriptive-font);
+
+  font-size: 12px;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+.font-info-action-outline {
+  color: var(--foreground);
+
+  border: var(--border);
+}
+
+.font-info-action-solid {
+  color: var(--background);
+
+  background: var(--foreground);
+
+  border: 1px solid var(--foreground);
 }
 
 .font-info-grid {
