@@ -316,6 +316,8 @@ body {
 
   margin-bottom:
     clamp(48px, 8vw, 120px);
+
+  border-bottom: var(--border);
 }
 
 .font-info-title {
