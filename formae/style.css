@@ -314,9 +314,6 @@ body {
 .font-info {
   padding-top: 16px;
 
-  margin-bottom:
-    clamp(48px, 8vw, 120px);
-
   border-bottom: var(--border);
 }
 
@@ -455,9 +452,6 @@ body {
   color: var(--background);
 
   background: var(--foreground);
-
-  margin-bottom:
-    clamp(48px, 8vw, 120px);
 
   border-top: var(--border);
   border-bottom: var(--border);
@@ -1839,9 +1833,6 @@ body {
 
   min-height:
     clamp(560px, 60vw, 1000px);
-
-  margin-top:
-    clamp(48px, 8vw, 120px);
 
   padding:
     var(--section-space)
