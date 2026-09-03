@@ -269,7 +269,7 @@ body {
 
   overflow: hidden;
 
-  background: var(--background);
+  background: #ececea;
   color: var(--foreground);
 }
 
