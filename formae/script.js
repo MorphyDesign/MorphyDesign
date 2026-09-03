@@ -1219,6 +1219,33 @@ if (typeSliderSection && typeSliderTrack) {
     box.style.height = rect.height + "px";
   }
 
+  // Clicking/hovering a padded area around some text should target the
+  // text itself, not the box built around it -- walk down through
+  // children looking for the deepest one that directly owns a text
+  // node, so selection lands on the actual copy rather than its
+  // wrapper's empty padding space.
+  function findTextLeaf(el) {
+    while (el && el.children && el.children.length > 0) {
+      let next = null;
+      for (let i = 0; i < el.children.length; i++) {
+        const child = el.children[i];
+        const hasOwnText = Array.prototype.some.call(
+          child.childNodes,
+          function (node) {
+            return node.nodeType === 3 && node.textContent.trim();
+          }
+        );
+        if (hasOwnText) {
+          next = child;
+          break;
+        }
+      }
+      if (!next) break;
+      el = next;
+    }
+    return el;
+  }
+
   function describeSelector(el) {
     if (el.id) return "#" + el.id;
     if (typeof el.className === "string" && el.className.trim()) {
@@ -1400,7 +1427,7 @@ if (typeSliderSection && typeSliderTrack) {
       return;
     }
 
-    const el = event.target;
+    const el = findTextLeaf(event.target);
     if (el === hoverEl) return;
     hoverEl = el;
 
@@ -1417,7 +1444,7 @@ if (typeSliderSection && typeSliderTrack) {
       event.preventDefault();
       event.stopPropagation();
 
-      selectedEl = event.target;
+      selectedEl = findTextLeaf(event.target);
       selectOutline.hidden = false;
       positionOutline(selectOutline, selectedEl.getBoundingClientRect());
       buildPanel(selectedEl);
