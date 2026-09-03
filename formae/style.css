@@ -327,7 +327,7 @@ body {
 
   gap: 12px 24px;
 
-  margin: 0 var(--page-margin) 14px;
+  margin: 0 var(--page-margin) 24px;
 }
 
 .font-info-header .font-info-title {
@@ -350,6 +350,8 @@ body {
   text-decoration: none;
 
   white-space: nowrap;
+
+  border-radius: 999px;
 }
 
 .font-info-action-outline {
@@ -359,11 +361,11 @@ body {
 }
 
 .font-info-action-solid {
-  color: var(--background);
+  color: var(--foreground);
 
-  background: var(--foreground);
+  background: #c8962a;
 
-  border: 1px solid var(--foreground);
+  border: 1px solid #c8962a;
 }
 
 .font-info-grid {
@@ -394,7 +396,7 @@ body {
 
   border-top: 0;
 
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .font-info-block h3 {
