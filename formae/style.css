@@ -2645,39 +2645,20 @@ main > section {
   user-select: none;
 }
 
-.section-reorder-label {
-  flex: 1 1 auto;
-}
+.section-reorder-handle {
+  cursor: grab;
 
-.section-reorder-move-buttons {
-  display: flex;
-
-  gap: 4px;
+  color: rgba(0, 0, 0, 0.4);
 
   flex: 0 0 auto;
 }
 
-.section-reorder-move {
-  width: 22px;
-  height: 22px;
-
-  padding: 0;
-
-  cursor: pointer;
-
-  color: var(--foreground);
-  background: var(--background);
-
-  border: var(--border);
-  border-radius: 4px;
-
-  font: inherit;
-  line-height: 1;
+.section-reorder-label {
+  flex: 1 1 auto;
 }
 
-.section-reorder-move:hover {
-  color: var(--background);
-  background: var(--foreground);
+.section-reorder-item-dragging {
+  opacity: 0.4;
 }
 
 .section-reorder-reset {

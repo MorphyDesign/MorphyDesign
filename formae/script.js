@@ -639,7 +639,7 @@ if (corkWord && corkHand) {
 
   const heading = document.createElement("div");
   heading.className = "section-reorder-heading";
-  heading.textContent = "Move sections with ↑ ↓";
+  heading.textContent = "Drag ⠿ to reorder";
   body.appendChild(heading);
 
   const list = document.createElement("ul");
@@ -659,17 +659,6 @@ if (corkWord && corkHand) {
     body.hidden = !body.hidden;
   });
 
-  /* Reordering is button-driven (not native drag-and-drop): every move is
-     a single deliberate click that immediately commits, so there is no
-     drag gesture that can misfire, get lost, or silently snap back. */
-  function commitOrder() {
-    const newOrder = Array.from(list.children).map(function (item) {
-      return item.dataset.sectionKey;
-    });
-    applyOrder(newOrder);
-    window.localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(newOrder));
-  }
-
   function buildList() {
     list.innerHTML = "";
     currentOrder().forEach(function (key) {
@@ -677,48 +666,66 @@ if (corkWord && corkHand) {
       item.className = "section-reorder-item";
       item.dataset.sectionKey = key;
 
+      /* Only this small handle is draggable -- not the whole row -- so an
+         ordinary click/scroll near the list can never start an accidental
+         native drag and silently rewrite the saved order. */
+      const handle = document.createElement("span");
+      handle.className = "section-reorder-handle";
+      handle.draggable = true;
+      handle.setAttribute("aria-hidden", "true");
+      handle.textContent = "⠿";
+      item.appendChild(handle);
+
       const label = document.createElement("span");
       label.className = "section-reorder-label";
       label.textContent = sectionLabels[key] || key;
       item.appendChild(label);
 
-      const moveButtons = document.createElement("span");
-      moveButtons.className = "section-reorder-move-buttons";
-
-      const upButton = document.createElement("button");
-      upButton.type = "button";
-      upButton.className = "section-reorder-move";
-      upButton.setAttribute("aria-label", "Move up");
-      upButton.textContent = "↑";
-      upButton.addEventListener("click", function () {
-        const prev = item.previousElementSibling;
-        if (prev) {
-          list.insertBefore(item, prev);
-          commitOrder();
-        }
-      });
-      moveButtons.appendChild(upButton);
-
-      const downButton = document.createElement("button");
-      downButton.type = "button";
-      downButton.className = "section-reorder-move";
-      downButton.setAttribute("aria-label", "Move down");
-      downButton.textContent = "↓";
-      downButton.addEventListener("click", function () {
-        const next = item.nextElementSibling;
-        if (next) {
-          list.insertBefore(next, item);
-          commitOrder();
-        }
-      });
-      moveButtons.appendChild(downButton);
-
-      item.appendChild(moveButtons);
       list.appendChild(item);
     });
   }
 
   buildList();
+
+  let draggedItem = null;
+
+  list.addEventListener("dragstart", function (event) {
+    if (!event.target.closest(".section-reorder-handle")) return;
+    const item = event.target.closest(".section-reorder-item");
+    if (!item) return;
+    draggedItem = item;
+    item.classList.add("section-reorder-item-dragging");
+    event.dataTransfer.effectAllowed = "move";
+  });
+
+  list.addEventListener("dragend", function () {
+    if (draggedItem) {
+      draggedItem.classList.remove("section-reorder-item-dragging");
+    }
+    draggedItem = null;
+
+    const newOrder = Array.from(list.children).map(function (item) {
+      return item.dataset.sectionKey;
+    });
+    applyOrder(newOrder);
+    window.localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(newOrder));
+  });
+
+  list.addEventListener("dragover", function (event) {
+    event.preventDefault();
+    if (!draggedItem) return;
+
+    const target = event.target.closest(".section-reorder-item");
+    if (!target || target === draggedItem) return;
+
+    const targetRect = target.getBoundingClientRect();
+    const isAfter = event.clientY > targetRect.top + targetRect.height / 2;
+
+    list.insertBefore(
+      draggedItem,
+      isAfter ? target.nextSibling : target
+    );
+  });
 
   resetButton.addEventListener("click", function () {
     window.localStorage.removeItem(ORDER_STORAGE_KEY);
