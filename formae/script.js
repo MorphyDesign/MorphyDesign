@@ -1042,3 +1042,31 @@ if (typeSliderSection && typeSliderTrack) {
     });
   });
 })();
+
+
+/* ========================================
+   STICKY HEADER CTA
+   The header's Try/Buy buttons stay hidden until the Font Info
+   section's own copy of those buttons scrolls up and reaches the
+   sticky header -- at that point they "dock" into the header and
+   stay there for the rest of the scroll (one-way, never hide again
+   once triggered).
+======================================== */
+(function () {
+  const header = document.querySelector(".header");
+  const headerActions = document.querySelector(".header-actions");
+  const fontInfoActions = document.querySelector(".font-info-actions");
+  if (!header || !headerActions || !fontInfoActions) return;
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      const entry = entries[0];
+      if (!entry.isIntersecting) {
+        headerActions.classList.add("is-visible");
+      }
+    },
+    { threshold: 0, rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" }
+  );
+
+  observer.observe(fontInfoActions);
+})();

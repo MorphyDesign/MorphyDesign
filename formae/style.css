@@ -228,6 +228,18 @@ body {
   justify-self: end;
 
   gap: 10px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 200ms ease;
+}
+
+.header-actions.is-visible {
+  opacity: 1;
+
+  pointer-events: auto;
 }
 
 
@@ -410,7 +422,7 @@ body {
 
   border-top: 0;
 
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .font-info-block h3 {
@@ -2170,6 +2182,8 @@ body {
 
 
 .cta span {
+  color: #555;
+
   font-size: 12px;
 }
 
