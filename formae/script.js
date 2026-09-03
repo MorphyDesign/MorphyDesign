@@ -981,3 +981,55 @@ if (typeSliderSection && typeSliderTrack) {
     ensureLoop();
   });
 })();
+
+
+/* ========================================
+   LIVE SIZE LABELS
+   Every "Regular / N" label on the page names the font-size clamp's
+   ceiling, but the text it labels is sized responsively (vw/cqmin/cqw)
+   and is usually well below that ceiling. Read back the actual
+   rendered size instead of leaving the number static.
+======================================== */
+(function () {
+  const pairs = [];
+
+  document.querySelectorAll(".specimen").forEach(function (section) {
+    const label = section.querySelector(".specimen-label");
+    const text = section.querySelector(".specimen-text");
+    if (label && text) pairs.push({ label: label, text: text });
+  });
+
+  document.querySelectorAll(".text-samples .text-sample").forEach(function (sample) {
+    const label = sample.querySelector("span");
+    const text = sample.querySelector("p");
+    if (label && text) pairs.push({ label: label, text: text });
+  });
+
+  document.querySelectorAll(".type-scale-block").forEach(function (block) {
+    const label = block.querySelector(".type-scale-meta");
+    const text = block.querySelector(".type-scale-text");
+    if (label && text) pairs.push({ label: label, text: text });
+  });
+
+  if (!pairs.length) return;
+
+  function updateLabels() {
+    pairs.forEach(function (pair) {
+      const size = Math.round(
+        parseFloat(window.getComputedStyle(pair.text).fontSize)
+      );
+      pair.label.textContent = "Regular / " + size;
+    });
+  }
+
+  updateLabels();
+
+  let rafId = null;
+  window.addEventListener("resize", function () {
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(function () {
+      rafId = null;
+      updateLabels();
+    });
+  });
+})();
