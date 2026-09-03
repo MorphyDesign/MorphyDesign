@@ -143,7 +143,6 @@ body {
 .type-scale-meta,
 .metric,
 .character-code,
-.ligature-showcase-kicker,
 .feature-label,
 .section-title,
 .kerning-input-label,
@@ -1623,10 +1622,6 @@ body {
 
   border-bottom:
     var(--border);
-}
-
-.ligature-showcase-kicker {
-  font-size: 12px;
 }
 
 .ligature-showcase-word {
