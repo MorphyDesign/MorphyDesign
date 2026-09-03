@@ -675,7 +675,7 @@ if (corkWord && corkHand) {
 
   const heading = document.createElement("div");
   heading.className = "section-reorder-heading";
-  heading.textContent = "Drag ⠿ to reorder";
+  heading.textContent = "Drag ⠿ to reorder — ⌘-click or Shift-click to select several";
   body.appendChild(heading);
 
   const list = document.createElement("ul");
@@ -694,6 +694,18 @@ if (corkWord && corkHand) {
   toggle.addEventListener("click", function () {
     body.hidden = !body.hidden;
   });
+
+  const selectedKeys = new Set();
+  let lastClickedKey = null;
+
+  function refreshSelectionState() {
+    Array.from(list.children).forEach(function (item) {
+      item.classList.toggle(
+        "section-reorder-item-selected",
+        selectedKeys.has(item.dataset.sectionKey)
+      );
+    });
+  }
 
   function buildList() {
     list.innerHTML = "";
@@ -715,6 +727,41 @@ if (corkWord && corkHand) {
       const label = document.createElement("span");
       label.className = "section-reorder-label";
       label.textContent = sectionLabels[key] || key;
+
+      /* Ctrl/Cmd-click toggles this row in/out of a multi-selection;
+         Shift-click selects the whole range since the last-clicked row;
+         a plain click collapses the selection back down to just this row.
+         Any of these rows' sections can then be dragged (via any of their
+         handles) together as one group. */
+      label.addEventListener("click", function (event) {
+        if (event.shiftKey && lastClickedKey) {
+          const keys = Array.from(list.children).map(function (el) {
+            return el.dataset.sectionKey;
+          });
+          const fromIndex = keys.indexOf(lastClickedKey);
+          const toIndex = keys.indexOf(key);
+          if (fromIndex !== -1 && toIndex !== -1) {
+            const start = Math.min(fromIndex, toIndex);
+            const end = Math.max(fromIndex, toIndex);
+            keys.slice(start, end + 1).forEach(function (rangeKey) {
+              selectedKeys.add(rangeKey);
+            });
+          }
+        } else if (event.ctrlKey || event.metaKey) {
+          if (selectedKeys.has(key)) {
+            selectedKeys.delete(key);
+          } else {
+            selectedKeys.add(key);
+          }
+          lastClickedKey = key;
+        } else {
+          selectedKeys.clear();
+          selectedKeys.add(key);
+          lastClickedKey = key;
+        }
+        refreshSelectionState();
+      });
+
       item.appendChild(label);
 
       /* Photoshop-style layer visibility toggle: hides the section on the
@@ -755,22 +802,37 @@ if (corkWord && corkHand) {
 
   buildList();
 
-  let draggedItem = null;
+  /* Normally just the one row being dragged; if that row is part of a
+     multi-selection (Ctrl/Cmd-click), the whole selection moves together
+     as a group, in their existing relative order. */
+  let draggedItems = [];
 
   list.addEventListener("dragstart", function (event) {
     if (!event.target.closest(".section-reorder-handle")) return;
     const item = event.target.closest(".section-reorder-item");
     if (!item) return;
-    draggedItem = item;
-    item.classList.add("section-reorder-item-dragging");
+
+    const key = item.dataset.sectionKey;
+    if (!selectedKeys.has(key) || selectedKeys.size <= 1) {
+      selectedKeys.clear();
+      selectedKeys.add(key);
+      refreshSelectionState();
+    }
+
+    draggedItems = Array.from(list.children).filter(function (el) {
+      return selectedKeys.has(el.dataset.sectionKey);
+    });
+    draggedItems.forEach(function (el) {
+      el.classList.add("section-reorder-item-dragging");
+    });
     event.dataTransfer.effectAllowed = "move";
   });
 
   list.addEventListener("dragend", function () {
-    if (draggedItem) {
-      draggedItem.classList.remove("section-reorder-item-dragging");
-    }
-    draggedItem = null;
+    draggedItems.forEach(function (el) {
+      el.classList.remove("section-reorder-item-dragging");
+    });
+    draggedItems = [];
 
     const newOrder = Array.from(list.children).map(function (item) {
       return item.dataset.sectionKey;
@@ -781,18 +843,18 @@ if (corkWord && corkHand) {
 
   list.addEventListener("dragover", function (event) {
     event.preventDefault();
-    if (!draggedItem) return;
+    if (!draggedItems.length) return;
 
     const target = event.target.closest(".section-reorder-item");
-    if (!target || target === draggedItem) return;
+    if (!target || draggedItems.includes(target)) return;
 
     const targetRect = target.getBoundingClientRect();
     const isAfter = event.clientY > targetRect.top + targetRect.height / 2;
+    const anchor = isAfter ? target.nextSibling : target;
 
-    list.insertBefore(
-      draggedItem,
-      isAfter ? target.nextSibling : target
-    );
+    draggedItems.forEach(function (el) {
+      list.insertBefore(el, anchor);
+    });
   });
 
   resetButton.addEventListener("click", function () {

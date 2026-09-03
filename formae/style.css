@@ -2660,6 +2660,14 @@ main > section {
 
 .section-reorder-label {
   flex: 1 1 auto;
+
+  cursor: pointer;
+}
+
+.section-reorder-item-selected {
+  background: rgba(0, 0, 0, 0.08);
+
+  border-color: rgba(0, 0, 0, 0.4);
 }
 
 .section-reorder-eye {
