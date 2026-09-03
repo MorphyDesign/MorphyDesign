@@ -1668,6 +1668,14 @@ body {
 .ligature-showcase-zoomed .ligature-showcase-word-long {
   font-size:
     clamp(80px, 13vw, 260px);
+
+  /* Keep each phrase on the single line it had at normal size -- the
+     bigger font would otherwise wrap it onto a second line. Let it
+     overflow horizontally instead; the section's overflow:hidden
+     crops it the same way it already crops top and bottom. */
+  width: auto;
+
+  white-space: nowrap;
 }
 
 
