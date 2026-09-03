@@ -139,7 +139,7 @@ body {
 .font-info-style-list li,
 .font-info-note,
 .specimen-label,
-.text-sample span:not(.text-sample-hand),
+.text-sample span,
 .type-scale-meta,
 .metric,
 .character-code,
@@ -1176,24 +1176,6 @@ body {
   justify-content: flex-start;
 
   gap: 12px;
-}
-
-.text-sample-hero .text-sample-hand {
-  position: absolute;
-
-  /* left is set per-instance by positionCorkHand() in script.js, since
-     it has to track the actual rendered edge of the word next to it. */
-  left: 0;
-  top: 27%;
-
-  transform: translateY(-50%);
-
-  z-index: 0;
-
-  font-size: clamp(55px, 9vw, 165px);
-  line-height: 1;
-
-  color: var(--foreground);
 }
 
 .text-sample-hero p.text-sample-hero-huge {

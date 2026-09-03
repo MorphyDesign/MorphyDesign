@@ -496,40 +496,6 @@ if (typeSliderSection && typeSliderTrack) {
 }
 
 
-/* Position the decorative pointing hand flush against the actual
-   rendered right edge of "Cork" -- it can't be a fixed offset since
-   the word's width changes with the responsive font-size. */
-const corkWord = document.querySelector(".text-sample-hero-6x");
-const corkHand = document.querySelector(".text-sample-hand");
-
-function positionCorkHand() {
-  if (!corkWord || !corkHand) {
-    return;
-  }
-  const box = corkWord.closest(".text-sample");
-  const boxRect = box.getBoundingClientRect();
-  // corkWord is a block-level flex item, so its own getBoundingClientRect()
-  // spans the full flex-item width, not the visible text -- wrap the text
-  // node in a Range to get the tight box around the rendered glyphs.
-  const range = document.createRange();
-  range.selectNodeContents(corkWord);
-  const textRect = range.getBoundingClientRect();
-
-  // The ☜ glyph itself has a small left side-bearing (empty space baked
-  // into the character before its ink starts), measured via canvas pixel
-  // scan at ~0.033em -- pull the box left by that amount so the visible
-  // ink (not just the character cell) sits flush against the text.
-  const handFontSize = parseFloat(getComputedStyle(corkHand).fontSize);
-  const inkSideBearing = handFontSize * 0.033;
-
-  corkHand.style.left =
-    (textRect.right - boxRect.left - inkSideBearing) + "px";
-}
-
-if (corkWord && corkHand) {
-  document.fonts.ready.then(positionCorkHand);
-  window.addEventListener("resize", positionCorkHand);
-}
 
 
 /* ========================================
