@@ -534,6 +534,7 @@ if (corkWord && corkHand) {
   if (!main) return;
 
   const ORDER_STORAGE_KEY = "formae-section-order";
+  const VISIBILITY_STORAGE_KEY = "formae-section-hidden";
 
   const sections = Array.from(main.querySelectorAll(":scope > section"));
   const originalOrder = [];
@@ -622,6 +623,41 @@ if (corkWord && corkHand) {
     applyOrder(savedOrder);
   }
 
+  /* ---- Visibility (Photoshop-style eye toggle) ---- */
+
+  function loadHiddenKeys() {
+    try {
+      const raw = window.localStorage.getItem(VISIBILITY_STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        return parsed.filter(function (key) {
+          return originalOrder.includes(key);
+        });
+      }
+    } catch (error) {
+      /* ignore malformed storage */
+    }
+    return [];
+  }
+
+  const hiddenKeys = new Set(loadHiddenKeys());
+
+  function applyVisibility() {
+    sections.forEach(function (section) {
+      section.hidden = hiddenKeys.has(section.dataset.sectionKey);
+    });
+  }
+
+  function saveHiddenKeys() {
+    window.localStorage.setItem(
+      VISIBILITY_STORAGE_KEY,
+      JSON.stringify(Array.from(hiddenKeys))
+    );
+  }
+
+  applyVisibility();
+
   /* ---- Panel UI ---- */
 
   const panel = document.createElement("div");
@@ -680,6 +716,38 @@ if (corkWord && corkHand) {
       label.className = "section-reorder-label";
       label.textContent = sectionLabels[key] || key;
       item.appendChild(label);
+
+      /* Photoshop-style layer visibility toggle: hides the section on the
+         page without deleting anything, so this is safe to use for
+         planning/reviewing layout options. */
+      const eyeButton = document.createElement("button");
+      eyeButton.type = "button";
+      eyeButton.className = "section-reorder-eye";
+      eyeButton.textContent = "👁";
+
+      function refreshEyeState() {
+        const isHidden = hiddenKeys.has(key);
+        eyeButton.classList.toggle("section-reorder-eye-hidden", isHidden);
+        eyeButton.setAttribute(
+          "aria-label",
+          isHidden ? "Show section" : "Hide section"
+        );
+        item.classList.toggle("section-reorder-item-hidden", isHidden);
+      }
+
+      eyeButton.addEventListener("click", function () {
+        if (hiddenKeys.has(key)) {
+          hiddenKeys.delete(key);
+        } else {
+          hiddenKeys.add(key);
+        }
+        applyVisibility();
+        saveHiddenKeys();
+        refreshEyeState();
+      });
+
+      refreshEyeState();
+      item.appendChild(eyeButton);
 
       list.appendChild(item);
     });
