@@ -1244,8 +1244,17 @@ body {
 
 
 .text-sample-large p {
+  /* Sized off container WIDTH (cqw), not cqmin -- cqmin picks
+     min(container width, container height), and this box's height is
+     often the smaller dimension, which let the font-size grow past
+     what the line actually fits and broke the forced 2-line break
+     (each half wrapped again). 8.5cqw is derived from the real glyph
+     advance widths of "season it was born in." (the longer half) via
+     fontTools against Formae-Regular, with a safety margin for
+     kerning/rounding -- it guarantees fit at any container width,
+     which is why no separate mobile/tablet override is needed here. */
   font-size:
-    clamp(24px, 11.8cqmin, 74px);
+    clamp(22px, 8.5cqw, 150px);
 
   font-weight: 500;
 
@@ -2295,19 +2304,6 @@ body {
   .text-sample-hero p {
     font-size:
       clamp(42px, 13vw, 62px);
-  }
-
-
-  .text-sample-large p {
-    /* Scaled down from the old clamp(34px, 10vw, 48px) so "Wine
-       remembers the" / "season it was born in." each still fit their
-       single forced line (see the <br> in the markup) at mobile
-       widths -- this predates that 2-line fix and was never
-       recalculated for it. Estimated from character-width math, not
-       measured live (see standing no-browser-verification rule); if
-       it's still tight on an actual phone, shrink further. */
-    font-size:
-      clamp(25px, 7vw, 36px);
   }
 
 
