@@ -407,10 +407,18 @@ body {
 .font-info-style-list li {
   padding: 5px 12px;
 
+  color: rgba(17, 17, 17, 0.4);
+
   border: var(--border);
   border-radius: 999px;
 
   font-size: 12px;
+}
+
+/* Only Regular is actually finished -- keep it full-strength so it
+   reads as "ready" against the grayed-out unfinished weights. */
+.font-info-style-list .font-info-style-ready {
+  color: var(--foreground);
 }
 
 .font-info-placeholder {
@@ -1658,6 +1666,15 @@ body {
   width: auto;
 
   white-space: nowrap;
+
+  /* Blurred by default; hovering the section brings it into focus. */
+  filter: blur(6px);
+
+  transition: filter 500ms ease;
+}
+
+.ligature-showcase-zoomed:hover .ligature-showcase-word-long {
+  filter: blur(0);
 }
 
 
