@@ -1647,8 +1647,21 @@ body {
 }
 
 /* Cropped, zoomed-in treatment for the first ligature showcase -- the
-   words run noticeably larger than the frame, like a close-up crop. */
+   words run noticeably larger than the frame, like a close-up crop. The
+   box itself is locked to the exact height the section would naturally
+   have at the REGULAR word size (same padding/line-height/gap formula
+   as the base rules above), so the enlarged text overflows and gets
+   masked by that fixed-size box instead of growing the section taller.
+   Centering (align-items/justify-content/text-align) is unchanged from
+   the base rule, so it stays centered while cropping top and bottom. */
 .ligature-showcase-zoomed {
+  height:
+    calc(
+      2 * clamp(60px, 10vw, 140px) +
+      4 * 1.1 * clamp(49px, 7.9vw, 156px) +
+      3 * 20px
+    );
+
   overflow: hidden;
 }
 
