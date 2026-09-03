@@ -7,11 +7,10 @@
   font-display: swap;
 }
 
-/* MorphyFoundry's own flagship typeface -- was never actually declared
-   here, so the whole homepage (hero included) had been silently
-   falling back to Inter Variable this whole time. Reuses the real
-   weight files already hosted under formae/fonts/ rather than
-   duplicating them. */
+/* Font catalogue teaser tiles only -- one representative weight per
+   typeface, declared across a wide range so it renders regardless of
+   the exact weight requested. Formae reuses the real Regular file
+   already hosted under formae/fonts/ rather than duplicating it. */
 @font-face {
   font-family: "Formae";
   src: url("formae/fonts/Formae-Regular.woff2") format("woff2");
@@ -20,17 +19,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Formae";
-  src: url("formae/fonts/Formae-Semibold.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-
-/* Font catalogue teaser tiles only -- one representative weight per
-   typeface, declared across a wide range so it renders regardless of
-   the exact weight requested. */
 @font-face {
   font-family: "MS Relay Sans";
   src: url("fonts/catalogue/MSRelaySans-Semibold.ttf") format("truetype");
@@ -75,7 +63,6 @@ body {
   color: #111111;
 
   font-family:
-    "Formae",
     "Inter Variable",
     Arial,
     Helvetica,
@@ -204,6 +191,7 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 24px;
+  color: #555;
   font-size: 12px;
 }
 
@@ -253,6 +241,8 @@ body {
   border-radius:
     clamp(16px, 1.6vw, 28px);
 
+  overflow: hidden;
+
   transition: color 180ms ease, background-color 180ms ease;
 }
 
@@ -266,6 +256,8 @@ body {
 .font-name,
 .font-details,
 .font-status {
+  color: #555;
+
   font-size: 12px;
 }
 
@@ -310,6 +302,11 @@ body {
 
 .font-sample {
   display: none;
+}
+
+.font-catalogue-row-formae .font-aa {
+  font-family: "Formae", "Inter Variable", Arial, sans-serif;
+  font-weight: 400;
 }
 
 .font-catalogue-row-relay .font-aa {
@@ -1593,6 +1590,8 @@ body {
 
 
 .cta span {
+  color: #555;
+
   font-size: 12px;
 }
 
