@@ -316,8 +316,56 @@ body {
   border-bottom: var(--border);
 }
 
-.font-info-title {
+.font-info-header {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 12px 24px;
+
   margin: 0 var(--page-margin) 14px;
+}
+
+.font-info-header .font-info-title {
+  margin: 0;
+}
+
+.font-info-actions {
+  display: flex;
+
+  gap: 10px;
+}
+
+.font-info-action {
+  padding: 9px 20px;
+
+  font-family: var(--descriptive-font);
+
+  font-size: 12px;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  border-radius: 999px;
+}
+
+.font-info-action-outline {
+  color: var(--foreground);
+
+  border: var(--border);
+}
+
+.font-info-action-solid {
+  color: var(--foreground);
+
+  background: #fbb040;
+
+  border: 1px solid #fbb040;
 }
 
 .font-info-grid {
@@ -1509,7 +1557,7 @@ body {
   align-items: center;
   gap: 10px;
   color: #555;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
   letter-spacing: 0.02em;
 }
@@ -1534,7 +1582,7 @@ body {
   gap: 16px;
   transform: translateX(-50%);
   color: #555;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
@@ -1884,7 +1932,7 @@ body {
 
   color: #555;
 
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 0.02em;
 }
