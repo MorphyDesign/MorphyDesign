@@ -334,7 +334,7 @@ body {
 .font-info-block {
   grid-column: span 4;
 
-  padding-top: 18px;
+  padding-top: 16px;
 
   border-top: var(--border);
 
@@ -357,7 +357,7 @@ body {
   font-size: 12px;
   font-weight: 400;
 
-  color: rgba(17, 17, 17, 0.55);
+  color: #555;
 
   text-transform: none;
 }
@@ -939,6 +939,8 @@ body {
 
   margin-bottom: 0;
 
+  color: #555;
+
   font-size: 12px;
 
   text-align: left;
@@ -1092,6 +1094,8 @@ body {
 .section-title {
   margin-bottom: 24px;
 
+  color: #555;
+
   font-size: 12px;
 }
 
@@ -1154,6 +1158,8 @@ body {
 
 
 .text-sample span {
+  color: #555;
+
   font-size: 12px;
 }
 
@@ -1319,7 +1325,7 @@ body {
 
   border-top: var(--border);
 
-  padding-top: 14px;
+  padding-top: 16px;
 }
 
 .type-scale-1 {
@@ -1334,6 +1340,8 @@ body {
 
 .type-scale-meta {
   margin-bottom: clamp(14px, 1.6vw, 28px);
+
+  color: #555;
 
   font-size: 12px;
 }
@@ -1860,6 +1868,8 @@ body {
   padding:
     36px
     var(--page-margin);
+
+  padding-top: 16px;
 
   border-bottom:
     var(--border);
