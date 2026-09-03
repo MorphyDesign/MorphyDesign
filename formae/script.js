@@ -838,3 +838,146 @@ if (typeSliderSection && typeSliderTrack) {
     buildList();
   });
 })();
+
+
+/* ========================================
+   LIGATURE SHOWCASE -- CURSOR FOCUS EFFECT
+   The permanently blurred/atmospheric words (styled in CSS) get a
+   second, sharp, aria-hidden copy on top, revealed only through a soft
+   circular mask that follows the pointer with eased inertia. Only the
+   mask position is animated -- the two adjustable-speed constants
+   below are the "easily adjustable variables" for follow/release speed
+   the CSS comment above .ligature-showcase-zoomed refers to; blur
+   amount, focus radius and softness are the CSS custom properties on
+   that same selector.
+======================================== */
+
+(function () {
+  const section = document.querySelector(".ligature-showcase-zoomed");
+  if (!section) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  // The reduced-motion fallback (lighter static blur, no pointer
+  // tracking) is handled entirely in CSS -- just skip building the
+  // interactive overlay so nothing here animates.
+  if (reducedMotion) return;
+
+  const words = Array.from(
+    section.querySelectorAll(".ligature-showcase-word")
+  );
+  if (!words.length) return;
+
+  const overlay = document.createElement("div");
+  overlay.className = "ligature-focus-overlay";
+  overlay.setAttribute("aria-hidden", "true");
+  words.forEach(function (word) {
+    overlay.appendChild(word.cloneNode(true));
+  });
+  section.appendChild(overlay);
+
+  // How quickly the focus circle catches up to the pointer each frame
+  // (0-1: higher = snappier/less lag, lower = more soft inertia).
+  const FOCUS_LAG = 0.14;
+  // How quickly it eases back to rest once the pointer leaves --
+  // slower than FOCUS_LAG so the release reads as slow and elegant.
+  const FOCUS_RELEASE_LAG = 0.05;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let hasPosition = false;
+  let isHovering = false;
+  let rafId = null;
+
+  function setTargetFromPoint(clientX, clientY) {
+    const rect = section.getBoundingClientRect();
+    targetX = clientX - rect.left;
+    targetY = clientY - rect.top;
+    if (!hasPosition) {
+      // First contact: snap straight there instead of easing in from
+      // the (0,0) default, so the circle doesn't visibly swoop in
+      // from a corner.
+      currentX = targetX;
+      currentY = targetY;
+      hasPosition = true;
+    }
+    ensureLoop();
+  }
+
+  function ensureLoop() {
+    if (rafId === null) {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
+  function tick() {
+    const lag = isHovering ? FOCUS_LAG : FOCUS_RELEASE_LAG;
+    currentX += (targetX - currentX) * lag;
+    currentY += (targetY - currentY) * lag;
+
+    overlay.style.setProperty("--focus-x", currentX + "px");
+    overlay.style.setProperty("--focus-y", currentY + "px");
+
+    const settled =
+      Math.abs(targetX - currentX) < 0.5 &&
+      Math.abs(targetY - currentY) < 0.5;
+
+    if (isHovering || !settled) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      rafId = null;
+    }
+  }
+
+  section.addEventListener("pointerenter", function (event) {
+    if (event.pointerType === "touch") return;
+    isHovering = true;
+    overlay.classList.add("is-active");
+    setTargetFromPoint(event.clientX, event.clientY);
+  });
+
+  section.addEventListener("pointermove", function (event) {
+    if (event.pointerType === "touch") return;
+    setTargetFromPoint(event.clientX, event.clientY);
+  });
+
+  section.addEventListener("pointerleave", function (event) {
+    if (event.pointerType === "touch") return;
+    isHovering = false;
+    overlay.classList.remove("is-active");
+    ensureLoop();
+  });
+
+  // Touch: sharpen under the finger while it's actually on the
+  // section; release (slow fade back to blur) on lift.
+  section.addEventListener(
+    "touchstart",
+    function (event) {
+      const touch = event.touches[0];
+      if (!touch) return;
+      isHovering = true;
+      overlay.classList.add("is-active");
+      setTargetFromPoint(touch.clientX, touch.clientY);
+    },
+    { passive: true }
+  );
+
+  section.addEventListener(
+    "touchmove",
+    function (event) {
+      const touch = event.touches[0];
+      if (!touch) return;
+      setTargetFromPoint(touch.clientX, touch.clientY);
+    },
+    { passive: true }
+  );
+
+  section.addEventListener("touchend", function () {
+    isHovering = false;
+    overlay.classList.remove("is-active");
+    ensureLoop();
+  });
+})();

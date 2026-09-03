@@ -1643,6 +1643,8 @@ body {
    Centering (align-items/justify-content/text-align) is unchanged from
    the base rule, so it stays centered while cropping top and bottom. */
 .ligature-showcase-zoomed {
+  position: relative;
+
   height:
     calc(
       2 * clamp(60px, 10vw, 140px) +
@@ -1666,15 +1668,130 @@ body {
   width: auto;
 
   white-space: nowrap;
-
-  /* Blurred by default; hovering the section brings it into focus. */
-  filter: blur(6px);
-
-  transition: filter 500ms ease;
 }
 
-.ligature-showcase-zoomed:hover .ligature-showcase-word-long {
-  filter: blur(0);
+/* ----------------------------------------------------------------------
+   CURSOR-FOLLOWING FOCUS EFFECT (ligature-showcase-zoomed)
+   Two identical copies of the same four words are stacked: the real one
+   underneath stays permanently soft/atmospheric (blur + reduced opacity
+   + a faint glow, not a flat CSS blur), and a JS-cloned, aria-hidden
+   copy sits on top at full sharpness, revealed only through a soft
+   circular mask that follows the pointer with eased inertia (see
+   script.js). Where the mask fades to transparent, the sharp layer
+   fades out and the blurred layer shows through -- that gradient IS
+   the wide sharp/blurred transition, no hard edge is drawn anywhere.
+
+   Adjustable variables (all on .ligature-showcase-zoomed):
+     --focus-blur      default atmospheric blur amount
+     --focus-radius     focus circle size (px)
+     --focus-core       inner fully-sharp portion of the radius (0-100%)
+   Mouse-follow lag and the return-to-rest speed are JS constants,
+   labeled where they're used in script.js (FOCUS_LAG / FOCUS_RELEASE_LAG).
+------------------------------------------------------------------------- */
+
+.ligature-showcase-zoomed {
+  --focus-blur: 7px;
+  --focus-radius: 260px;
+  --focus-core: 22%;
+}
+
+.ligature-showcase-zoomed .ligature-showcase-word-long {
+  opacity: 0.6;
+
+  filter: blur(var(--focus-blur));
+
+  text-shadow: 0 0 3.5em rgba(17, 17, 17, 0.22);
+
+  transition: filter 900ms ease, opacity 900ms ease;
+}
+
+.ligature-focus-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  padding:
+    clamp(60px, 10vw, 140px)
+    var(--page-margin);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle var(--focus-radius) at var(--focus-x, 50%) var(--focus-y, 50%),
+      #000 var(--focus-core),
+      transparent 100%
+    );
+  mask-image:
+    radial-gradient(
+      circle var(--focus-radius) at var(--focus-x, 50%) var(--focus-y, 50%),
+      #000 var(--focus-core),
+      transparent 100%
+    );
+
+  transition: opacity 700ms ease;
+}
+
+.ligature-focus-overlay.is-active {
+  opacity: 1;
+}
+
+.ligature-focus-overlay .ligature-showcase-word {
+  width: auto;
+
+  margin: 0;
+
+  font-size: clamp(88px, 14.3vw, 286px);
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  text-align: center;
+
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+
+  /* Same selector chain/specificity as the blurred base rule above
+     (.ligature-showcase-zoomed .ligature-showcase-word-long) -- these
+     clones ARE also descendants of .ligature-showcase-zoomed, so
+     without this explicit reset they'd inherit its blur/opacity/glow
+     too. Force them back to fully sharp; the mask is what hides/
+     reveals them, not their own filter state. */
+  opacity: 1;
+
+  filter: none;
+
+  text-shadow: none;
+
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ligature-showcase-zoomed .ligature-showcase-word-long {
+    /* Lighter, static blur -- legible without needing the pointer, and
+       the JS skips the animated follow/lag entirely in this mode. */
+    opacity: 0.8;
+
+    filter: blur(calc(var(--focus-blur) * 0.4));
+  }
+
+  .ligature-focus-overlay {
+    transition: none;
+  }
 }
 
 
