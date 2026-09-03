@@ -194,6 +194,8 @@ body {
 
   gap: 16px;
 
+  min-height: 70px;
+
   padding:
     18px
     var(--page-margin);
@@ -225,21 +227,11 @@ body {
 .header-actions {
   display: flex;
 
+  align-items: center;
+
   justify-self: end;
 
   gap: 10px;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: opacity 200ms ease;
-}
-
-.header-actions.is-visible {
-  opacity: 1;
-
-  pointer-events: auto;
 }
 
 
@@ -343,15 +335,7 @@ body {
 }
 
 .font-info-header {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  align-items: flex-start;
-
-  justify-content: space-between;
-
-  gap: 12px 24px;
+  position: relative;
 
   margin: 0 var(--page-margin) 14px;
 }
@@ -364,6 +348,15 @@ body {
   display: flex;
 
   gap: 10px;
+}
+
+.font-info-header .font-info-actions {
+  position: absolute;
+
+  right: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
 }
 
 .font-info-action {

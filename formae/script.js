@@ -1046,27 +1046,131 @@ if (typeSliderSection && typeSliderTrack) {
 
 /* ========================================
    STICKY HEADER CTA
-   The header's Try/Buy buttons stay hidden until the Font Info
-   section's own copy of those buttons scrolls up and reaches the
-   sticky header -- at that point they "dock" into the header and
-   stay there for the rest of the scroll (one-way, never hide again
-   once triggered).
+   The Try/Buy buttons live in Font Info by default. When scrolling
+   down reaches the point where the sticky header's own bottom edge
+   would reach their original spot, the actual DOM node (not a copy)
+   moves into the header, animated with a FLIP transform so it reads
+   as the header "picking them up" rather than a cut/fade. Scrolling
+   back up past that point moves the same node back. A tiny sentinel
+   sits at the buttons' original position (absolute, top:50%/right:0,
+   matching how .font-info-actions itself is positioned there) so the
+   trigger point tracks the real button position, not a guess, and
+   IntersectionObserver's rootMargin is offset by the header's current
+   height so it fires exactly when the header reaches that point.
 ======================================== */
 (function () {
   const header = document.querySelector(".header");
-  const headerActions = document.querySelector(".header-actions");
-  const fontInfoActions = document.querySelector(".font-info-actions");
-  if (!header || !headerActions || !fontInfoActions) return;
+  const headerActions = document.getElementById("header-actions");
+  const fontInfoHeader = document.getElementById("font-info-header");
+  const actions = document.getElementById("font-info-actions");
+  if (!header || !headerActions || !fontInfoHeader || !actions) return;
 
-  const observer = new IntersectionObserver(
-    function (entries) {
-      const entry = entries[0];
-      if (!entry.isIntersecting) {
-        headerActions.classList.add("is-visible");
-      }
-    },
-    { threshold: 0, rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" }
-  );
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  observer.observe(fontInfoActions);
+  let isDocked = false;
+  let isFirstUpdate = true;
+  let cleanupTimer = null;
+
+  function moveTo(container) {
+    if (reducedMotion) {
+      container.appendChild(actions);
+      return;
+    }
+
+    const first = actions.getBoundingClientRect();
+    container.appendChild(actions);
+
+    if (isFirstUpdate) {
+      // Set the correct home on load without animating into place.
+      return;
+    }
+
+    const last = actions.getBoundingClientRect();
+
+    if (last.width === 0 || last.height === 0) return;
+
+    const dx = first.left - last.left;
+    const dy = first.top - last.top;
+    const scaleX = first.width / last.width;
+    const scaleY = first.height / last.height;
+
+    window.clearTimeout(cleanupTimer);
+
+    actions.style.transformOrigin = "top left";
+    actions.style.transition = "none";
+    actions.style.transform =
+      "translate(" + dx + "px, " + dy + "px) scale(" + scaleX + ", " + scaleY + ")";
+
+    // Force layout so the starting transform above actually paints
+    // before the transition below is switched on.
+    // eslint-disable-next-line no-unused-expressions
+    actions.getBoundingClientRect();
+
+    actions.style.transition =
+      "transform 340ms cubic-bezier(0.22, 1, 0.36, 1)";
+    actions.style.transform = "translate(0px, 0px) scale(1, 1)";
+
+    cleanupTimer = window.setTimeout(function () {
+      actions.style.transition = "";
+      actions.style.transform = "";
+      actions.style.transformOrigin = "";
+    }, 380);
+  }
+
+  function dock() {
+    if (isDocked && !isFirstUpdate) return;
+    isDocked = true;
+    moveTo(headerActions);
+    isFirstUpdate = false;
+  }
+
+  function undock() {
+    if (!isDocked && !isFirstUpdate) return;
+    isDocked = false;
+    moveTo(fontInfoHeader);
+    isFirstUpdate = false;
+  }
+
+  const sentinel = document.createElement("div");
+  sentinel.setAttribute("aria-hidden", "true");
+  sentinel.style.position = "absolute";
+  sentinel.style.top = "50%";
+  sentinel.style.right = "0";
+  sentinel.style.width = "1px";
+  sentinel.style.height = "1px";
+  sentinel.style.pointerEvents = "none";
+  fontInfoHeader.appendChild(sentinel);
+
+  let observer = null;
+
+  function setupObserver() {
+    if (observer) observer.disconnect();
+
+    observer = new IntersectionObserver(
+      function (entries) {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          undock();
+        } else {
+          dock();
+        }
+      },
+      { threshold: 0, rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" }
+    );
+
+    observer.observe(sentinel);
+  }
+
+  setupObserver();
+
+  let resizeRaf = null;
+  window.addEventListener("resize", function () {
+    if (resizeRaf !== null) return;
+    resizeRaf = requestAnimationFrame(function () {
+      resizeRaf = null;
+      setupObserver();
+    });
+  });
 })();
