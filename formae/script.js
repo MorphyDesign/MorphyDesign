@@ -1174,3 +1174,241 @@ if (typeSliderSection && typeSliderTrack) {
     });
   });
 })();
+
+
+/* ========================================
+   DESIGN MODE
+   Dev-only inspector: click an element to see and edit its
+   margin/padding/font-size live, then Copy CSS to grab the exact
+   values as text. Toggle button bottom-left; state persists in
+   localStorage so a refresh doesn't lose the on/off state.
+======================================== */
+(function () {
+  const STORAGE_KEY = "formae-design-mode";
+  const SIDES = ["Top", "Right", "Bottom", "Left"];
+
+  let active = window.localStorage.getItem(STORAGE_KEY) === "1";
+  let selectedEl = null;
+  let hoverEl = null;
+
+  const toggleBtn = document.createElement("button");
+  toggleBtn.type = "button";
+  toggleBtn.className = "design-mode-toggle";
+  toggleBtn.textContent = "Design Mode";
+  document.body.appendChild(toggleBtn);
+
+  const hoverOutline = document.createElement("div");
+  hoverOutline.className = "design-mode-outline design-mode-outline-hover";
+  hoverOutline.hidden = true;
+  document.body.appendChild(hoverOutline);
+
+  const selectOutline = document.createElement("div");
+  selectOutline.className = "design-mode-outline design-mode-outline-selected";
+  selectOutline.hidden = true;
+  document.body.appendChild(selectOutline);
+
+  const panel = document.createElement("div");
+  panel.className = "design-mode-panel";
+  panel.hidden = true;
+  document.body.appendChild(panel);
+
+  function positionOutline(box, rect) {
+    box.style.left = rect.left + window.scrollX + "px";
+    box.style.top = rect.top + window.scrollY + "px";
+    box.style.width = rect.width + "px";
+    box.style.height = rect.height + "px";
+  }
+
+  function describeSelector(el) {
+    if (el.id) return "#" + el.id;
+    if (typeof el.className === "string" && el.className.trim()) {
+      return "." + el.className.trim().split(/\s+/).join(".");
+    }
+    return el.tagName.toLowerCase();
+  }
+
+  function refreshSelectedOutline() {
+    if (selectedEl) {
+      positionOutline(selectOutline, selectedEl.getBoundingClientRect());
+    }
+  }
+
+  function addBoxGroup(container, label, prop, el) {
+    const cs = window.getComputedStyle(el);
+
+    const group = document.createElement("div");
+    group.className = "design-mode-group";
+
+    const groupLabel = document.createElement("div");
+    groupLabel.className = "design-mode-group-label";
+    groupLabel.textContent = label;
+    group.appendChild(groupLabel);
+
+    const row = document.createElement("div");
+    row.className = "design-mode-row";
+
+    SIDES.forEach(function (side) {
+      const fullProp = prop + "-" + side.toLowerCase();
+
+      const wrap = document.createElement("label");
+      wrap.className = "design-mode-field";
+
+      const span = document.createElement("span");
+      span.textContent = side.charAt(0);
+      wrap.appendChild(span);
+
+      const input = document.createElement("input");
+      input.type = "number";
+      input.value = Math.round(parseFloat(cs[fullProp]) || 0);
+      input.addEventListener("input", function () {
+        el.style[fullProp] = input.value + "px";
+        refreshSelectedOutline();
+      });
+
+      wrap.appendChild(input);
+      row.appendChild(wrap);
+    });
+
+    group.appendChild(row);
+    container.appendChild(group);
+  }
+
+  function buildPanel(el) {
+    const selector = describeSelector(el);
+    const cs = window.getComputedStyle(el);
+
+    panel.innerHTML = "";
+
+    const title = document.createElement("div");
+    title.className = "design-mode-panel-title";
+    title.textContent = selector;
+    panel.appendChild(title);
+
+    addBoxGroup(panel, "Margin (T R B L)", "margin", el);
+    addBoxGroup(panel, "Padding (T R B L)", "padding", el);
+
+    const fontGroup = document.createElement("div");
+    fontGroup.className = "design-mode-group";
+
+    const fontLabel = document.createElement("div");
+    fontLabel.className = "design-mode-group-label";
+    fontLabel.textContent = "Font size (px)";
+    fontGroup.appendChild(fontLabel);
+
+    const fontInput = document.createElement("input");
+    fontInput.type = "number";
+    fontInput.value = Math.round(parseFloat(cs.fontSize) || 0);
+    fontInput.addEventListener("input", function () {
+      el.style.fontSize = fontInput.value + "px";
+      refreshSelectedOutline();
+    });
+    fontGroup.appendChild(fontInput);
+    panel.appendChild(fontGroup);
+
+    const copyBtn = document.createElement("button");
+    copyBtn.type = "button";
+    copyBtn.className = "design-mode-copy";
+    copyBtn.textContent = "Copy CSS";
+    copyBtn.addEventListener("click", function () {
+      const inline = el.getAttribute("style") || "";
+      const declarations = inline
+        .split(";")
+        .map(function (part) {
+          return part.trim();
+        })
+        .filter(Boolean)
+        .map(function (part) {
+          const pieces = part.split(":");
+          const prop = pieces[0].trim();
+          const value = pieces.slice(1).join(":").trim();
+          return "  " + prop + ": " + value + ";";
+        })
+        .join("\n");
+
+      const css = selector + " {\n" + declarations + "\n}";
+
+      navigator.clipboard.writeText(css).then(function () {
+        copyBtn.textContent = "Copied!";
+        window.setTimeout(function () {
+          copyBtn.textContent = "Copy CSS";
+        }, 1200);
+      });
+    });
+    panel.appendChild(copyBtn);
+
+    panel.hidden = false;
+  }
+
+  function setActive(next) {
+    active = next;
+    window.localStorage.setItem(STORAGE_KEY, active ? "1" : "0");
+    document.body.classList.toggle("design-mode-active", active);
+    toggleBtn.classList.toggle("is-on", active);
+
+    if (!active) {
+      hoverOutline.hidden = true;
+      selectOutline.hidden = true;
+      panel.hidden = true;
+      selectedEl = null;
+      hoverEl = null;
+    }
+  }
+
+  toggleBtn.addEventListener("click", function () {
+    setActive(!active);
+  });
+
+  document.addEventListener("mousemove", function (event) {
+    if (!active) return;
+    if (
+      panel.contains(event.target) ||
+      event.target === toggleBtn ||
+      event.target === selectedEl
+    ) {
+      hoverOutline.hidden = true;
+      return;
+    }
+
+    const el = event.target;
+    if (el === hoverEl) return;
+    hoverEl = el;
+
+    hoverOutline.hidden = false;
+    positionOutline(hoverOutline, el.getBoundingClientRect());
+  });
+
+  document.addEventListener(
+    "click",
+    function (event) {
+      if (!active) return;
+      if (panel.contains(event.target) || event.target === toggleBtn) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      selectedEl = event.target;
+      selectOutline.hidden = false;
+      positionOutline(selectOutline, selectedEl.getBoundingClientRect());
+      buildPanel(selectedEl);
+    },
+    true
+  );
+
+  window.addEventListener("scroll", function () {
+    if (!active) return;
+    if (hoverEl && !hoverOutline.hidden) {
+      positionOutline(hoverOutline, hoverEl.getBoundingClientRect());
+    }
+    refreshSelectedOutline();
+  });
+
+  window.addEventListener("resize", function () {
+    if (!active) return;
+    if (hoverEl && !hoverOutline.hidden) {
+      positionOutline(hoverOutline, hoverEl.getBoundingClientRect());
+    }
+    refreshSelectedOutline();
+  });
+
+  setActive(active);
+})();
