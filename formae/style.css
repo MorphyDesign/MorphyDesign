@@ -239,7 +239,7 @@ body {
 .type-slider-viewport {
   overflow: hidden;
 
-  height: 100svh;
+  height: 85svh;
 
   border-top: var(--border);
 }
@@ -2210,6 +2210,10 @@ body {
     line-height: 1.2;
   }
 
+  .tester-medium {
+    min-height: 0;
+  }
+
 
   .tester-section {
     grid-template-columns: 1fr;
@@ -2280,6 +2284,10 @@ body {
 
   .text-samples {
     grid-template-columns: 1fr;
+  }
+
+  .text-samples::after {
+    display: none;
   }
 
 
@@ -2449,8 +2457,16 @@ canvas {
     padding: clamp(30px, 5vw, 56px) var(--page-margin);
   }
 
+  .tester-medium {
+    min-height: 0;
+  }
+
   .text-samples {
     grid-template-columns: 1fr;
+  }
+
+  .text-samples::after {
+    display: none;
   }
 
   .text-sample,
@@ -2546,6 +2562,10 @@ canvas {
     min-height: 220px;
     padding: 26px var(--page-margin);
     overflow: hidden;
+  }
+
+  .tester-medium {
+    min-height: 0;
   }
 
   .specimen {
