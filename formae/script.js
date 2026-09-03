@@ -41,7 +41,7 @@ document.querySelectorAll(".tester").forEach(
         }
 
         const mobileContentRatio =
-          tester.closest(".tester-unit").matches(":nth-child(7)")
+          tester.closest(".tester-unit").matches(":nth-child(6)")
             ? 0.2
             : 0.5;
 
@@ -423,134 +423,7 @@ if (kerningLab) {
 }
 
 
-/* ========================================
-   INTERACTIVE VARIABLE FOOTER
-======================================== */
 
-const variableFooter =
-  document.querySelector(".variable-footer");
-
-const footerVariableWord =
-  document.querySelector(".footer-variable-word");
-
-const footerAxisValue =
-  document.querySelector(".footer-axis-value");
-
-
-if (variableFooter && footerVariableWord) {
-  let footerFrame;
-
-  variableFooter.addEventListener("pointermove", function (event) {
-    const bounds = variableFooter.getBoundingClientRect();
-    const horizontal = Math.max(
-      0,
-      Math.min(1, (event.clientX - bounds.left) / bounds.width)
-    );
-    const vertical = Math.max(
-      0,
-      Math.min(1, (event.clientY - bounds.top) / bounds.height)
-    );
-    const weight = Math.round(100 + horizontal * 800);
-    const slant = Math.round(-10 + vertical * 10);
-
-    cancelAnimationFrame(footerFrame);
-    footerFrame = requestAnimationFrame(function () {
-      footerVariableWord.style.fontWeight = weight;
-      footerVariableWord.style.fontVariationSettings =
-        `"wght" ${weight}, "slnt" ${slant}`;
-
-      if (footerAxisValue) {
-        footerAxisValue.textContent =
-          `Weight ${weight} / Slant ${slant}`;
-      }
-    });
-  });
-}
-
-
-/* ========================================
-   DISPLAY TYPEWRITER
-======================================== */
-
-document.querySelectorAll("[data-typewriter-text]").forEach(
-  function (typewriterText) {
-  const fullTypewriterText =
-    typewriterText.dataset.typewriterText;
-
-  const reducedMotion =
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (!reducedMotion) {
-    let typewriterPosition = 0;
-    let correctionIndex = 0;
-    const correctionPoints = [
-      Math.max(4, Math.round(fullTypewriterText.length * 0.38)),
-      Math.max(8, Math.round(fullTypewriterText.length * 0.76))
-    ];
-
-    typewriterText.textContent = "";
-
-    function typeForward() {
-      typewriterPosition += 1;
-      typewriterText.textContent =
-        fullTypewriterText.slice(0, typewriterPosition);
-
-      if (
-        correctionIndex < correctionPoints.length &&
-        typewriterPosition === correctionPoints[correctionIndex]
-      ) {
-        correctionIndex += 1;
-        window.setTimeout(function () {
-          eraseCorrection(3);
-        }, 280);
-        return;
-      }
-
-      if (typewriterPosition < fullTypewriterText.length) {
-        window.setTimeout(typeForward, 75 + Math.random() * 90);
-      } else {
-        window.setTimeout(eraseAll, 1600);
-      }
-    }
-
-    function eraseCorrection(remaining) {
-      typewriterPosition -= 1;
-      typewriterText.textContent =
-        fullTypewriterText.slice(0, typewriterPosition);
-
-      if (remaining > 1) {
-        window.setTimeout(function () {
-          eraseCorrection(remaining - 1);
-        }, 75);
-      } else {
-        window.setTimeout(typeForward, 350);
-      }
-    }
-
-    function eraseAll() {
-      typewriterPosition -= 1;
-      typewriterText.textContent =
-        fullTypewriterText.slice(0, typewriterPosition);
-
-      if (typewriterPosition > 0) {
-        window.setTimeout(eraseAll, 38);
-      } else {
-        correctionIndex = 0;
-        window.setTimeout(typeForward, 650);
-      }
-    }
-
-    window.setTimeout(typeForward, 500);
-  }
-  }
-);
-
-const typefaceIntroSection = document.querySelector(".typeface-intro");
-const glyphConstructionSection = document.querySelector("#construction");
-
-if (typefaceIntroSection && glyphConstructionSection) {
-  typefaceIntroSection.insertAdjacentElement("afterend", glyphConstructionSection);
-}
 
 document.querySelectorAll(".type-scale-text").forEach(function (block) {
   block.addEventListener("paste", function (event) {
@@ -559,3 +432,297 @@ document.querySelectorAll(".type-scale-text").forEach(function (block) {
     document.execCommand("insertText", false, text);
   });
 });
+
+
+/* ========================================
+   TYPE SPECIMEN SLIDER
+   Edit this array to change the slider's words -- each entry's "layout"
+   picks one of the hand-designed compositions in style.css (.slide-*).
+======================================== */
+
+const TYPE_SLIDER_SLIDES = [
+  { layout: "bleed", text: "Vintage£24?" },
+];
+
+const typeSliderSection = document.querySelector("#type-slider");
+const typeSliderTrack = document.querySelector("#type-slider-track");
+
+if (typeSliderSection && typeSliderTrack) {
+
+  function makeSlideParagraph(text, className) {
+    const p = document.createElement("p");
+    if (className) {
+      p.className = className;
+    }
+    p.textContent = text;
+    return p;
+  }
+
+  function buildSlide(slide) {
+    const article = document.createElement("article");
+    article.className = "type-slider-slide slide-" + slide.layout;
+    article.setAttribute("aria-roledescription", "slide");
+
+    if (slide.inverse) {
+      article.classList.add("type-slider-slide-inverse");
+    }
+
+    if (slide.layout === "stack") {
+      article.append(
+        makeSlideParagraph(slide.kicker, "slide-stack-kicker"),
+        makeSlideParagraph(slide.hero, "slide-stack-hero"),
+        makeSlideParagraph(slide.meta, "slide-stack-meta")
+      );
+    } else if (slide.layout === "repeat") {
+      const count = slide.count || 3;
+      for (let i = 0; i < count; i++) {
+        article.append(makeSlideParagraph(slide.text));
+      }
+    } else if (slide.layout === "contrast") {
+      article.append(
+        makeSlideParagraph(slide.text, "slide-contrast-small"),
+        makeSlideParagraph(slide.text, "slide-contrast-large")
+      );
+    } else {
+      article.append(makeSlideParagraph(slide.text));
+    }
+
+    return article;
+  }
+
+  TYPE_SLIDER_SLIDES.forEach(function (slide) {
+    typeSliderTrack.append(buildSlide(slide));
+  });
+}
+
+
+/* Position the decorative pointing hand flush against the actual
+   rendered right edge of "Cork" -- it can't be a fixed offset since
+   the word's width changes with the responsive font-size. */
+const corkWord = document.querySelector(".text-sample-hero-6x");
+const corkHand = document.querySelector(".text-sample-hand");
+
+function positionCorkHand() {
+  if (!corkWord || !corkHand) {
+    return;
+  }
+  const box = corkWord.closest(".text-sample");
+  const boxRect = box.getBoundingClientRect();
+  // corkWord is a block-level flex item, so its own getBoundingClientRect()
+  // spans the full flex-item width, not the visible text -- wrap the text
+  // node in a Range to get the tight box around the rendered glyphs.
+  const range = document.createRange();
+  range.selectNodeContents(corkWord);
+  const textRect = range.getBoundingClientRect();
+  corkHand.style.left = (textRect.right - boxRect.left) + "px";
+}
+
+if (corkWord && corkHand) {
+  document.fonts.ready.then(positionCorkHand);
+  window.addEventListener("resize", positionCorkHand);
+}
+
+
+/* ========================================
+   SECTION REORDER PANEL
+   Lets you drag-and-drop the page's main sections into a new order.
+   The order is saved to localStorage so it survives a reload.
+======================================== */
+
+(function () {
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const ORDER_STORAGE_KEY = "formae-section-order";
+
+  const sections = Array.from(main.querySelectorAll(":scope > section"));
+  const originalOrder = [];
+
+  sections.forEach(function (section, index) {
+    const key = "sec-" + index;
+    section.dataset.sectionKey = key;
+    originalOrder.push(key);
+  });
+
+  function deriveSectionLabel(section) {
+    const titleEl = section.querySelector(".section-title, h1, h2, h3");
+    if (titleEl && titleEl.textContent.trim()) {
+      return titleEl.textContent.trim();
+    }
+
+    if (section.getAttribute("aria-label")) {
+      return section.getAttribute("aria-label");
+    }
+
+    const labelledBy = section.getAttribute("aria-labelledby");
+    if (labelledBy) {
+      const ref = document.getElementById(labelledBy);
+      if (ref && ref.textContent.trim()) {
+        return ref.textContent.trim();
+      }
+    }
+
+    const kicker = section.querySelector(
+      "[class*='kicker'], .specimen-text, .tester-title"
+    );
+    if (kicker && kicker.textContent.trim()) {
+      return kicker.textContent.trim();
+    }
+
+    const firstClass = (section.className || "").split(" ")[0] || "Section";
+    return firstClass
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
+  const sectionLabels = {};
+  sections.forEach(function (section) {
+    sectionLabels[section.dataset.sectionKey] = deriveSectionLabel(section);
+  });
+
+  function applyOrder(order) {
+    order.forEach(function (key) {
+      const section = main.querySelector(
+        ':scope > section[data-section-key="' + key + '"]'
+      );
+      if (section) {
+        main.appendChild(section);
+      }
+    });
+  }
+
+  function currentOrder() {
+    return Array.from(
+      main.querySelectorAll(":scope > section")
+    ).map(function (section) {
+      return section.dataset.sectionKey;
+    });
+  }
+
+  function loadSavedOrder() {
+    try {
+      const raw = window.localStorage.getItem(ORDER_STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (
+        Array.isArray(parsed) &&
+        parsed.length === originalOrder.length &&
+        parsed.every(function (key) { return originalOrder.includes(key); })
+      ) {
+        return parsed;
+      }
+    } catch (error) {
+      /* ignore malformed storage */
+    }
+    return null;
+  }
+
+  const savedOrder = loadSavedOrder();
+  if (savedOrder) {
+    applyOrder(savedOrder);
+  }
+
+  /* ---- Panel UI ---- */
+
+  const panel = document.createElement("div");
+  panel.className = "section-reorder-panel";
+
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "section-reorder-toggle";
+  toggle.textContent = "⇅ Reorder sections";
+  panel.appendChild(toggle);
+
+  const body = document.createElement("div");
+  body.className = "section-reorder-body";
+  body.hidden = true;
+
+  const heading = document.createElement("div");
+  heading.className = "section-reorder-heading";
+  heading.textContent = "Move sections with ↑ ↓";
+  body.appendChild(heading);
+
+  const list = document.createElement("ul");
+  list.className = "section-reorder-list";
+  body.appendChild(list);
+
+  const resetButton = document.createElement("button");
+  resetButton.type = "button";
+  resetButton.className = "section-reorder-reset";
+  resetButton.textContent = "Reset order";
+  body.appendChild(resetButton);
+
+  panel.appendChild(body);
+  document.body.appendChild(panel);
+
+  toggle.addEventListener("click", function () {
+    body.hidden = !body.hidden;
+  });
+
+  /* Reordering is button-driven (not native drag-and-drop): every move is
+     a single deliberate click that immediately commits, so there is no
+     drag gesture that can misfire, get lost, or silently snap back. */
+  function commitOrder() {
+    const newOrder = Array.from(list.children).map(function (item) {
+      return item.dataset.sectionKey;
+    });
+    applyOrder(newOrder);
+    window.localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(newOrder));
+  }
+
+  function buildList() {
+    list.innerHTML = "";
+    currentOrder().forEach(function (key) {
+      const item = document.createElement("li");
+      item.className = "section-reorder-item";
+      item.dataset.sectionKey = key;
+
+      const label = document.createElement("span");
+      label.className = "section-reorder-label";
+      label.textContent = sectionLabels[key] || key;
+      item.appendChild(label);
+
+      const moveButtons = document.createElement("span");
+      moveButtons.className = "section-reorder-move-buttons";
+
+      const upButton = document.createElement("button");
+      upButton.type = "button";
+      upButton.className = "section-reorder-move";
+      upButton.setAttribute("aria-label", "Move up");
+      upButton.textContent = "↑";
+      upButton.addEventListener("click", function () {
+        const prev = item.previousElementSibling;
+        if (prev) {
+          list.insertBefore(item, prev);
+          commitOrder();
+        }
+      });
+      moveButtons.appendChild(upButton);
+
+      const downButton = document.createElement("button");
+      downButton.type = "button";
+      downButton.className = "section-reorder-move";
+      downButton.setAttribute("aria-label", "Move down");
+      downButton.textContent = "↓";
+      downButton.addEventListener("click", function () {
+        const next = item.nextElementSibling;
+        if (next) {
+          list.insertBefore(next, item);
+          commitOrder();
+        }
+      });
+      moveButtons.appendChild(downButton);
+
+      item.appendChild(moveButtons);
+      list.appendChild(item);
+    });
+  }
+
+  buildList();
+
+  resetButton.addEventListener("click", function () {
+    window.localStorage.removeItem(ORDER_STORAGE_KEY);
+    applyOrder(originalOrder);
+    buildList();
+  });
+})();

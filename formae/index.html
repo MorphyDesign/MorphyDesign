@@ -7,7 +7,7 @@
 
   <title>Formae — MorphyFoundry</title>
 
-  <link rel="stylesheet" href="style.css?v=type-scale-2">
+  <link rel="stylesheet" href="style.css?v=reorder-buttons1">
 </head>
 
 
@@ -36,59 +36,78 @@
   <main>
 
     <!-- =========================
-         HERO
+         TYPE SPECIMEN SLIDER
     ========================== -->
 
-    <section class="hero">
+    <section class="type-slider" id="type-slider" aria-label="Formae typographic specimen">
 
-      <h1 class="hero-typewriter typewriter-text" data-typewriter-text="Morphy&#10;Foundry&#10;&#169; 2026" aria-label="Morphy Foundry &#169; 2026">
-        Morphy<br>Foundry<br>&#169; 2026
-      </h1>
+      <div class="type-slider-viewport">
+        <div class="type-slider-track" id="type-slider-track"></div>
+      </div>
 
     </section>
-
 
 
     <!-- =========================
-         FONT CATALOGUE
+         FONT INFO
     ========================== -->
 
-    <section class="font-catalogue" aria-labelledby="font-catalogue-title">
+    <section class="font-info" id="font-info" aria-labelledby="font-info-title">
 
-      <div class="font-catalogue-header">
-        <h2 id="font-catalogue-title">Our newest fonts</h2>
-        <span>Showing 8 fonts</span>
-      </div>
+      <span class="section-title font-info-title" id="font-info-title">Font Info</span>
 
-      <div class="font-catalogue-list">
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Formae</span><span class="font-details">10 weights + Variable cut</span><span class="font-aa">Aa</span><span class="font-sample">Typography moves everywhere.</span><span class="font-status">New</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 02</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Letters shape the spaces around us.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 03</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Clear forms carry complex ideas.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 04</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Every sign begins with a gesture.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 05</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Words move between streets and screens.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 06</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Rhythm gives language a visual voice.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 07</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">Type connects information and place.</span><span class="font-status">Soon</span>
-        </a>
-        <a class="font-catalogue-row" href="#typefaces">
-          <span class="font-name">Typeface 08</span><span class="font-details">In development</span><span class="font-aa">Aa</span><span class="font-sample">New characters are taking shape.</span><span class="font-status">Soon</span>
-        </a>
+      <div class="font-info-grid">
+
+        <div class="font-info-block font-info-block-description">
+          <p>Formae is a typeface developed for typographic, spatial and information-based applications.</p>
+        </div>
+
+        <div class="font-info-block font-info-block-styles">
+          <h3>Available Styles</h3>
+          <ul class="font-info-style-list">
+            <li>Hairline</li>
+            <li>Thin</li>
+            <li>Light</li>
+            <li>Regular</li>
+            <li>Medium</li>
+            <li>Semibold</li>
+            <li>Bold</li>
+            <li>Extrabold</li>
+            <li>Black</li>
+          </ul>
+        </div>
+
+        <div class="font-info-block font-info-block-languages">
+          <h3>Language Support</h3>
+          <p>201 languages across Europe, Africa, the Americas and Asia-Pacific.</p>
+        </div>
+
+        <div class="font-info-block font-info-block-glyphs">
+          <h3>Character Count</h3>
+          <p><strong>668</strong> glyphs&nbsp;/&nbsp;<strong>567</strong> encoded characters <span class="font-info-note">(Formae Regular)</span></p>
+        </div>
+
+        <div class="font-info-block font-info-block-features">
+          <h3>OpenType Features</h3>
+          <p>Stylistic Set 1 alternates, discretionary ligatures, oldstyle figures, automatic fractions, localized forms, case-sensitive forms, and circled letter and number sets.</p>
+          <a href="#opentype-features">See the OpenType Features showcase →</a>
+        </div>
+
+        <div class="font-info-block font-info-block-links">
+          <h3>Documentation</h3>
+          <a href="#characters">Character Set →</a>
+          <a href="#opentype-features">OpenType Features →</a>
+          <a href="#specimen">Specimen →</a>
+        </div>
+
+        <div class="font-info-block font-info-block-credits">
+          <h3>Designer &amp; Release</h3>
+          <p>Morphy Foundry<br>Dezső Árpád &amp; Solymosi Mór / 2026</p>
+        </div>
+
       </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -122,31 +141,7 @@
          TYPEFACE INTRO
     ========================== -->
 
-    <section class="typeface-intro" id="typefaces">
-
-      <div>
-
-        <p class="label">
-          Typeface
-        </p>
-
-        <h2>
-          Formae <span class="formae-star" aria-hidden="true">✹</span>
-        </h2>
-
-      </div>
-
-
-      <div class="typeface-data">
-
-        <span>10 weights</span>
-        <span>Variable</span>
-        <span>Latin</span>
-        <span>2026</span>
-
-      </div>
-
-    </section>
+    <div id="typefaces" aria-hidden="true"></div>
 
 
 
@@ -154,7 +149,7 @@
          TYPE TESTER
     ========================== -->
 
-    <section class="tester-section" id="tester">
+    <section class="tester-section" id="tester" aria-label="Type Tester">
 
 
       <div class="tester-unit">
@@ -162,87 +157,82 @@
           <span class="tester-title">Type Tester 01</span>
           <div class="control">
             <label for="font-size-1">Size</label>
-            <input id="font-size-1" data-control="size" type="range" min="24" max="350" value="350">
-            <span data-value="size">350 px</span>
-          </div>
-          <div class="control">
-            <label for="font-weight-1">Weight</label>
-            <input id="font-weight-1" data-control="weight" type="range" min="100" max="900" value="900" step="1">
-            <span data-value="weight">900</span>
-          </div>
-          <div class="control">
-            <label for="tracking-1">Tracking</label>
-            <input id="tracking-1" data-control="tracking" type="range" min="-15" max="20" value="-8.75" step="0.05">
-            <span data-value="tracking">−8.75</span>
-          </div>
-        </div>
-        <div class="tester tester-large" data-mobile-text="TypographyMovesEverywhere" contenteditable="true" spellcheck="false">TypographyMovesEverywhereLettersTravelAcrossScreens</div>
-      </div>
-
-      <div class="tester-unit">
-        <div class="tester-controls">
-          <span class="tester-title">Type Tester 02</span>
-          <div class="control">
-            <label for="font-size-2">Size</label>
-            <input id="font-size-2" data-control="size" type="range" min="24" max="350" value="282">
+            <input id="font-size-1" data-control="size" type="range" min="24" max="350" value="282">
             <span data-value="size">282 px</span>
           </div>
           <div class="control">
-            <label for="font-weight-2">Weight</label>
-            <input id="font-weight-2" data-control="weight" type="range" min="100" max="900" value="600" step="1">
+            <label for="font-weight-1">Weight</label>
+            <input id="font-weight-1" data-control="weight" type="range" min="100" max="900" value="600" step="1">
             <span data-value="weight">600</span>
           </div>
           <div class="control">
-            <label for="tracking-2">Tracking</label>
-            <input id="tracking-2" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
+            <label for="tracking-1">Tracking</label>
+            <input id="tracking-1" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
             <span data-value="tracking">0</span>
           </div>
         </div>
         <div class="tester tester-medium" contenteditable="true" spellcheck="false">GlyphsShapeIdeasWordsLettersTravelAcrossEveryScreen</div>
       </div>
 
-      <div class="tester-unit">
+      <div class="tester-unit tester-unit-locked">
+        <div class="tester-controls">
+          <span class="tester-title">Type Tester 02</span>
+          <div class="control">
+            <label for="font-size-2">Size</label>
+            <input id="font-size-2" data-control="size" type="range" min="24" max="350" value="59.6" step="0.1" disabled>
+            <span data-value="size">59.6 px</span>
+          </div>
+          <div class="control">
+            <label for="font-weight-2">Weight</label>
+            <input id="font-weight-2" data-control="weight" type="range" min="100" max="900" value="400" step="1" disabled>
+            <span data-value="weight">400</span>
+          </div>
+          <div class="control">
+            <label for="tracking-2">Tracking</label>
+            <input id="tracking-2" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1" disabled>
+            <span data-value="tracking">0</span>
+          </div>
+        </div>
+        <div class="tester tester-small" contenteditable="false" spellcheck="false">Letters rise from quiet strokes, where curves meet stems and every counter holds a breath of light. A typeface begins as rhythm: narrow forms gather speed, broad forms create pause, and careful spacing turns separate signs into a fluent voice. Serifs guide the eye across a line, while round bowls and open apertures give each word its color. From the smallest caption to the loudest title, letters balance clarity with character. They carry memory, mood, and meaning through books, screens, streets, and rooms. An alphabet is a system, yet each glyph keeps its own gesture, proportion, tension, and grace. Type endures. Across changing widths and weights, these relationships remain visible. Longer passages reveal the spacing rhythm, the density of each weight, and the balance between character, clarity, and continuous reading across a complete typographic system.</div>
+      </div>
+
+      <div class="tester-unit tester-unit-locked">
         <div class="tester-controls">
           <span class="tester-title">Type Tester 03</span>
           <div class="control">
             <label for="font-size-3">Size</label>
-            <input id="font-size-3" data-control="size" type="range" min="24" max="350" value="59.6" step="0.1">
-            <span data-value="size">59.6 px</span>
+            <input id="font-size-3" data-control="size" type="range" min="24" max="350" value="56" disabled>
+            <span data-value="size">56 px</span>
           </div>
           <div class="control">
             <label for="font-weight-3">Weight</label>
-            <input id="font-weight-3" data-control="weight" type="range" min="100" max="900" value="400" step="1">
-            <span data-value="weight">400</span>
+            <input id="font-weight-3" data-control="weight" type="range" min="100" max="900" value="750" step="1" disabled>
+            <span data-value="weight">750</span>
           </div>
           <div class="control">
             <label for="tracking-3">Tracking</label>
-            <input id="tracking-3" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
+            <input id="tracking-3" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1" disabled>
             <span data-value="tracking">0</span>
           </div>
         </div>
-        <div class="tester tester-small" contenteditable="true" spellcheck="false">Letters rise from quiet strokes, where curves meet stems and every counter holds a breath of light. A typeface begins as rhythm: narrow forms gather speed, broad forms create pause, and careful spacing turns separate signs into a fluent voice. Serifs guide the eye across a line, while round bowls and open apertures give each word its color. From the smallest caption to the loudest title, letters balance clarity with character. They carry memory, mood, and meaning through books, screens, streets, and rooms. An alphabet is a system, yet each glyph keeps its own gesture, proportion, tension, and grace. Type endures. Across changing widths and weights, these relationships remain visible. Longer passages reveal the spacing rhythm, the density of each weight, and the balance between character, clarity, and continuous reading across a complete typographic system.</div>
+        <div class="tester tester-small" contenteditable="false" spellcheck="false">Germany stretches from the windswept shores of the North Sea to the forested Alps, joining old towns, busy cities, rivers, and fields in one varied landscape. Berlin carries layers of history beside contemporary art and restless nightlife. Hamburg faces the water, Munich looks toward the mountains, and Cologne gathers around its cathedral and the Rhine. Trains connect regions shaped by distinct dialects, recipes, industries, and customs. Castles overlook valleys, vineyards follow river bends, and modern workshops continue a long tradition of engineering, craft, music, design, and careful public life. It connects. Across the country, public lettering and transport graphics shape how places are understood. From station platforms to civic buildings, clear typography turns movement, distance, and direction into a shared visual language that remains legible through changing scales and surroundings.</div>
       </div>
 
-      <div class="tester-unit">
+      <div class="tester-unit tester-unit-locked">
         <div class="tester-controls">
           <span class="tester-title">Type Tester 04</span>
           <div class="control">
             <label for="font-size-4">Size</label>
-            <input id="font-size-4" data-control="size" type="range" min="24" max="350" value="56">
-            <span data-value="size">56 px</span>
-          </div>
-          <div class="control">
-            <label for="font-weight-4">Weight</label>
-            <input id="font-weight-4" data-control="weight" type="range" min="100" max="900" value="750" step="1">
-            <span data-value="weight">750</span>
+            <input id="font-size-4" data-control="size" type="range" min="12" max="350" value="16" disabled>
+            <span data-value="size">16 px</span>
           </div>
           <div class="control">
             <label for="tracking-4">Tracking</label>
-            <input id="tracking-4" data-control="tracking" type="range" min="-5" max="20" value="0" step="0.1">
-            <span data-value="tracking">0</span>
+            <input id="tracking-4" data-control="tracking" type="range" min="-5" max="20" value="0.4" step="0.1" disabled>
+            <span data-value="tracking">0.4</span>
           </div>
         </div>
-        <div class="tester tester-small" contenteditable="true" spellcheck="false">Germany stretches from the windswept shores of the North Sea to the forested Alps, joining old towns, busy cities, rivers, and fields in one varied landscape. Berlin carries layers of history beside contemporary art and restless nightlife. Hamburg faces the water, Munich looks toward the mountains, and Cologne gathers around its cathedral and the Rhine. Trains connect regions shaped by distinct dialects, recipes, industries, and customs. Castles overlook valleys, vineyards follow river bends, and modern workshops continue a long tradition of engineering, craft, music, design, and careful public life. It connects. Across the country, public lettering and transport graphics shape how places are understood. From station platforms to civic buildings, clear typography turns movement, distance, and direction into a shared visual language that remains legible through changing scales and surroundings.</div>
+        <div class="tester tester-micro" data-fill-repeats="4" contenteditable="false" spellcheck="false">A museum begins with an object and grows through close looking. A worn tool can reveal the rhythm of work; a painted face can hold the mood of another century. Curators select, compare, label and arrange pieces until stories begin to speak together. Small choices in light, distance, sequence, and scale can change the meaning of an entire room. In galleries, footsteps soften and time seems to slow; on digital screens, collections travel beyond their walls. A living museum must protect the past while inviting new questions. Its rooms become a shared memory, shaped by objects, voices, research, and wonder. It lives.</div>
       </div>
 
       <div class="tester-unit">
@@ -259,7 +249,7 @@
             <span data-value="tracking">0.4</span>
           </div>
         </div>
-        <div class="tester tester-micro" data-fill-repeats="4" contenteditable="true" spellcheck="false">A letter starts with a mark and grows through measured choices. The curve of an o teaches the rhythm of every round form; the stem of an n sets the pace of a word. Designers adjust weight, contrast, width, and spacing until letters feel related without becoming identical. Tiny changes around a shoulder or terminal can alter the tone of an entire paragraph. In print, ink softens the edges; on a screen, pixels ask for clarity. A useful typeface must speak quietly in long text and confidently in display sizes. Its alphabet becomes a family of shapes, joined by proportion, detail, rhythm, and shared intent. It lives.</div>
+        <div class="tester tester-micro" data-fill-repeats="5.675" contenteditable="true" spellcheck="false">A letter starts with a mark and grows through measured choices. The curve of an o teaches the rhythm of every round form; the stem of an n sets the pace of a word. Designers adjust weight, contrast, width, and spacing until letters feel related without becoming identical. Tiny changes around a shoulder or terminal can alter the tone of an entire paragraph. In print, ink softens the edges; on a screen, pixels ask for clarity. A useful typeface must speak quietly in long text and confidently in display sizes. Its alphabet becomes a family of shapes, joined by proportion, detail, rhythm, and shared intent. It lives.</div>
       </div>
 
       <div class="tester-unit">
@@ -271,34 +261,17 @@
             <span data-value="size">16 px</span>
           </div>
           <div class="control">
+            <label for="font-weight-6">Weight</label>
+            <input id="font-weight-6" data-control="weight" type="range" min="100" max="900" value="400" step="1">
+            <span data-value="weight">400</span>
+          </div>
+          <div class="control">
             <label for="tracking-6">Tracking</label>
             <input id="tracking-6" data-control="tracking" type="range" min="-5" max="20" value="0.4" step="0.1">
             <span data-value="tracking">0.4</span>
           </div>
         </div>
-        <div class="tester tester-micro" data-fill-repeats="5.675" contenteditable="true" spellcheck="false">A letter starts with a mark and grows through measured choices. The curve of an o teaches the rhythm of every round form; the stem of an n sets the pace of a word. Designers adjust weight, contrast, width, and spacing until letters feel related without becoming identical. Tiny changes around a shoulder or terminal can alter the tone of an entire paragraph. In print, ink softens the edges; on a screen, pixels ask for clarity. A useful typeface must speak quietly in long text and confidently in display sizes. Its alphabet becomes a family of shapes, joined by proportion, detail, rhythm, and shared intent. It lives.</div>
-      </div>
-
-      <div class="tester-unit">
-        <div class="tester-controls">
-          <span class="tester-title">Type Tester 07</span>
-          <div class="control">
-            <label for="font-size-7">Size</label>
-            <input id="font-size-7" data-control="size" type="range" min="12" max="350" value="16">
-            <span data-value="size">16 px</span>
-          </div>
-          <div class="control">
-            <label for="font-weight-7">Weight</label>
-            <input id="font-weight-7" data-control="weight" type="range" min="100" max="900" value="400" step="1">
-            <span data-value="weight">400</span>
-          </div>
-          <div class="control">
-            <label for="tracking-7">Tracking</label>
-            <input id="tracking-7" data-control="tracking" type="range" min="-5" max="20" value="0.4" step="0.1">
-            <span data-value="tracking">0.4</span>
-          </div>
-        </div>
-        <div class="tester tester-micro" data-fill-repeats="10.55" contenteditable="true" spellcheck="false">Germany is a country of many regions connected by rivers, railways, and a layered history. The Baltic and North Sea shape its northern edge, while the Alps rise beyond Bavaria in the south. Berlin is known for museums, music, architecture, and constant change; Frankfurt is a center of finance, and Hamburg remains tied to its harbor. Along the Rhine, vineyards climb hills below castles and towns. Local food, accents, festivals, and traditions shift from one state to the next. Universities, workshops, factories, forests, and cultural institutions all contribute to one modern country with a strong regional identity.</div>
+        <div class="tester tester-micro" data-fill-repeats="10.55" contenteditable="true" spellcheck="false">Rome sits across seven hills where ancient stone still meets modern rhythm. The Tiber curves through neighborhoods layered with empire, papacy, and everyday life. The Colosseum anchors long afternoons of history, while Trastevere hums with narrow streets and late dinners. Piazzas gather fountains, markets, and conversation under the same warm light. Vatican City rises within the city's edge, drawing pilgrims and visitors alike. Espresso bars, tailors, and centuries-old workshops continue trades passed through generations, holding a modern capital inside a very old city. Rome endures.</div>
       </div>
 
     </section>
@@ -312,7 +285,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text thin">
@@ -325,7 +298,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text regular">
@@ -338,7 +311,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text medium">
@@ -351,7 +324,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text semibold">
@@ -364,7 +337,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text black">
@@ -377,7 +350,7 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text old-english">
@@ -390,276 +363,11 @@
     <section class="specimen">
 
       <div class="specimen-label">
-        Regular / 400
+        Regular / 280
       </div>
 
       <div class="specimen-text old-english">
         Æðelstan&#xF739;&#xF732;&#xF735;
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         GLYPH CONSTRUCTION
-    ========================== -->
-
-    <section class="glyph-construction" id="construction" aria-labelledby="glyph-construction-title">
-
-      <div class="glyph-construction-copy">
-        <span>Outline / Control points</span>
-        <h2 id="glyph-construction-title">Form</h2>
-        <p>
-          Each letterform grows from carefully placed nodes and balanced curves.
-          Its outline shows how construction turns into rhythm.
-        </p>
-      </div>
-
-      <div class="glyph-construction-stage" aria-label="Letter outlines with highlighted control points">
-        <svg class="glyph-construction-svg" viewBox="0 0 1200 820" role="img" aria-labelledby="glyph-diagram-title glyph-diagram-description">
-          <title id="glyph-diagram-title">Formae letter construction</title>
-          <desc id="glyph-diagram-description">Outlined S, x and a letterforms with highlighted control points.</desc>
-
-          <g class="construction-metrics" aria-hidden="true">
-            <g class="construction-metric" transform="translate(0 178)">
-              <text x="34" y="0">Ascender</text><line x1="130" y1="-4" x2="1095" y2="-4" /><text x="1166" y="0" text-anchor="end">950</text>
-            </g>
-            <g class="construction-metric" transform="translate(0 274)">
-              <text x="34" y="0">Cap Height</text><line x1="130" y1="0" x2="1095" y2="0" /><text x="1166" y="0" text-anchor="end">750</text>
-            </g>
-            <g class="construction-metric" transform="translate(0 377.2)">
-              <text x="34" y="0">X-Height</text><line x1="130" y1="0" x2="1095" y2="0" /><text x="1166" y="0" text-anchor="end">535</text>
-            </g>
-            <g class="construction-metric" transform="translate(0 634)">
-              <text x="34" y="0">Baseline</text><line x1="130" y1="0" x2="1095" y2="0" /><text x="1166" y="0" text-anchor="end">0</text>
-            </g>
-            <g class="construction-metric" transform="translate(0 754)">
-              <text x="34" y="0">Descender</text><line x1="130" y1="-4" x2="1095" y2="-4" /><text x="1166" y="0" text-anchor="end">−250</text>
-            </g>
-          </g>
-
-          <g class="construction-real-glyphs" aria-hidden="true">
-          <g transform="translate(140.00 634) scale(0.48 -0.48)">
-          <path class="construction-outline" d="M475 142Q475 184 440.5 230.5Q406 277 294 351L270 367Q157 442 115.0 495.0Q73 548 73 600Q73 648 99.5 685.5Q126 723 173.5 744.0Q221 765 281 765V750Q221 750 184.5 718.5Q148 687 148 634Q148 591 186.5 543.0Q225 495 347 419Q471 342 513.0 285.0Q555 228 555 169Q555 114 524.0 72.0Q493 30 435.5 7.5Q378 -15 303 -15V0Q382 0 428.5 39.5Q475 79 475 142ZM139 22Q114 33 104 35L93 37Q80 37 71.0 28.0Q62 19 62 3H52L40 262H55Q68 142 132.5 71.0Q197 0 303 0V-15Q262 -15 224.0 -7.0Q186 1 139 22ZM281 750V765Q322 765 360.0 757.0Q398 749 445 728Q470 717 480 715L491 713Q504 713 513.0 722.0Q522 731 522 747H532L544 488H529Q514 604 449.5 677.0Q385 750 281 750Z" />
-          <circle class="construction-point-off" cx="382.00" cy="0.00" r="16" />
-          <circle class="construction-point-off" cx="475.00" cy="79.00" r="16" />
-          <circle class="construction-point-on" cx="475.00" cy="142.00" r="16" />
-          <circle class="construction-point-off" cx="475.00" cy="184.00" r="16" />
-          <circle class="construction-point-off" cx="406.00" cy="277.00" r="16" />
-          <circle class="construction-point-on" cx="294.00" cy="351.00" r="16" />
-          <circle class="construction-point-on" cx="270.00" cy="367.00" r="16" />
-          <circle class="construction-point-off" cx="157.00" cy="442.00" r="16" />
-          <circle class="construction-point-off" cx="73.00" cy="548.00" r="16" />
-          <circle class="construction-point-on" cx="73.00" cy="600.00" r="16" />
-          <circle class="construction-point-off" cx="73.00" cy="648.00" r="16" />
-          <circle class="construction-point-off" cx="126.00" cy="723.00" r="16" />
-          <circle class="construction-point-off" cx="221.00" cy="765.00" r="16" />
-          <circle class="construction-point-on" cx="281.00" cy="765.00" r="16" />
-          <circle class="construction-point-on" cx="281.00" cy="750.00" r="16" />
-          <circle class="construction-point-off" cx="221.00" cy="750.00" r="16" />
-          <circle class="construction-point-off" cx="148.00" cy="687.00" r="16" />
-          <circle class="construction-point-on" cx="148.00" cy="634.00" r="16" />
-          <circle class="construction-point-off" cx="148.00" cy="591.00" r="16" />
-          <circle class="construction-point-off" cx="225.00" cy="495.00" r="16" />
-          <circle class="construction-point-on" cx="347.00" cy="419.00" r="16" />
-          <circle class="construction-point-off" cx="471.00" cy="342.00" r="16" />
-          <circle class="construction-point-off" cx="555.00" cy="228.00" r="16" />
-          <circle class="construction-point-on" cx="555.00" cy="169.00" r="16" />
-          <circle class="construction-point-off" cx="555.00" cy="114.00" r="16" />
-          <circle class="construction-point-off" cx="493.00" cy="30.00" r="16" />
-          <circle class="construction-point-off" cx="378.00" cy="-15.00" r="16" />
-          <circle class="construction-point-on" cx="303.00" cy="-15.00" r="16" />
-          <circle class="construction-point-on" cx="303.00" cy="0.00" r="16" />
-          <circle class="construction-point-off" cx="262.00" cy="-15.00" r="16" />
-          <circle class="construction-point-off" cx="186.00" cy="1.00" r="16" />
-          <circle class="construction-point-on" cx="139.00" cy="22.00" r="16" />
-          <circle class="construction-point-off" cx="114.00" cy="33.00" r="16" />
-          <circle class="construction-point-on" cx="104.00" cy="35.00" r="16" />
-          <circle class="construction-point-on" cx="93.00" cy="37.00" r="16" />
-          <circle class="construction-point-off" cx="80.00" cy="37.00" r="16" />
-          <circle class="construction-point-off" cx="62.00" cy="19.00" r="16" />
-          <circle class="construction-point-on" cx="62.00" cy="3.00" r="16" />
-          <circle class="construction-point-on" cx="52.00" cy="3.00" r="16" />
-          <circle class="construction-point-on" cx="40.00" cy="262.00" r="16" />
-          <circle class="construction-point-on" cx="55.00" cy="262.00" r="16" />
-          <circle class="construction-point-off" cx="68.00" cy="142.00" r="16" />
-          <circle class="construction-point-off" cx="197.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="303.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="303.00" cy="-15.00" r="16" />
-          <circle class="construction-point-off" cx="514.00" cy="604.00" r="16" />
-          <circle class="construction-point-off" cx="385.00" cy="750.00" r="16" />
-          <circle class="construction-point-on" cx="281.00" cy="750.00" r="16" />
-          <circle class="construction-point-on" cx="281.00" cy="765.00" r="16" />
-          <circle class="construction-point-off" cx="322.00" cy="765.00" r="16" />
-          <circle class="construction-point-off" cx="398.00" cy="749.00" r="16" />
-          <circle class="construction-point-on" cx="445.00" cy="728.00" r="16" />
-          <circle class="construction-point-off" cx="470.00" cy="717.00" r="16" />
-          <circle class="construction-point-on" cx="480.00" cy="715.00" r="16" />
-          <circle class="construction-point-on" cx="491.00" cy="713.00" r="16" />
-          <circle class="construction-point-off" cx="504.00" cy="713.00" r="16" />
-          <circle class="construction-point-off" cx="522.00" cy="731.00" r="16" />
-          <circle class="construction-point-on" cx="522.00" cy="747.00" r="16" />
-          <circle class="construction-point-on" cx="532.00" cy="747.00" r="16" />
-          <circle class="construction-point-on" cx="544.00" cy="488.00" r="16" />
-          <circle class="construction-point-on" cx="529.00" cy="488.00" r="16" />
-          </g>
-          <g transform="translate(461.60 634) scale(0.48 -0.48)">
-          <path class="construction-outline" d="M535 535H552L108 0H91ZM208 535 572 0H473L109 535ZM304 520H269Q237 520 237 504Q237 494 248.0 476.5Q259 459 272 441L289 416H260L177 535H304ZM137 535 221 413H192Q152 471 123.5 495.5Q95 520 69 520H50V535ZM377 15H412Q444 15 444 31Q444 41 433.0 58.5Q422 76 409 94L392 119H421L504 0H377ZM544 0 460 122H489Q529 64 557.5 39.5Q586 15 612 15H631V0ZM545 535 452 416H437Q468 453 480.0 472.0Q492 491 492 502Q492 520 458 520H438V535ZM603 520H584Q559 520 534.5 503.5Q510 487 453 416H437L531 535H603ZM98 -1 191 118H205Q175 82 162.5 62.5Q150 43 150 32Q150 14 185 14H205V-1ZM40 14H59Q84 14 107.5 30.0Q131 46 189 118H204L112 -1H40Z" />
-          <circle class="construction-point-on" cx="535.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="552.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="108.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="91.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="208.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="572.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="473.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="109.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="304.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="269.00" cy="520.00" r="16" />
-          <circle class="construction-point-off" cx="237.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="237.00" cy="504.00" r="16" />
-          <circle class="construction-point-off" cx="237.00" cy="494.00" r="16" />
-          <circle class="construction-point-off" cx="259.00" cy="459.00" r="16" />
-          <circle class="construction-point-on" cx="272.00" cy="441.00" r="16" />
-          <circle class="construction-point-on" cx="289.00" cy="416.00" r="16" />
-          <circle class="construction-point-on" cx="260.00" cy="416.00" r="16" />
-          <circle class="construction-point-on" cx="177.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="304.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="137.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="221.00" cy="413.00" r="16" />
-          <circle class="construction-point-on" cx="192.00" cy="413.00" r="16" />
-          <circle class="construction-point-off" cx="152.00" cy="471.00" r="16" />
-          <circle class="construction-point-off" cx="95.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="69.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="50.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="50.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="377.00" cy="15.00" r="16" />
-          <circle class="construction-point-on" cx="412.00" cy="15.00" r="16" />
-          <circle class="construction-point-off" cx="444.00" cy="15.00" r="16" />
-          <circle class="construction-point-on" cx="444.00" cy="31.00" r="16" />
-          <circle class="construction-point-off" cx="444.00" cy="41.00" r="16" />
-          <circle class="construction-point-off" cx="422.00" cy="76.00" r="16" />
-          <circle class="construction-point-on" cx="409.00" cy="94.00" r="16" />
-          <circle class="construction-point-on" cx="392.00" cy="119.00" r="16" />
-          <circle class="construction-point-on" cx="421.00" cy="119.00" r="16" />
-          <circle class="construction-point-on" cx="504.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="377.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="544.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="460.00" cy="122.00" r="16" />
-          <circle class="construction-point-on" cx="489.00" cy="122.00" r="16" />
-          <circle class="construction-point-off" cx="529.00" cy="64.00" r="16" />
-          <circle class="construction-point-off" cx="586.00" cy="15.00" r="16" />
-          <circle class="construction-point-on" cx="612.00" cy="15.00" r="16" />
-          <circle class="construction-point-on" cx="631.00" cy="15.00" r="16" />
-          <circle class="construction-point-on" cx="631.00" cy="0.00" r="16" />
-          <circle class="construction-point-on" cx="545.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="452.00" cy="416.00" r="16" />
-          <circle class="construction-point-on" cx="437.00" cy="416.00" r="16" />
-          <circle class="construction-point-off" cx="468.00" cy="453.00" r="16" />
-          <circle class="construction-point-off" cx="492.00" cy="491.00" r="16" />
-          <circle class="construction-point-on" cx="492.00" cy="502.00" r="16" />
-          <circle class="construction-point-off" cx="492.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="458.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="438.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="438.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="603.00" cy="520.00" r="16" />
-          <circle class="construction-point-on" cx="584.00" cy="520.00" r="16" />
-          <circle class="construction-point-off" cx="559.00" cy="520.00" r="16" />
-          <circle class="construction-point-off" cx="510.00" cy="487.00" r="16" />
-          <circle class="construction-point-on" cx="453.00" cy="416.00" r="16" />
-          <circle class="construction-point-on" cx="437.00" cy="416.00" r="16" />
-          <circle class="construction-point-on" cx="531.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="603.00" cy="535.00" r="16" />
-          <circle class="construction-point-on" cx="98.00" cy="-1.00" r="16" />
-          <circle class="construction-point-on" cx="191.00" cy="118.00" r="16" />
-          <circle class="construction-point-on" cx="205.00" cy="118.00" r="16" />
-          <circle class="construction-point-off" cx="175.00" cy="82.00" r="16" />
-          <circle class="construction-point-off" cx="150.00" cy="43.00" r="16" />
-          <circle class="construction-point-on" cx="150.00" cy="32.00" r="16" />
-          <circle class="construction-point-off" cx="150.00" cy="14.00" r="16" />
-          <circle class="construction-point-on" cx="185.00" cy="14.00" r="16" />
-          <circle class="construction-point-on" cx="205.00" cy="14.00" r="16" />
-          <circle class="construction-point-on" cx="205.00" cy="-1.00" r="16" />
-          <circle class="construction-point-on" cx="40.00" cy="14.00" r="16" />
-          <circle class="construction-point-on" cx="59.00" cy="14.00" r="16" />
-          <circle class="construction-point-off" cx="84.00" cy="14.00" r="16" />
-          <circle class="construction-point-off" cx="131.00" cy="46.00" r="16" />
-          <circle class="construction-point-on" cx="189.00" cy="118.00" r="16" />
-          <circle class="construction-point-on" cx="204.00" cy="118.00" r="16" />
-          <circle class="construction-point-on" cx="112.00" cy="-1.00" r="16" />
-          <circle class="construction-point-on" cx="40.00" cy="-1.00" r="16" />
-          </g>
-          <g transform="translate(819.68 634) scale(0.48 -0.48)">
-          <path class="construction-outline" d="M285 561Q384 561 443.0 496.0Q502 431 502 319H417Q417 416 376.0 463.5Q335 511 252 511Q181 511 121.5 471.0Q62 431 46 374H41Q69 462 138.5 511.5Q208 561 285 561ZM502 319V82H417V319ZM89 463 165 365Q165 334 145.5 315.0Q126 296 100 296Q74 296 57.0 313.5Q40 331 40 363Q40 385 53.0 412.0Q66 439 89 463ZM513 -18Q473 -18 445.0 12.0Q417 42 417 87H502Q502 55 514.0 36.5Q526 18 545 18Q564 18 582.0 45.5Q600 73 600 124H615Q615 53 588.0 17.5Q561 -18 513 -18ZM136 118Q136 75 165.5 45.5Q195 16 244 16Q297 16 344.5 41.5Q392 67 419.5 110.5Q447 154 447 206H458Q458 143 426.0 92.0Q394 41 338.5 10.5Q283 -20 222 -20Q171 -20 129.5 -3.0Q88 14 64.5 45.0Q41 76 41 116Q41 196 142.5 245.0Q244 294 423 294V279Q340 279 274.5 258.5Q209 238 172.5 201.0Q136 164 136 118Z" />
-          <circle class="construction-point-off" cx="69.00" cy="462.00" r="16" />
-          <circle class="construction-point-off" cx="208.00" cy="561.00" r="16" />
-          <circle class="construction-point-on" cx="285.00" cy="561.00" r="16" />
-          <circle class="construction-point-off" cx="384.00" cy="561.00" r="16" />
-          <circle class="construction-point-off" cx="502.00" cy="431.00" r="16" />
-          <circle class="construction-point-on" cx="502.00" cy="319.00" r="16" />
-          <circle class="construction-point-on" cx="417.00" cy="319.00" r="16" />
-          <circle class="construction-point-off" cx="417.00" cy="416.00" r="16" />
-          <circle class="construction-point-off" cx="335.00" cy="511.00" r="16" />
-          <circle class="construction-point-on" cx="252.00" cy="511.00" r="16" />
-          <circle class="construction-point-off" cx="181.00" cy="511.00" r="16" />
-          <circle class="construction-point-off" cx="62.00" cy="431.00" r="16" />
-          <circle class="construction-point-on" cx="46.00" cy="374.00" r="16" />
-          <circle class="construction-point-on" cx="41.00" cy="374.00" r="16" />
-          <circle class="construction-point-on" cx="502.00" cy="319.00" r="16" />
-          <circle class="construction-point-on" cx="502.00" cy="82.00" r="16" />
-          <circle class="construction-point-on" cx="417.00" cy="82.00" r="16" />
-          <circle class="construction-point-on" cx="417.00" cy="319.00" r="16" />
-          <circle class="construction-point-off" cx="40.00" cy="385.00" r="16" />
-          <circle class="construction-point-off" cx="66.00" cy="439.00" r="16" />
-          <circle class="construction-point-on" cx="89.00" cy="463.00" r="16" />
-          <circle class="construction-point-on" cx="165.00" cy="365.00" r="16" />
-          <circle class="construction-point-off" cx="165.00" cy="334.00" r="16" />
-          <circle class="construction-point-off" cx="126.00" cy="296.00" r="16" />
-          <circle class="construction-point-on" cx="100.00" cy="296.00" r="16" />
-          <circle class="construction-point-off" cx="74.00" cy="296.00" r="16" />
-          <circle class="construction-point-off" cx="40.00" cy="331.00" r="16" />
-          <circle class="construction-point-on" cx="40.00" cy="363.00" r="16" />
-          <circle class="construction-point-off" cx="615.00" cy="53.00" r="16" />
-          <circle class="construction-point-off" cx="561.00" cy="-18.00" r="16" />
-          <circle class="construction-point-on" cx="513.00" cy="-18.00" r="16" />
-          <circle class="construction-point-off" cx="473.00" cy="-18.00" r="16" />
-          <circle class="construction-point-off" cx="417.00" cy="42.00" r="16" />
-          <circle class="construction-point-on" cx="417.00" cy="87.00" r="16" />
-          <circle class="construction-point-on" cx="502.00" cy="87.00" r="16" />
-          <circle class="construction-point-off" cx="502.00" cy="55.00" r="16" />
-          <circle class="construction-point-off" cx="526.00" cy="18.00" r="16" />
-          <circle class="construction-point-on" cx="545.00" cy="18.00" r="16" />
-          <circle class="construction-point-off" cx="564.00" cy="18.00" r="16" />
-          <circle class="construction-point-off" cx="600.00" cy="73.00" r="16" />
-          <circle class="construction-point-on" cx="600.00" cy="124.00" r="16" />
-          <circle class="construction-point-on" cx="615.00" cy="124.00" r="16" />
-          <circle class="construction-point-off" cx="340.00" cy="279.00" r="16" />
-          <circle class="construction-point-off" cx="209.00" cy="238.00" r="16" />
-          <circle class="construction-point-off" cx="136.00" cy="164.00" r="16" />
-          <circle class="construction-point-on" cx="136.00" cy="118.00" r="16" />
-          <circle class="construction-point-off" cx="136.00" cy="75.00" r="16" />
-          <circle class="construction-point-off" cx="195.00" cy="16.00" r="16" />
-          <circle class="construction-point-on" cx="244.00" cy="16.00" r="16" />
-          <circle class="construction-point-off" cx="297.00" cy="16.00" r="16" />
-          <circle class="construction-point-off" cx="392.00" cy="67.00" r="16" />
-          <circle class="construction-point-off" cx="447.00" cy="154.00" r="16" />
-          <circle class="construction-point-on" cx="447.00" cy="206.00" r="16" />
-          <circle class="construction-point-on" cx="458.00" cy="206.00" r="16" />
-          <circle class="construction-point-off" cx="458.00" cy="143.00" r="16" />
-          <circle class="construction-point-off" cx="394.00" cy="41.00" r="16" />
-          <circle class="construction-point-off" cx="283.00" cy="-20.00" r="16" />
-          <circle class="construction-point-on" cx="222.00" cy="-20.00" r="16" />
-          <circle class="construction-point-off" cx="171.00" cy="-20.00" r="16" />
-          <circle class="construction-point-off" cx="88.00" cy="14.00" r="16" />
-          <circle class="construction-point-off" cx="41.00" cy="76.00" r="16" />
-          <circle class="construction-point-on" cx="41.00" cy="116.00" r="16" />
-          <circle class="construction-point-off" cx="41.00" cy="196.00" r="16" />
-          <circle class="construction-point-off" cx="244.00" cy="294.00" r="16" />
-          <circle class="construction-point-on" cx="423.00" cy="294.00" r="16" />
-          <circle class="construction-point-on" cx="423.00" cy="279.00" r="16" />
-          </g>
-          </g>
-        </svg>
       </div>
 
     </section>
@@ -673,22 +381,23 @@
     <section class="text-samples">
 
       <article class="text-sample text-sample-hero">
-        <span>Display / 900</span>
-        <p class="text-sample-hero-6x">Wine</p>
+        <span>Regular / 280</span>
+        <span class="text-sample-hand" aria-hidden="true">☜</span>
+        <p class="text-sample-hero-6x">Cork</p>
       </article>
 
       <article class="text-sample text-sample-hero">
-        <span>Display / 900</span>
+        <span>Regular / 200</span>
         <p>Sauvignon has the right to breathe</p>
       </article>
 
       <article class="text-sample text-sample-large">
-        <span>Headline / 500</span>
+        <span>Regular / 100</span>
         <p>Wine remembers the season it was born in.</p>
       </article>
 
       <article class="text-sample text-sample-medium">
-        <span>Text / 300</span>
+        <span>Regular / 56</span>
         <p>Each vintage carries the memory of soil, sun and rain, distilled slowly into a single glass shared among friends.</p>
       </article>
 
@@ -699,7 +408,7 @@
          TYPE SCALE SPECIMEN
     ========================== -->
 
-    <section class="type-scale" aria-label="Formae type specimen">
+    <section class="type-scale" id="specimen" aria-label="Formae type specimen">
       <div class="type-scale-grid">
         <article class="type-scale-block type-scale-1">
           <div class="type-scale-meta">Regular / 88</div>
@@ -742,11 +451,11 @@
       <div class="character-browser">
         <div class="character-preview" aria-live="polite" aria-label="Selected character preview">
           <div class="character-metrics" aria-hidden="true">
-            <div class="metric metric-ascender"><span>Ascender</span><i></i><span>960</span></div>
-            <div class="metric metric-cap"><span>Cap Height</span><i></i><span>700</span></div>
-            <div class="metric metric-x"><span>X-Height</span><i></i><span>540</span></div>
+            <div class="metric metric-ascender"><span>Ascender</span><i></i><span>950</span></div>
+            <div class="metric metric-cap"><span>Cap Height</span><i></i><span>750</span></div>
+            <div class="metric metric-x"><span>X-Height</span><i></i><span>535</span></div>
             <div class="metric metric-baseline"><span>Baseline</span><i></i><span>0</span></div>
-            <div class="metric metric-descender"><span>Descender</span><i></i><span>−270</span></div>
+            <div class="metric metric-descender"><span>Descender</span><i></i><span>−250</span></div>
           </div>
           <canvas id="character-preview-canvas" aria-hidden="true"></canvas>
           <span id="character-preview-value">A</span>
@@ -833,17 +542,7 @@
          OPENTYPE FEATURES
     ========================== -->
 
-    <section class="opentype-features" id="opentype-features">
-
-      <div class="section-title">
-        OpenType Features
-      </div>
-
-      <p class="opentype-intro">
-        A working look at how Formae swaps a plain typed character for its
-        correct typographic form, feature by feature. More sets will appear
-        here as they're built into the font.
-      </p>
+    <section class="opentype-features" id="opentype-features" aria-label="OpenType Features">
 
       <div class="feature-grid">
 
@@ -914,6 +613,7 @@
         Aa
       </div>
 
+      <div class="about-divider" aria-hidden="true"></div>
 
       <div class="about-copy">
 
@@ -921,31 +621,6 @@
           Formae is a typeface developed for typographic,
           spatial and information-based applications.
         </p>
-
-
-        <div class="metadata">
-
-          <div>
-            <span>Design</span>
-            <strong>MorphyFoundry</strong>
-          </div>
-
-          <div>
-            <span>Release</span>
-            <strong>2026</strong>
-          </div>
-
-          <div>
-            <span>Weights</span>
-            <strong>10</strong>
-          </div>
-
-          <div>
-            <span>Format</span>
-            <strong>Variable</strong>
-          </div>
-
-        </div>
 
       </div>
 
@@ -957,7 +632,7 @@
          CTA
     ========================== -->
 
-    <section class="cta">
+    <section class="cta" aria-label="Call to Action">
 
       <span>
         Interested?
@@ -977,25 +652,7 @@
        FOOTER
   ========================== -->
 
-  <footer class="variable-footer" aria-label="MorphyFoundry interactive footer">
-
-    <div class="footer-meta">
-      <span>MorphyFoundry © 2026</span>
-      <span>Independent type foundry</span>
-      <span class="footer-axis-value">Weight 500 / Slant 0</span>
-    </div>
-
-    <div class="footer-word-crop">
-      <div class="footer-variable-word" aria-label="Morphy">
-        MORPHY
-      </div>
-    </div>
-
-  </footer>
-
-
-
-  <script src="script.js?v=type-scale-1"></script>
+  <script src="script.js?v=reorder-buttons1"></script>
 
 </body>
 
