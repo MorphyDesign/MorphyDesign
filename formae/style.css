@@ -186,10 +186,13 @@ body {
 ======================================== */
 
 .header {
-  display: flex;
+  display: grid;
 
-  justify-content: space-between;
+  grid-template-columns: 1fr auto 1fr;
+
   align-items: center;
+
+  gap: 16px;
 
   padding:
     18px
@@ -212,8 +215,19 @@ body {
 .nav {
   display: flex;
 
+  justify-self: center;
+
   gap:
     clamp(16px, 2vw, 34px);
+}
+
+
+.header-actions {
+  display: flex;
+
+  justify-self: end;
+
+  gap: 10px;
 }
 
 
