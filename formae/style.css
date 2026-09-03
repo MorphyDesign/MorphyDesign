@@ -329,7 +329,7 @@ body {
   column-gap: clamp(16px, 2vw, 32px);
   row-gap: 0;
 
-  padding: 0 var(--page-margin) clamp(40px, 6vw, 80px);
+  padding: 0 var(--page-margin) clamp(80px, 12vw, 160px);
 }
 
 .font-info-block {
