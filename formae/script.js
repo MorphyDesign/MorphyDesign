@@ -1219,6 +1219,27 @@ if (typeSliderSection && typeSliderTrack) {
     box.style.height = rect.height + "px";
   }
 
+  // An element's own getBoundingClientRect() is the full line-height
+  // box, which is taller than the visible letters (the invisible
+  // leading above/below the glyphs). A Range over the element's text
+  // hugs the actual rendered ink much more closely, so use that for
+  // the on-screen outline of text leaves -- the box model fields in
+  // the panel still act on the real element, only the highlight
+  // rectangle is ink-based.
+  function getVisualRect(el) {
+    if (el.children.length === 0 && el.textContent.trim()) {
+      try {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const rect = range.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) return rect;
+      } catch (error) {
+        /* fall through to the element's own rect */
+      }
+    }
+    return el.getBoundingClientRect();
+  }
+
   // Clicking/hovering a padded area around some text should target the
   // text itself, not the box built around it -- walk down through
   // children looking for the deepest one that directly owns a text
@@ -1256,7 +1277,7 @@ if (typeSliderSection && typeSliderTrack) {
 
   function refreshSelectedOutline() {
     if (selectedEl) {
-      positionOutline(selectOutline, selectedEl.getBoundingClientRect());
+      positionOutline(selectOutline, getVisualRect(selectedEl));
     }
   }
 
@@ -1432,7 +1453,7 @@ if (typeSliderSection && typeSliderTrack) {
     hoverEl = el;
 
     hoverOutline.hidden = false;
-    positionOutline(hoverOutline, el.getBoundingClientRect());
+    positionOutline(hoverOutline, getVisualRect(el));
   });
 
   document.addEventListener(
@@ -1446,7 +1467,7 @@ if (typeSliderSection && typeSliderTrack) {
 
       selectedEl = findTextLeaf(event.target);
       selectOutline.hidden = false;
-      positionOutline(selectOutline, selectedEl.getBoundingClientRect());
+      positionOutline(selectOutline, getVisualRect(selectedEl));
       buildPanel(selectedEl);
     },
     true
@@ -1455,7 +1476,7 @@ if (typeSliderSection && typeSliderTrack) {
   window.addEventListener("scroll", function () {
     if (!active) return;
     if (hoverEl && !hoverOutline.hidden) {
-      positionOutline(hoverOutline, hoverEl.getBoundingClientRect());
+      positionOutline(hoverOutline, getVisualRect(hoverEl));
     }
     refreshSelectedOutline();
   });
@@ -1463,7 +1484,7 @@ if (typeSliderSection && typeSliderTrack) {
   window.addEventListener("resize", function () {
     if (!active) return;
     if (hoverEl && !hoverOutline.hidden) {
-      positionOutline(hoverOutline, hoverEl.getBoundingClientRect());
+      positionOutline(hoverOutline, getVisualRect(hoverEl));
     }
     refreshSelectedOutline();
   });
