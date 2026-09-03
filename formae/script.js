@@ -115,6 +115,25 @@ testerUnits.forEach(
         Math.max(minimumSize, renderedSize * scale)
       );
 
+      if (
+        tester.classList.contains("tester-large") ||
+        tester.classList.contains("tester-medium")
+      ) {
+        const verticalPadding =
+          parseFloat(testerStyle.paddingTop) +
+          parseFloat(testerStyle.paddingBottom);
+        const availableHeight = Math.max(
+          1,
+          window.innerHeight - verticalPadding
+        );
+        const lineHeight = 1.2;
+
+        renderedSize = Math.min(
+          renderedSize,
+          availableHeight / lineHeight
+        );
+      }
+
       renderedSize = Math.round(renderedSize * 10) / 10;
       tester.style.fontSize = renderedSize + "px";
       sizeValue.textContent = renderedSize + " px";

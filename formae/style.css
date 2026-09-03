@@ -876,9 +876,17 @@ body {
 
 
 .tester-medium {
-  font-size: 282px;
+  font-size: 22px;
   font-weight: 600;
   font-variation-settings: "wght" 600;
+
+  /* This box scales from a small default up to screen-filling sizes
+     (see applyTesterSize's heightSafe cap in script.js), so it can't
+     use the shared .tester min-height clamp -- that assumes a
+     permanently large display size and left a big empty gap below
+     small text. Let height track content instead, so the padding
+     above and below the text stays equal at any size. */
+  min-height: 0;
 }
 
 
