@@ -1646,6 +1646,17 @@ body {
     clamp(49px, 7.9vw, 156px);
 }
 
+/* Cropped, zoomed-in treatment for the first ligature showcase -- the
+   words run noticeably larger than the frame, like a close-up crop. */
+.ligature-showcase-zoomed {
+  overflow: hidden;
+}
+
+.ligature-showcase-zoomed .ligature-showcase-word-long {
+  font-size:
+    clamp(80px, 13vw, 260px);
+}
+
 
 /* ========================================
    OPENTYPE FEATURES
