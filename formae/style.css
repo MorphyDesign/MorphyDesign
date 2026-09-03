@@ -1840,9 +1840,15 @@ body {
   min-height:
     clamp(560px, 60vw, 1000px);
 
+  margin-top:
+    clamp(48px, 8vw, 120px);
+
   padding:
     var(--section-space)
     var(--page-margin);
+
+  border-top:
+    var(--border);
 
   border-bottom:
     var(--border);
