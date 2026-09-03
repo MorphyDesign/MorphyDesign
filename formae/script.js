@@ -1185,11 +1185,63 @@ if (typeSliderSection && typeSliderTrack) {
 ======================================== */
 (function () {
   const STORAGE_KEY = "formae-design-mode";
+  const OVERRIDES_KEY = "formae-design-mode-overrides";
   const SIDES = ["Top", "Right", "Bottom", "Left"];
 
   let active = window.localStorage.getItem(STORAGE_KEY) === "1";
   let selectedEl = null;
   let hoverEl = null;
+
+  // Every edit made in the panel (margin/padding/font-size/text) is
+  // recorded here, keyed by the element's selector, and reapplied on
+  // every load -- otherwise a refresh would silently discard whatever
+  // was adjusted, since it only ever lived as an inline style.
+  function loadOverrides() {
+    try {
+      const raw = window.localStorage.getItem(OVERRIDES_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function saveOverrides(map) {
+    try {
+      window.localStorage.setItem(OVERRIDES_KEY, JSON.stringify(map));
+    } catch (error) {
+      /* storage full or unavailable -- edits just won't persist */
+    }
+  }
+
+  function recordOverride(el, prop, value) {
+    const selector = describeSelector(el);
+    const map = loadOverrides();
+    if (!map[selector]) map[selector] = {};
+    map[selector][prop] = value;
+    saveOverrides(map);
+  }
+
+  function applyStoredOverrides() {
+    const map = loadOverrides();
+    Object.keys(map).forEach(function (selector) {
+      let matches;
+      try {
+        matches = document.querySelectorAll(selector);
+      } catch (error) {
+        return;
+      }
+      matches.forEach(function (el) {
+        Object.keys(map[selector]).forEach(function (prop) {
+          const value = map[selector][prop];
+          if (prop === "text") {
+            el.textContent = value;
+          } else {
+            el.style[prop] = value;
+          }
+        });
+      });
+    });
+  }
 
   const toggleBtn = document.createElement("button");
   toggleBtn.type = "button";
@@ -1310,6 +1362,7 @@ if (typeSliderSection && typeSliderTrack) {
       input.value = Math.round(parseFloat(cs[fullProp]) || 0);
       input.addEventListener("input", function () {
         el.style[fullProp] = input.value + "px";
+        recordOverride(el, fullProp, input.value + "px");
         refreshSelectedOutline();
       });
 
@@ -1347,6 +1400,7 @@ if (typeSliderSection && typeSliderTrack) {
       textInput.rows = 2;
       textInput.addEventListener("input", function () {
         el.textContent = textInput.value;
+        recordOverride(el, "text", textInput.value);
         refreshSelectedOutline();
       });
       textGroup.appendChild(textInput);
@@ -1379,6 +1433,7 @@ if (typeSliderSection && typeSliderTrack) {
     fontInput.value = Math.round(parseFloat(cs.fontSize) || 0);
     fontInput.addEventListener("input", function () {
       el.style.fontSize = fontInput.value + "px";
+      recordOverride(el, "fontSize", fontInput.value + "px");
       refreshSelectedOutline();
     });
     fontGroup.appendChild(fontInput);
@@ -1489,5 +1544,6 @@ if (typeSliderSection && typeSliderTrack) {
     refreshSelectedOutline();
   });
 
+  applyStoredOverrides();
   setActive(active);
 })();
