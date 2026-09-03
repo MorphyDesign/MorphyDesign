@@ -327,7 +327,7 @@ body {
 
   gap: 12px 24px;
 
-  margin: 0 var(--page-margin) 24px;
+  margin: 0 var(--page-margin) 14px;
 }
 
 .font-info-header .font-info-title {
