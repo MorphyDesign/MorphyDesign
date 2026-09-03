@@ -1284,6 +1284,27 @@ if (typeSliderSection && typeSliderTrack) {
     title.textContent = selector;
     panel.appendChild(title);
 
+    if (el.children.length === 0 && el.textContent.trim()) {
+      const textGroup = document.createElement("div");
+      textGroup.className = "design-mode-group";
+
+      const textLabel = document.createElement("div");
+      textLabel.className = "design-mode-group-label";
+      textLabel.textContent = "Text";
+      textGroup.appendChild(textLabel);
+
+      const textInput = document.createElement("textarea");
+      textInput.className = "design-mode-text";
+      textInput.value = el.textContent;
+      textInput.rows = 2;
+      textInput.addEventListener("input", function () {
+        el.textContent = textInput.value;
+        refreshSelectedOutline();
+      });
+      textGroup.appendChild(textInput);
+      panel.appendChild(textGroup);
+    }
+
     addBoxGroup(panel, "Margin (T R B L)", "margin", el);
     addBoxGroup(panel, "Padding (T R B L)", "padding", el);
 
