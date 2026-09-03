@@ -3011,6 +3011,18 @@ main > section {
   word-break: break-all;
 }
 
+.design-mode-panel-subtitle {
+  margin: 12px 0 8px;
+  padding-top: 10px;
+
+  color: rgba(17, 17, 17, 0.55);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+
+  word-break: break-all;
+}
+
 .design-mode-group {
   margin-bottom: 10px;
 }

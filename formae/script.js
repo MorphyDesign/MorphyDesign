@@ -1308,6 +1308,16 @@ if (typeSliderSection && typeSliderTrack) {
     addBoxGroup(panel, "Margin (T R B L)", "margin", el);
     addBoxGroup(panel, "Padding (T R B L)", "padding", el);
 
+    const parent = el.parentElement;
+    if (parent && parent !== document.body) {
+      const parentTitle = document.createElement("div");
+      parentTitle.className = "design-mode-panel-subtitle";
+      parentTitle.textContent = "Parent: " + describeSelector(parent);
+      panel.appendChild(parentTitle);
+
+      addBoxGroup(panel, "Parent padding (T R B L)", "padding", parent);
+    }
+
     const fontGroup = document.createElement("div");
     fontGroup.className = "design-mode-group";
 
