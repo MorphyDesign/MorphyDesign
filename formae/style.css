@@ -170,7 +170,7 @@ body {
     clamp(80px, 10vw, 180px);
 
   --border:
-    1px solid rgba(0, 0, 0, 0.22);
+    1px solid rgba(0, 0, 0, 0.45);
 
   /* leíró betűk — every descriptive/label/caption text on the page
      (metrics, feature labels, section titles, control labels, Font Info
@@ -1126,7 +1126,7 @@ body {
 
   width: 1px;
 
-  background: rgba(17, 17, 17, 0.22);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 
@@ -1843,7 +1843,7 @@ body {
 
   width: 1px;
 
-  background: rgba(17, 17, 17, 0.22);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .feature-card {
@@ -2023,7 +2023,7 @@ body {
 
   width: 1px;
 
-  background: rgba(17, 17, 17, 0.22);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 
@@ -2191,20 +2191,6 @@ body {
       calc(var(--kerning-font-size, 84) * 1px);
   }
 
-  .header {
-    align-items: flex-start;
-  }
-
-
-  .nav {
-    flex-direction: column;
-
-    gap: 4px;
-
-    text-align: right;
-  }
-
-
   .tester-controls {
     grid-template-columns: 1fr;
 
@@ -2212,21 +2198,8 @@ body {
   }
 
 
-  .control {
-    grid-template-columns:
-      65px
-      minmax(0, 0.65fr)
-      50px
-      minmax(0, 0.35fr);
-  }
-
-
   .tester {
     min-height: 220px;
-
-    padding:
-      28px
-      var(--page-margin);
 
     line-height: 1.2;
   }
@@ -2326,8 +2299,15 @@ body {
 
 
   .text-sample-large p {
+    /* Scaled down from the old clamp(34px, 10vw, 48px) so "Wine
+       remembers the" / "season it was born in." each still fit their
+       single forced line (see the <br> in the markup) at mobile
+       widths -- this predates that 2-line fix and was never
+       recalculated for it. Estimated from character-width math, not
+       measured live (see standing no-browser-verification rule); if
+       it's still tight on an actual phone, shrink further. */
     font-size:
-      clamp(34px, 10vw, 48px);
+      clamp(25px, 7vw, 36px);
   }
 
 
@@ -2344,8 +2324,6 @@ body {
 
   .character-preview {
     z-index: 2;
-    height: 44vh;
-    height: 44svh;
     border-bottom: var(--border);
     background: var(--background);
   }
@@ -2368,12 +2346,6 @@ body {
   }
 
 
-  .character-list {
-    grid-template-columns:
-      repeat(auto-fit, minmax(60px, 1fr));
-  }
-
-
   .character-grid span {
     padding: 10px;
 
@@ -2393,21 +2365,9 @@ body {
   }
 
 
-  .about-title {
-    font-size:
-      clamp(76px, 25vw, 118px);
-  }
-
-
   .about-copy p {
     font-size:
       clamp(24px, 7.5vw, 34px);
-  }
-
-
-  .cta {
-    min-height:
-      clamp(210px, 24svh, 280px);
   }
 
 
@@ -2435,10 +2395,6 @@ svg,
 video,
 canvas {
   max-width: 100%;
-}
-
-.header {
-  min-height: 58px;
 }
 
 .nav a {
@@ -2548,8 +2504,6 @@ canvas {
   }
 
   .header {
-    min-height: 96px;
-    padding: 12px var(--page-margin);
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
@@ -2641,15 +2595,6 @@ canvas {
   }
 }
 
-
-/* ========================================
-   WAYFINDING LAYOUT CONTRACT
-======================================== */
-
-:root {
-  --page-margin: clamp(16px, 2.2vw, 36px);
-  --border: 1px solid rgba(0, 0, 0, 0.45);
-}
 
 .header {
   position: sticky;
