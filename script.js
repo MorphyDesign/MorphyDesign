@@ -325,9 +325,11 @@ if (characterCells.length) {
 }
 
 
-window.addEventListener("resize", function () {
-  drawCharacterPreview(characterPreview.textContent);
-});
+if (characterPreview) {
+  window.addEventListener("resize", function () {
+    drawCharacterPreview(characterPreview.textContent);
+  });
+}
 
 
 /* ========================================

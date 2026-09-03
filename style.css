@@ -7,6 +7,54 @@
   font-display: swap;
 }
 
+/* MorphyFoundry's own flagship typeface -- was never actually declared
+   here, so the whole homepage (hero included) had been silently
+   falling back to Inter Variable this whole time. Reuses the real
+   weight files already hosted under formae/fonts/ rather than
+   duplicating them. */
+@font-face {
+  font-family: "Formae";
+  src: url("formae/fonts/Formae-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formae";
+  src: url("formae/fonts/Formae-Semibold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* Font catalogue teaser tiles only -- one representative weight per
+   typeface, declared across a wide range so it renders regardless of
+   the exact weight requested. */
+@font-face {
+  font-family: "MS Relay Sans";
+  src: url("fonts/catalogue/MSRelaySans-Semibold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MS Circa Sans";
+  src: url("fonts/catalogue/MSCircaSans-Semibold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MS Cikk Cakk";
+  src: url("fonts/catalogue/MS_Cikk_Cakk.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 
 /* ========================================
    RESET
@@ -27,6 +75,7 @@ body {
   color: #111111;
 
   font-family:
+    "Formae",
     "Inter Variable",
     Arial,
     Helvetica,
@@ -261,6 +310,18 @@ body {
 
 .font-sample {
   display: none;
+}
+
+.font-catalogue-row-relay .font-aa {
+  font-family: "MS Relay Sans", "Inter Variable", Arial, sans-serif;
+}
+
+.font-catalogue-row-circa .font-aa {
+  font-family: "MS Circa Sans", "Inter Variable", Arial, sans-serif;
+}
+
+.font-catalogue-row-cikkcakk .font-aa {
+  font-family: "MS Cikk Cakk", "Inter Variable", Arial, sans-serif;
 }
 
 
