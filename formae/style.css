@@ -363,9 +363,9 @@ body {
 .font-info-action-solid {
   color: var(--foreground);
 
-  background: #c8962a;
+  background: #fbb040;
 
-  border: 1px solid #c8962a;
+  border: 1px solid #fbb040;
 }
 
 .font-info-grid {
