@@ -299,7 +299,11 @@ body {
 
   padding: 5px 10px;
 
-  border: var(--border);
+  color: var(--foreground);
+
+  background: #fbb040;
+
+  border: 1px solid #fbb040;
 
   border-radius: 999px;
 }
